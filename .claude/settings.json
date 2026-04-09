@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/Users/user/.claude/projects/c--Users-user-Desktop-bse-syntax-garden/memory/**)"
+      "Read(//c/Users/user/.claude/projects/c--Users-user-Desktop-bse-syntax-garden/memory/**)",
+      "Bash(npm --version)",
+      "Bash(git --version)"
     ]
   }
 }
