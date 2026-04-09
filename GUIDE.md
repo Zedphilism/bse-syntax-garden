@@ -21,6 +21,33 @@ All notes live in `content/`. Point your Obsidian vault at this folder.
 3. Write the note. One concept per file.
 4. Link to related notes with `[[wikilinks]]`
 
+**Atomic note template** — copy this for every new note:
+```markdown
+---
+title: "Concept Name"
+date: YYYY-MM-DD
+tags: [semester-3, subject-code, topic]
+---
+
+# Concept Name
+
+One sentence definition.
+
+## Key Points
+
+- Point one
+- Point two
+
+## Example
+
+(code block, diagram, or worked example here)
+
+## See Also
+
+- [[related-concept|Related Concept]]
+- [[Glossary/_Index|Glossary]]
+```
+
 **Draft notes (hidden from public site):**
 Add `draft: true` to frontmatter — Quartz will build but not publish it.
 ```markdown
@@ -59,21 +86,45 @@ npx quartz build --serve
 
 ```
 content/
-├── index.md                    ← home page (always required)
+├── index.md
 ├── Glossary/
-│   ├── _Index.md               ← glossary hub
-│   └── term-name.md            ← one term per file
+│   ├── _Index.md
+│   └── boolean-algebra.md          ← one term per file
 └── semester-03/
-    ├── _Index.md               ← semester hub
-    └── SECR1013-digital-logic/
-        ├── _Index.md           ← subject hub
-        └── logic-gates.md      ← atomic note
+    ├── _Index.md
+    ├── SECR1013-digital-logic/
+    │   ├── _Index.md               ← subject hub
+    │   ├── logic-gates.md          ← atomic note (concept name)
+    │   ├── boolean-algebra.md
+    │   └── karnaugh-maps.md
+    ├── SCSR2213-network-communication/
+    │   ├── _Index.md
+    │   ├── osi-model.md
+    │   └── tcp-vs-udp.md
+    └── SECI1113-computational-mathematic/
+        ├── _Index.md
+        ├── propositional-logic.md
+        └── set-theory.md
 ```
 
-**Rules:**
-- Hub files: `_Index.md` (underscore sorts them to the top in the file explorer)
-- Atomic notes: `kebab-case.md` (no spaces, no uppercase)
-- Add semesters 4–8 by dropping in a new `semester-0X/` folder — nothing else breaks
+**Structure rules:**
+- Hub files: `_Index.md` — always the folder index, links to all notes in that subject
+- Atomic notes: named after the **concept**, in `kebab-case.md`
+- No `Concepts/` or `Lectures/` subfolders — notes go flat in the subject folder
+- The knowledge graph + tags handle organization; folders are only for subject grouping
+- Semesters 4–8: drop in a new `semester-0X/` folder — nothing else breaks
+
+**File naming — name the concept, not the source:**
+
+| Concept | File name |
+|---------|-----------|
+| Logic gates | `logic-gates.md` |
+| OSI model | `osi-model.md` |
+| Karnaugh maps | `karnaugh-maps.md` |
+| TCP vs UDP | `tcp-vs-udp.md` |
+| Propositional logic | `propositional-logic.md` |
+
+Never name a file after a lecture (`lecture-2.md`), week (`week3.md`), or source (`textbook-ch4.md`). If a lecture covers 3 concepts, make 3 files.
 
 ---
 

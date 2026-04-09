@@ -8,11 +8,18 @@ tags: [hub, semester-3, digital-logic, secr1013]
 
 Topics: Logic gates, Boolean algebra, combinational circuits, sequential circuits, Verilog HDL.
 
+> [!tip] How to add notes
+> Create a new file directly in this folder named after the concept: `logic-gates.md`, `boolean-algebra.md`, etc. Then uncomment the link below.
+
 ## Notes
 
-<!-- Add atomic notes here as they are created -->
+<!-- Uncomment each line as you create the file -->
 <!-- [[logic-gates|Logic Gates]] -->
 <!-- [[boolean-algebra|Boolean Algebra]] -->
+<!-- [[karnaugh-maps|Karnaugh Maps]] -->
+<!-- [[combinational-circuits|Combinational Circuits]] -->
+<!-- [[sequential-circuits|Sequential Circuits]] -->
+<!-- [[flip-flops|Flip-Flops]] -->
 <!-- [[verilog-basics|Verilog Basics]] -->
 
 ## See Also
