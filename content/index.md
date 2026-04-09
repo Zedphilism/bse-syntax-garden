@@ -6,7 +6,17 @@ tags: [hub, bse]
 
 # BSE Syntax Garden
 
-Welcome to my Digital Garden — a living knowledge base built during my Bachelor of Software Engineering degree.
+Hi, I'm Zaidi — a Bachelor of Software Engineering student learning in public.
+
+Welcome to my digital garden.
+
+This space is dedicated to my study notes, organized by semester and continuously updated as I learn.
+
+Each note represents an active attempt to understand — not just memorize. Topics are broken down, revisited, and refined over time as my knowledge improves.
+
+Think of this as a living academic system: structured, iterative, and always evolving.
+
+Navigate by semester, and follow the progression.
 
 ## Semesters
 
