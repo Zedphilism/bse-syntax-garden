@@ -8,19 +8,21 @@ tags: [hub, semester-3, digital-logic, secr1013]
 
 Topics: Logic gates, Boolean algebra, combinational circuits, sequential circuits, Verilog HDL.
 
-> [!tip] How to add notes
-> Create a new file directly in this folder named after the concept: `logic-gates.md`, `boolean-algebra.md`, etc. Then uncomment the link below.
-
 ## Notes
 
-<!-- Uncomment each line as you create the file -->
-<!-- [[logic-gates|Logic Gates]] -->
-<!-- [[boolean-algebra|Boolean Algebra]] -->
-<!-- [[karnaugh-maps|Karnaugh Maps]] -->
-<!-- [[combinational-circuits|Combinational Circuits]] -->
-<!-- [[sequential-circuits|Sequential Circuits]] -->
-<!-- [[flip-flops|Flip-Flops]] -->
-<!-- [[verilog-basics|Verilog Basics]] -->
+### Signals and Representation
+- [[analog-vs-digital|Digital Signals Use Discrete Voltage Levels While Analog Signals Are Continuous]]
+- [[binary-digits-and-logic-levels|Binary Digits Map to Physical Voltage Levels in Digital Circuits]]
+- [[active-high-vs-active-low|Active-High and Active-Low Define the Polarity of a Logic Signal]]
+
+### Waveforms and Timing
+- [[digital-waveforms-and-signal-behavior|Digital Waveforms Describe Signal Transitions Between HIGH and LOW Over Time]]
+- [[duty-cycle-concept|Duty Cycle Measures Signal ON Time as a Fraction of Its Period]]
+- [[timing-diagrams|Timing Diagrams Visualize How Multiple Signals Change Together Over Time]]
+
+### Conversion
+- [[analog-digital-conversion|ADC and DAC Convert Signals Between Analog and Digital Domains]]
+- [[sampling-and-nyquist-theorem-concept|Nyquist Theorem Sets the Minimum Sampling Rate to Avoid Aliasing]]
 
 ## See Also
 
