@@ -1,0 +1,14 @@
+# Obsidian — exclude volatile workspace state, keep settings/plugins
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# Quartz build output (if Quartz is installed here later)
+node_modules/
+.quartz-cache/
+public/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
