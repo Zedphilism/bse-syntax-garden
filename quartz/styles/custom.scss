@@ -1,3 +1,240 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ─────────────────────────────────────────────────────────────────────────────
+// BSE Syntax Garden — Custom Styles
+// Design: Academic-Technical | Exo + Atkinson Hyperlegible | Slate/Blue
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Typography ────────────────────────────────────────────────────────────────
+
+body {
+  line-height: 1.75;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+// Constrain line length for readability (65-75ch rule)
+.center > article > * {
+  max-width: 72ch;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+h2 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--lightgray);
+  margin-top: 2rem;
+}
+h3 { font-size: clamp(1rem, 2.5vw, 1.2rem); }
+
+// ── Links ─────────────────────────────────────────────────────────────────────
+
+a {
+  text-decoration: none;
+  transition: color 200ms ease, opacity 200ms ease;
+  cursor: pointer;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+// Internal wiki-style links — subtle underline
+a.internal {
+  border-bottom: 1px solid var(--secondary);
+  padding-bottom: 1px;
+}
+
+a.internal:hover {
+  border-bottom-color: var(--tertiary);
+  color: var(--tertiary);
+  opacity: 1;
+}
+
+// ── Content Area ──────────────────────────────────────────────────────────────
+
+// Wider content panel for desktop
+@media (min-width: 1200px) {
+  .center {
+    max-width: 860px;
+  }
+}
+
+// ── Code Blocks ───────────────────────────────────────────────────────────────
+
+pre {
+  border-radius: 8px;
+  border: 1px solid var(--lightgray);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  padding: 1.25rem 1.5rem !important;
+}
+
+// Inline code
+code:not(pre code) {
+  background: var(--highlight);
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+}
+
+// ── Blockquotes ───────────────────────────────────────────────────────────────
+
+blockquote {
+  border-left: 4px solid var(--secondary);
+  background: var(--highlight);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  font-style: normal;
+
+  p { margin: 0; }
+}
+
+// ── Callouts ──────────────────────────────────────────────────────────────────
+
+.callout {
+  border-radius: 8px;
+  border-width: 1px;
+  margin: 1.5rem 0;
+
+  &[data-callout="note"] {
+    --color: var(--secondary);
+    border-color: var(--secondary);
+    background: rgba(37, 99, 235, 0.06);
+  }
+
+  &[data-callout="warning"] {
+    --color: #D97706;
+    border-color: #D97706;
+    background: rgba(217, 119, 6, 0.06);
+  }
+
+  &[data-callout="tip"] {
+    --color: #059669;
+    border-color: #059669;
+    background: rgba(5, 150, 105, 0.06);
+  }
+
+  &[data-callout="important"] {
+    --color: #7C3AED;
+    border-color: #7C3AED;
+    background: rgba(124, 58, 237, 0.06);
+  }
+}
+
+// ── Tables ────────────────────────────────────────────────────────────────────
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--lightgray);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 1rem;
+  border-bottom: 2px solid var(--gray);
+}
+
+td {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--lightgray);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--highlight); }
+
+// ── Tags ──────────────────────────────────────────────────────────────────────
+
+.tags > li > a {
+  background: var(--highlight);
+  border: 1px solid var(--lightgray);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2em 0.75em;
+  transition: background 200ms ease, border-color 200ms ease;
+  cursor: pointer;
+}
+
+.tags > li > a:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #fff;
+  opacity: 1;
+}
+
+// ── Sidebar — Explorer ────────────────────────────────────────────────────────
+
+.explorer {
+  font-size: 0.875rem;
+}
+
+.explorer-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+// ── Graph ─────────────────────────────────────────────────────────────────────
+
+.graph-outer {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--lightgray);
+}
+
+// ── Content Meta (date, reading time) ────────────────────────────────────────
+
+.content-meta {
+  font-size: 0.8rem;
+  color: var(--gray);
+  gap: 0.5rem;
+}
+
+// ── Backlinks ─────────────────────────────────────────────────────────────────
+
+.backlinks > ul > li > a {
+  font-size: 0.85rem;
+  transition: color 200ms ease;
+  cursor: pointer;
+}
+
+// ── Accessibility — Focus States ──────────────────────────────────────────────
+
+*:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+// ── Reduced Motion ────────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// ── Responsive — Mobile ───────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  body { font-size: 1rem; }
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+  pre { font-size: 0.8rem; }
+}
