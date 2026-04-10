@@ -3,7 +3,10 @@
     "allow": [
       "Read(//c/Users/user/.claude/projects/c--Users-user-Desktop-bse-syntax-garden/memory/**)",
       "Bash(npm --version)",
-      "Bash(git --version)"
+      "Bash(git --version)",
+      "Bash(py \"C:/Users/user/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"animation accessibility loading states\" --domain ux)",
+      "Bash(py \"C:/Users/user/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"academic research scholarly readable\" --domain typography)",
+      "Bash(npx quartz:*)"
     ]
   }
 }
