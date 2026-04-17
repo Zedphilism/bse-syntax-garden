@@ -1,43 +1,48 @@
 ---
 title: "Binary Digits Map to Physical Voltage Levels in Digital Circuits"
-date: 2026-04-09
+date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
 # Binary Digits Map to Physical Voltage Levels in Digital Circuits
 
-A bit (binary digit) is the fundamental unit of digital information, and it exists physically as a voltage that the circuit classifies as either HIGH (logic 1) or LOW (logic 0).
+A binary digit (bit) is not just an abstract 0 or 1 — in a physical circuit it corresponds to a defined voltage range, and any voltage outside those ranges is treated as invalid.
 
 ## Explanation
 
-Binary digits are abstract symbols — 0 and 1. In real hardware they are implemented as voltage ranges. A 3.3 V CMOS system might define anything above 2.0 V as HIGH and anything below 0.8 V as LOW. The gap between those thresholds is the **invalid region**: a voltage in this range is undefined and indicates a transitioning signal or a fault. No circuit should sample a signal while it sits in the invalid region, as the result will be unpredictable.
+Every digital circuit operates by interpreting voltage levels as logical states. The bit value 1 is assigned to a HIGH voltage range and the bit value 0 is assigned to a LOW voltage range. These ranges are defined by the logic family being used (TTL, CMOS, etc.) and they include deliberate margins to tolerate small noise variations.
 
-The distinction between a logic level and a numeric value is important. HIGH and LOW represent a *state*, not the integer 1 or 0 in an arithmetic sense. A single bit cannot be added or subtracted on its own — groups of bits are combined to form numbers. At the hardware level, HIGH simply means "this condition is true" and LOW means "this condition is false."
+Between the HIGH and LOW ranges lies an invalid region — sometimes called the forbidden zone or transition region. A signal resting in this region produces undefined behavior: the circuit may interpret it as either 0 or 1 unpredictably. Well-designed circuits spend the absolute minimum time passing through this region during signal transitions.
 
-This voltage-to-logic mapping is the foundational agreement that makes the entire digital stack possible. Transistors, gates, CPUs, and software all depend on this shared definition of what each voltage range means.
+It is important to understand that a bit represents a state, not a numeric quantity. Logic HIGH does not mean "the number one exists here"; it means the circuit is in the asserted state. This distinction matters especially when working with active-low signals, where the asserted condition is represented by LOW voltage.
 
 ## Key Points
 
-- HIGH voltage → logic 1 (asserted / true)
-- LOW voltage → logic 0 (deasserted / false)
-- Invalid region: voltages between the LOW ceiling and HIGH floor — undefined, must not be sampled
-- Thresholds differ by logic family: 5 V TTL, 3.3 V CMOS, 1.8 V CMOS
+- Bit = smallest unit of digital information, value is 0 or 1
+- HIGH voltage = logic 1 | LOW voltage = logic 0
+- Invalid region exists between HIGH and LOW — signals must not rest here
+- TTL reference levels: HIGH = 2.4 V to 5 V, LOW = 0 V to 0.8 V, invalid = 0.8 V to 2.4 V
+- A bit represents a logic state, not a numeric quantity
 
 ## Example
 
-For a 5 V TTL logic family:
+In a 5 V TTL system the voltage thresholds are:
 
 ```
-Voltage range       Logic level
-──────────────────────────────────
-≥ 2.0 V             HIGH (logic 1)
-0.8 V – 2.0 V       INVALID
-≤ 0.8 V             LOW  (logic 0)
+5.0 V ---|
+         |  HIGH region (logic 1)     e.g. 4.2 V -> read as 1
+2.4 V ---|
+         |  INVALID region            e.g. 1.5 V -> undefined!
+0.8 V ---|
+         |  LOW region  (logic 0)     e.g. 0.3 V -> read as 0
+0.0 V ---|
 ```
 
-A GPIO pin reading 4.2 V is logic 1. A pin reading 0.3 V is logic 0. A pin reading 1.2 V during a transition must not be sampled — doing so introduces an unpredictable error into the circuit.
+A voltage of 4.2 V is reliably read as logic 1.
+A voltage of 0.3 V is reliably read as logic 0.
+A voltage of 1.5 V is invalid — the circuit output is unpredictable.
 
 ## See Also
 
-- [[analog-vs-digital|Analog vs Digital Signals]] — explains why discrete voltage levels are used rather than a continuous range
-- [[active-high-vs-active-low|Active-High and Active-Low Logic Polarity]] — defines which voltage level counts as the asserted (true) state for a given signal
+- [[analog-vs-digital|Digital Signals Use Discrete Voltage Levels While Analog Signals Are Continuous]] — why only two valid levels exist
+- [[active-high-vs-active-low|Active-High and Active-Low Define the Polarity of a Logic Signal]] — how HIGH/LOW maps to true/false depending on signal polarity

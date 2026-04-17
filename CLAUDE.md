@@ -42,18 +42,55 @@ This vault root IS the Quartz `content/` directory.
 
 ---
 
-## Frontmatter Template
-Every note must include:
+## Atomic Note Template
+Every note must follow this full structure:
 
 ```markdown
 ---
-title: "Concept Name"
+title: "Title as a complete thought — max 70 chars, no symbols or colons"
 date: YYYY-MM-DD
-tags: [semester-3, subject-code, topic]
+tags: [semester-X, subject-code, topic-tag]
 ---
+
+# Title Here
+
+One precise sentence stating what this note claims or explains.
+
+## Explanation
+
+Narrative paragraphs (2–4). Explain fully enough that someone without
+the source material can understand it. Include the "why" — not just
+what it is, but why it matters or how it behaves. No bullet-dumping.
+
+## Key Points
+
+Only for facts that are genuinely list-like (formulas, comparisons,
+enumerated steps). Omit if Explanation already covers everything.
+
+- Point
+
+## Example
+
+A worked example, calculation, code block, or concrete scenario.
+This section is mandatory — every note must have at least one example.
+
+## See Also
+
+- [[kebab-case-filename|Display Name]] — why it is related
+- [[kebab-case-filename|Display Name]] — relationship description
 ```
 
-Valid tag namespaces: `semester-3`, `networking`, `digital-logic`, `discrete-math`, `hardware`, `glossary`
+**Tag namespaces:**
+- Semester: `semester-3`, `semester-4` … `semester-8`
+- Subject codes: `secr1013`, `seci1113`, `scsr2213`
+- Topic domain: `digital-logic`, `networking`, `discrete-math`, `hardware`, `glossary`
+- Do not invent new namespaces (`module-1`, `fundamentals`, `conversion`, etc.)
+
+**Title rules:** Phrase as a claim or complete thought, not a vague label.
+- Bad: `"Binary"` / `"Signals"` / `"Module 1 Notes"`
+- Good: `"Binary Digits Map to Physical Voltage Levels in Digital Circuits"`
+
+**Wikilink format:** Always `[[kebab-case-filename|Display Name]]` — never display-name-only links.
 
 ---
 
@@ -71,7 +108,7 @@ Valid tag namespaces: `semester-3`, `networking`, `digital-logic`, `discrete-mat
 npx quartz build --serve   # local preview (hot reload)
 npx quartz build           # production build only
 ```
-Sync is handled by Obsidian Git Plugin (auto-push every 10 min).
+Sync is handled by a daily Windows Task Scheduler job (`sync.ps1`) at 10 PM.
 
 ---
 

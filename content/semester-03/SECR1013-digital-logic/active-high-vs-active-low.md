@@ -1,52 +1,46 @@
 ---
 title: "Active-High and Active-Low Define the Polarity of a Logic Signal"
-date: 2026-04-09
+date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
 # Active-High and Active-Low Define the Polarity of a Logic Signal
 
-Active-high and active-low are two conventions that determine which voltage level a digital system treats as logically asserted (true or ON).
+Active-high and active-low describe whether a signal is asserted (true/enabled) when its voltage is HIGH or when it is LOW — the same physical voltage can carry the opposite logical meaning depending on polarity convention.
 
 ## Explanation
 
-In an active-high system, a HIGH voltage — typically 3.3 V or 5 V — means the signal is asserted, while LOW (0 V) means it is inactive. This is the intuitive default: higher voltage equals "on". In an active-low system the polarity is inverted: a LOW voltage asserts the signal as true, and HIGH means the signal is inactive. Recognising which convention a circuit uses is essential when reading datasheets and connecting components, because mismatching the two produces silent logic errors that are extremely hard to trace.
+In an active-high signal, a HIGH voltage means the signal is asserted: the condition is true, the device is enabled, the action is triggered. This matches the intuitive convention where HIGH equals ON. Many enable and clock pins on basic logic chips operate this way.
 
-Active-low convention is deliberately chosen for safety-critical and control signals. Its key advantage is fail-safe behaviour: if the wire carrying an active-low signal is cut or disconnected, the line floats HIGH, which the system reads as "inactive" — it does not falsely trigger. This is why chip-select, reset, and emergency-stop lines almost always use active-low logic. The convention is indicated in schematics by an overbar on the signal name (e.g., CS̄, RESET̄) or a leading tilde (~CS, ~RESET).
+In an active-low signal, a LOW voltage means the signal is asserted. When the pin is driven to 0 V the device activates; when it is HIGH the device is idle. Active-low signals are marked with an overline in schematics (e.g., EN with a bar, or ~EN in text) to indicate that the logic is inverted relative to voltage.
 
-Understanding the distinction matters beyond just reading schematics. When writing firmware, toggling a GPIO LOW to turn something ON (active-low LED or peripheral) is a common source of confusion for beginners who assume HIGH always means ON.
+Active-low designs are preferred in safety-critical and industrial systems because they are inherently fail-safe. If a wire breaks or a connection is lost, a pull-up resistor holds the input HIGH, keeping the device inactive. In an active-high design a broken wire could leave a pin floating and accidentally trigger the device. Active-low signals are also more noise-immune because pulling a line to ground is electrically more stable than driving it to supply voltage.
 
 ## Key Points
 
-- Active-High: HIGH = asserted (ON / TRUE), LOW = deasserted (OFF / FALSE)
-- Active-Low: LOW = asserted (ON / TRUE), HIGH = deasserted (OFF / FALSE)
-- Active-low signals are denoted with an overbar (RESET̄) or tilde (~RESET)
-- Typical active-low pins: chip-select (CS̄), output-enable (OĒ), write-enable (WĒ), reset (RESET̄)
+- Active-high: HIGH voltage = asserted (ON / enabled / true)
+- Active-low: LOW voltage = asserted (ON / enabled / true)
+- Active-low notation: overline or tilde prefix (~EN, ~RESET, ~CS)
+- Active-low is preferred for fail-safe behavior, noise immunity, and default-off on power-up
 
 ## Example
 
-**Chip-select pin (active-low):**
+An LED connected to a microcontroller output pin:
 
 ```
-CS̄ = 0 V (LOW)   → chip is selected and responding to the bus
-CS̄ = 3.3 V (HIGH) → chip is deselected and ignores all bus traffic
+Active-HIGH wiring:
+  MCU pin --[R]--[LED]-- GND
+  Pin = HIGH (5V) -> current flows -> LED ON
+  Pin = LOW  (0V) -> no current   -> LED OFF
+  Wire breaks: pin floats -> LED may flicker (unsafe)
+
+Active-LOW wiring:
+  VCC --[R]--[LED]--[MCU pin]
+  Pin = LOW  (0V) -> current flows -> LED ON
+  Pin = HIGH (5V) -> no current   -> LED OFF
+  Wire breaks: pull-up holds HIGH -> LED stays OFF (safe)
 ```
-
-**LED on a GPIO pin (active-high vs active-low wiring):**
-
-```
-Active-High (LED anode → GPIO, cathode → GND):
-  GPIO = HIGH (3.3 V) → current flows → LED ON
-  GPIO = LOW  (0 V)   → no current   → LED OFF
-
-Active-Low (LED anode → VCC, cathode → GPIO):
-  GPIO = LOW  (0 V)   → current flows → LED ON
-  GPIO = HIGH (3.3 V) → no current   → LED OFF
-```
-
-The wiring determines the polarity, not the software alone — which is why you must check the schematic before writing the firmware.
 
 ## See Also
 
-- [[binary-digits-and-logic-levels|Binary Digits and Logic Levels]] — establishes the voltage thresholds that produce a valid HIGH or LOW reading
-- [[analog-vs-digital|Analog vs Digital Signals]] — explains why discrete voltage levels are used at all, rather than a continuous range
+- [[binary-digits-and-logic-levels|Binary Digits Map to Physical Voltage Levels in Digital Circuits]] — the voltage levels that HIGH and LOW refer to

@@ -1,48 +1,48 @@
 ---
 title: "Digital Signals Use Discrete Voltage Levels While Analog Signals Are Continuous"
-date: 2026-04-09
+date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
 # Digital Signals Use Discrete Voltage Levels While Analog Signals Are Continuous
 
-Analog and digital are two fundamentally different ways of representing information: analog encodes values as a continuous, infinitely variable quantity, while digital encodes them as one of a fixed set of discrete states.
+Analog signals vary continuously over an infinite range of values, while digital signals exist only at defined discrete levels — in most digital systems, either HIGH or LOW.
 
 ## Explanation
 
-An analog signal mirrors the real-world quantity it represents with no gaps — a temperature sensor produces a voltage that varies smoothly as temperature rises or falls, and any value within the range is valid. Sound waves, light intensity, and the output of a microphone are all analog by nature.
+An analog signal is a continuous representation of a physical quantity. A microphone output, for example, produces a voltage that rises and falls smoothly with sound pressure — at any instant it can take any value within its range. There is no jump between values; the signal traces a smooth curve over time.
 
-A digital signal is intentionally constrained to a small set of permitted voltage levels — in binary systems, just two: HIGH and LOW. Any voltage outside a valid band is treated as noise or a transition error. This discretisation makes digital signals far more resistant to noise: a signal that drifts slightly still registers as a clean HIGH or LOW, whereas an analog signal degrades the moment any interference is introduced.
+A digital signal, by contrast, is constrained to a finite set of values. In binary digital systems, only two voltage levels are valid: HIGH (representing logic 1) and LOW (representing logic 0). Any intermediate voltage is considered invalid or transitional. The signal appears as a series of rectangular steps rather than a smooth curve.
 
-The practical consequence is that digital data can be stored, copied, and transmitted without accumulating errors. Every copy of a digital value is identical to the original; every copy of an analog signal is slightly degraded. This is why audio, video, and communications infrastructure migrated from analog to digital over the course of the 20th century, and why computers process everything in binary rather than in continuous voltages.
+Digital systems are preferred in computing and communications because discrete levels are far more resilient to noise. A small voltage fluctuation in an analog circuit corrupts the value it represents, but the same fluctuation in a digital circuit makes no difference as long as the voltage stays within the valid HIGH or LOW range. This noise immunity makes digital signals easier to store, copy, transmit, and process without accumulated error.
 
 ## Key Points
 
-- Analog: continuous range of values; any intermediate value is valid
-- Digital: discrete levels only (HIGH = 1, LOW = 0 in binary systems)
-- Digital is noise-resistant because small deviations are corrected back to the nearest valid level
-- All real-world physical quantities are analog — conversion is required before digital processing
+- Analog: continuous, infinite possible values, smooth waveform
+- Digital: discrete, finite valid levels (HIGH/LOW), step-like waveform
+- Digital systems resist noise because small deviations do not change the interpreted logic level
+- Real-world quantities (temperature, sound, light) are inherently analog and must be converted before digital processing
 
 ## Example
 
-A microphone converts sound pressure into an analog voltage that varies continuously between 0 V and 5 V — any fractional value is meaningful. The same audio stored on a computer is digital: each sample is one of 65,536 possible values (16-bit audio), and voltages between those levels simply do not exist in the stored representation.
+A room thermometer outputs an analog voltage proportional to temperature — at 25 degrees C it outputs 2.5 V, at 26 degrees C it outputs 2.6 V, varying smoothly in between.
+
+A digital thermostat reads that same sensor and outputs either 1 (heating on) or 0 (heating off). The continuous temperature range is collapsed to two states.
 
 ```
-Analog waveform (smooth):
-5V |   /\      /\
-   |  /  \    /  \
-   | /    \  /    \
-0V |/      \/      \──> time
+Analog signal (temperature sensor):
+Voltage |  .-.     .-.
+        | /   \   /   \
+        |/     '-'     \
+        +-----------------> time
 
-Digital approximation (stepped/quantised):
-5V |  ████  ████
-   | █    ██    ██
-0V |              ──> time
+Digital signal (threshold applied):
+HIGH  --+  ___     ___
+LOW   --+      ___     ___
+        +-----------------> time
 ```
-
-The stepped digital version loses some fine detail, but it can be copied infinitely without any further degradation.
 
 ## See Also
 
-- [[binary-digits-and-logic-levels|Binary Digits and Logic Levels]] — explains how HIGH and LOW are implemented as physical voltage thresholds
-- [[analog-digital-conversion|ADC and DAC Convert Between Analog and Digital Domains]] — the process of moving between these two representations
+- [[binary-digits-and-logic-levels|Binary Digits Map to Physical Voltage Levels in Digital Circuits]] — how HIGH/LOW maps to 0 and 1
+- [[analog-digital-conversion|ADC and DAC Convert Signals Between Analog and Digital Domains]] — how real-world analog signals enter digital systems
