@@ -547,3 +547,205 @@ html { scroll-behavior: smooth; }
   pre { font-size: 0.8rem; }
   pre::before { display: none; }  // hide terminal dots on mobile
 }
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MEMORY-ENHANCING UI
+// Cognitive science applied: Retrieval Practice · Von Restorff Effect ·
+// Dual Coding · Positional Awareness · Semantic Anchoring · Chunking
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ── Reading Progress Bar ──────────────────────────────────────────────────────
+// Positional Awareness: knowing where you are in a note reduces cognitive load
+// and helps anchor content in memory (spatial encoding).
+
+@supports (animation-timeline: scroll()) {
+  @keyframes reading-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--secondary), var(--tertiary));
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: reading-progress linear both;
+    animation-timeline: scroll();
+    z-index: 10000;
+    box-shadow: var(--glow-sm);
+    pointer-events: none;
+  }
+}
+
+// ── Active Recall Callout — [!recall] ─────────────────────────────────────────
+// Retrieval Practice: the single most evidence-backed memory technique.
+// Write > [!recall] in your note to create a self-test question block.
+// Distinct amber color so your eye finds it instantly during review.
+
+.callout[data-callout="recall"] {
+  --callout-color: #F59E0B;
+  border-color: #F59E0B;
+  background: rgba(245, 158, 11, 0.07);
+  border-left-width: 4px;
+  position: relative;
+
+  .callout-title { color: #F59E0B; font-weight: 800; }
+
+  &::after {
+    content: "RECALL";
+    position: absolute;
+    top: 0.55rem;
+    right: 0.85rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: #F59E0B;
+    opacity: 0.55;
+  }
+}
+
+// ── Key Concept Callout — [!concept] ─────────────────────────────────────────
+// Von Restorff Effect: isolating key definitions visually makes them
+// significantly more memorable than surrounding body text.
+// Use for the one sentence that the entire note hinges on.
+
+.callout[data-callout="concept"] {
+  --callout-color: #A78BFA;
+  border-color: #A78BFA;
+  background: rgba(167, 139, 250, 0.07);
+  border-left-width: 4px;
+
+  .callout-title { color: #A78BFA; font-weight: 800; }
+
+  &::after {
+    content: "CONCEPT";
+    position: absolute;
+    top: 0.55rem;
+    right: 0.85rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: #A78BFA;
+    opacity: 0.55;
+  }
+
+  position: relative;
+}
+
+// ── Subject Code Tag Color Coding ─────────────────────────────────────────────
+// Dual Coding: pairing a unique color with each subject builds automatic
+// visual-semantic association — you recognise the domain before reading the tag.
+// SECR1013 (Digital Logic)    → amber   — hardware/silicon warmth
+// SECI1113 (Comp. Math)       → violet  — abstract/symbolic
+// SCSR2213 (Networking)       → sky     — signal/transmission
+
+.tags > li > a[href*="secr1013"] {
+  border-color: color-mix(in srgb, #F59E0B 40%, transparent);
+  color: #F59E0B !important;
+  &:hover {
+    background: #F59E0B !important;
+    color: var(--light) !important;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
+  }
+}
+
+.tags > li > a[href*="seci1113"] {
+  border-color: color-mix(in srgb, #8B5CF6 40%, transparent);
+  color: #8B5CF6 !important;
+  &:hover {
+    background: #8B5CF6 !important;
+    color: var(--light) !important;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.45);
+  }
+}
+
+.tags > li > a[href*="scsr2213"] {
+  border-color: color-mix(in srgb, #38BDF8 40%, transparent);
+  color: #38BDF8 !important;
+  &:hover {
+    background: #38BDF8 !important;
+    color: var(--light) !important;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.45);
+  }
+}
+
+// ── H4 Styling — Deep Hierarchy Support ──────────────────────────────────────
+// Chunking: a complete heading hierarchy (H1–H4) lets you nest concepts
+// without losing visual structure, so related ideas stay grouped in memory.
+
+h4 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  opacity: 0.8;
+  margin-top: 1.25rem;
+  padding-left: 0;
+}
+
+// ── Definition Terms — Semantic Anchoring ─────────────────────────────────────
+// Semantic Memory: marking defined terms distinctly strengthens the
+// concept–definition link. Use <dfn>term</dfn> in notes or the glossary.
+
+dfn {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--secondary);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+// ── Strong / Bold — Key Term Highlighting ─────────────────────────────────────
+// Von Restorff: **bold terms** in explanations get a subtle tint so the
+// reader's eye is drawn to the load-bearing facts on a second pass.
+
+article p strong,
+article li strong {
+  color: var(--secondary);
+  background: var(--highlight);
+  padding: 0.05em 0.25em;
+  border-radius: 3px;
+}
+
+// ── ToC — Active Section Indicator ────────────────────────────────────────────
+// Positional Awareness: knowing which section you're in prevents
+// "lost in the note" disorientation and anchors recall spatially.
+
+#toc-content a.in-view {
+  border-left-color: var(--secondary) !important;
+  color: var(--secondary) !important;
+  font-weight: 600;
+  padding-left: 0.9rem;
+  opacity: 1;
+  text-shadow: var(--glow-sm);
+}
+
+// ── Backlinks — Retrieval Cue Panel ───────────────────────────────────────────
+// Spaced Retrieval: backlinks are your "what links here" — the associations
+// that make a concept stick. Give the panel a subtle left-accent to frame it
+// as a distinct zone for connection-making.
+
+.backlinks {
+  border-left: 2px solid color-mix(in srgb, var(--secondary) 25%, transparent);
+  padding-left: 0.75rem;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+}
+
+// ── Popover Previews — Low-Cost Review ────────────────────────────────────────
+// Spaced Practice: hover-popovers let you "peek" at a linked concept
+// without breaking your reading flow — lightweight retrieval practice.
+
+.popover {
+  border: 1px solid color-mix(in srgb, var(--secondary) 45%, transparent) !important;
+  box-shadow: var(--glow-md), 0 8px 32px rgba(0, 0, 0, 0.28) !important;
+}
