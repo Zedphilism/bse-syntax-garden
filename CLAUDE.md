@@ -56,6 +56,9 @@ tags: [semester-X, subject-code, topic-tag]
 
 One precise sentence stating what this note claims or explains.
 
+> [!concept] Core Claim
+> Restate the opening sentence as a tight, standalone definition.
+
 ## Explanation
 
 Narrative paragraphs (2–4). Explain fully enough that someone without
@@ -73,6 +76,8 @@ enumerated steps). Omit if Explanation already covers everything.
 
 A worked example, calculation, code block, or concrete scenario.
 This section is mandatory — every note must have at least one example.
+
+> [!recall] A self-test question that probes the note's core concept?
 
 ## See Also
 
