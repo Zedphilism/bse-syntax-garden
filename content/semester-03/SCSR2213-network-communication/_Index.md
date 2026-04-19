@@ -78,6 +78,71 @@ Source: *Computer Networking: A Top-Down Approach*, Kurose & Ross (7th/8th Ed.)
 
 ---
 
+## Chapter 3 — Transport Layer
+
+### Transport Layer Fundamentals
+
+- [[transport-layer-vs-network-layer|The Transport Layer Extends Network Delivery from Hosts to Processes]]
+- [[multiplexing-and-demultiplexing|Multiplexing Uses Port Numbers to Direct Segments to the Right Process]]
+- [[udp-connectionless-transport|UDP Provides Bare-Bones Transport with No Delivery Guarantees]]
+
+### Reliable Data Transfer
+
+- [[reliable-data-transfer-principles|Reliable Data Transfer Builds Correctness on Top of an Unreliable Channel]]
+- [[go-back-n-vs-selective-repeat|Go-Back-N and Selective Repeat Are Pipelined Protocols with Different Retransmission Strategies]]
+
+### TCP
+
+- [[tcp-segment-structure|TCP Segment Header Carries Sequence Numbers, ACKs, and Control Flags]]
+- [[tcp-rtt-estimation-and-timeout|TCP Estimates RTT with EWMA to Set a Dynamic Retransmission Timeout]]
+- [[tcp-fast-retransmit|TCP Fast Retransmit Uses Duplicate ACKs to Retransmit Before Timeout]]
+- [[tcp-flow-control|TCP Flow Control Uses the Receive Window to Prevent Buffer Overflow]]
+- [[tcp-three-way-handshake|TCP Uses a Three-Way Handshake to Establish and a Four-Way Close to Terminate]]
+- [[tcp-congestion-control|TCP Congestion Control Uses AIMD to Share Network Capacity Fairly]]
+
+---
+
+## Chapter 4 — Network Layer: Data Plane
+
+### Forwarding and Router Architecture
+
+- [[network-layer-data-vs-control-plane|The Network Layer Has Two Planes — Data Plane Forwards, Control Plane Routes]]
+- [[router-architecture-overview|A Router Has Input Ports, a Switching Fabric, and Output Ports]]
+
+### IP: The Internet Protocol
+
+- [[ip-datagram-format|An IP Datagram Has a 20-Byte Header Carrying Addressing and Control Fields]]
+- [[ip-fragmentation-and-reassembly|IP Fragmentation Splits Large Datagrams to Fit Link MTU]]
+- [[ipv4-addressing-and-subnets|IPv4 Addresses Identify Interfaces and Are Grouped into Subnets]]
+- [[subnetting-cidr-vs-classful|CIDR Replaced Classful Addressing to Eliminate Wasteful Address Allocation]]
+
+### Network Configuration
+
+- [[dhcp-dynamic-host-configuration|DHCP Automatically Assigns IP Addresses to Hosts on a Network]]
+- [[nat-network-address-translation|NAT Maps Many Private Addresses to One Public IP Using Port Numbers]]
+- [[ipv6-addressing-and-format|IPv6 Uses 128-Bit Addresses and a Simplified Fixed-Length Header]]
+
+---
+
+## Chapter 5 — Network Layer: Control Plane
+
+### Routing Algorithms
+
+- [[link-state-routing-dijkstra|Link-State Routing Uses Dijkstra's Algorithm on a Global Topology Map]]
+- [[distance-vector-routing-bellman-ford|Distance-Vector Routing Uses the Bellman-Ford Equation to Compute Paths Iteratively]]
+
+### Internet Routing Protocols
+
+- [[ospf-intra-as-routing|OSPF Is a Link-State Intra-AS Routing Protocol with Hierarchical Areas]]
+- [[bgp-inter-as-routing|BGP Is the Inter-AS Routing Protocol That Connects the Internet's Autonomous Systems]]
+
+### SDN and ICMP
+
+- [[sdn-control-plane|SDN Separates the Control Plane from Data Plane Hardware into a Remote Controller]]
+- [[icmp-internet-control-message-protocol|ICMP Reports Network Errors and Is Used by Ping and Traceroute]]
+
+---
+
 ## See Also
 
 - [[Glossary/_Index|Glossary]]
