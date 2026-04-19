@@ -1,51 +1,56 @@
 ---
-title: "The Determinant Is a Scalar That Encodes Whether a Square Matrix Is Invertible"
+title: "Matrix Determinant"
 date: 2026-04-18
 tags: [semester-3, seci1113, discrete-math]
 ---
 
-# The Determinant Is a Scalar That Encodes Whether a Square Matrix Is Invertible
+# Matrix Determinant
 
-The **determinant** (det A or |A|) is a single real number computed from a square matrix. Its most critical use is invertibility: a square matrix A has an inverse if and only if det(A) ≠ 0.
+The determinant is a single real number computed from a square matrix that encodes whether the matrix is invertible — det(A) ≠ 0 if and only if A has an inverse, and det(A) = 0 signals that the system AX = b either has infinitely many solutions or no solution.
+
+> [!concept] Core Claim
+> The determinant measures the "scaling factor" of the linear transformation represented by the matrix: geometrically, it is the signed area (2D) or signed volume (3D) of the parallelogram/parallelepiped formed by the matrix's column vectors — a determinant of zero means those vectors are collinear or coplanar, so the transformation collapses space and cannot be reversed.
 
 ## Explanation
 
-**2×2 matrix:** For A = [[a, b], [c, d]], det(A) = ad − bc. Cross-multiply and subtract.
+Think of the determinant like the area of a plot of land defined by two fence lines: if the two fences are parallel (linearly dependent columns), the enclosed area is zero — there is no interior. A matrix with zero determinant works the same way: its columns point in directions that are either parallel or lie in a lower-dimensional subspace, so the transformation it represents squashes space and cannot be undone (no inverse exists).
 
-**Cofactor expansion (n×n):** For larger matrices, expand along any row or column. Expanding across row i:
-det(A) = Σⱼ aᵢⱼ · Cᵢⱼ
-where Cᵢⱼ = (−1)ⁱ⁺ʲ · det(Aᵢⱼ) is the **cofactor**, and Aᵢⱼ is the **submatrix** formed by deleting row i and column j.
+For a 2×2 matrix A = [[a, b], [c, d]], the formula is det(A) = ad − bc — the product of the main diagonal minus the product of the anti-diagonal. For n × n matrices (n ≥ 3), the determinant is computed by cofactor expansion along any row or column. Expanding along row i: det(A) = Σⱼ aᵢⱼ · Cᵢⱼ, where the cofactor Cᵢⱼ = (−1)ⁱ⁺ʲ · det(Aᵢⱼ) and Aᵢⱼ is the (n−1) × (n−1) submatrix formed by deleting row i and column j. The alternating sign (−1)ⁱ⁺ʲ follows the checkerboard pattern: +, −, +, − across rows and columns.
 
-The sign pattern for cofactors alternates like a checkerboard:
-```
-+ − + − …
-− + − + …
-+ − + − …
-```
-
-**Practical tip:** Choose the row or column with the most zeros — it eliminates terms immediately and reduces calculation.
-
-**3×3 expansion along row 1:**
-det(A) = a₁₁(a₂₂a₃₃ − a₂₃a₃₂) − a₁₂(a₂₁a₃₃ − a₂₃a₃₁) + a₁₃(a₂₁a₃₂ − a₂₂a₃₁)
+The choice of which row or column to expand along is free — the result is always the same number. The practical strategy is to expand along the row or column with the most zeros, because each zero entry eliminates one cofactor term entirely, minimising computation. This is especially valuable for sparse matrices.
 
 ## Key Points
 
-- 2×2: det = ad − bc
-- Cofactor Cᵢⱼ = (−1)ⁱ⁺ʲ · det(submatrix Aᵢⱼ)
-- Expand across any row or column (result is always the same)
+- 2×2: det([[a,b],[c,d]]) = ad − bc
+- Cofactor: Cᵢⱼ = (−1)ⁱ⁺ʲ · det(Aᵢⱼ); expand along any row or column
+- Sign pattern alternates like a checkerboard starting with + at (1,1)
 - det(A) ≠ 0 ↔ A is invertible (non-singular)
-- det(A) = 0 ↔ A is singular; no inverse exists
-- Choose row/column with most zeros to minimise work
+- det(A) = 0 ↔ A is singular; no inverse; system has no unique solution
+- Strategy: expand along the row or column with the most zeros
 
 ## Example
 
-For the 2×2 matrix A = [[2, 4], [1, 5]]:
-det(A) = (2)(5) − (4)(1) = 10 − 4 = **6** (≠ 0, so A is invertible)
+2×2: A = [[2, 4], [1, 5]]. det(A) = (2)(5) − (4)(1) = 10 − 4 = 6 ≠ 0, so A is invertible.
 
-For a 3×3 matrix, expand across row 3 if row 3 contains zeros to reduce computation steps. Each 2×2 submatrix determinant is computed with the cross-multiply rule, then combined with the appropriate cofactor signs.
+3×3 via cofactor expansion along row 1:
+```
+A = [1  0  2]
+    [3  1 -1]
+    [2 -1  4]
+
+det(A) = 1·|1 -1; -1 4| − 0·|3 -1; 2 4| + 2·|3 1; 2 -1|
+       = 1·(1·4 − (−1)(−1)) − 0 + 2·(3·(−1) − 1·2)
+       = 1·(4 − 1) + 2·(−3 − 2)
+       = 3 + 2·(−5)
+       = 3 − 10
+       = −7
+```
+det(A) = −7 ≠ 0 → A is invertible.
+
+> [!recall] Compute det(B) for B = [[2, −1, 0], [4, 3, 1], [−2, 0, 5]] by expanding along the row or column of your choice. Justify your choice of expansion row/column before computing. Then state whether B is invertible and what this means for the system BX = b.
 
 ## See Also
 
 - [[matrix-types-and-notation|Matrix Types and Notation]] — square matrix requirement
-- [[matrix-inverse|Matrix Inverse]] — requires det(A) ≠ 0
+- [[matrix-inverse|Matrix Inverse]] — only exists when det(A) ≠ 0
 - [[matrix-operations|Matrix Operations]] — multiplication context

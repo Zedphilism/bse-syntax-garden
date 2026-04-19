@@ -1,65 +1,48 @@
 ---
-title: "Finite Difference Formulas Approximate Derivatives Using Nearby Function Values"
+title: "Numerical Differentiation: Finite Differences"
 date: 2026-04-18
 tags: [semester-3, seci1113, discrete-math]
 ---
 
-# Finite Difference Formulas Approximate Derivatives Using Nearby Function Values
+# Numerical Differentiation: Finite Differences
 
-**Numerical differentiation** estimates derivatives of f(x) at a point using values of f at nearby discrete points — without requiring a symbolic formula for f′. These **finite difference formulas** are derived from Taylor series expansions and differ in accuracy and direction.
+Finite difference formulas estimate f′(x) at a point using nearby function values — forward, backward, or central differences — all derived from Taylor series truncation, with accuracy ranging from O(h) for 2-point formulas to O(h⁴) for 5-point formulas.
+
+> [!concept] Core Claim
+> Finite difference differentiation approximates the instantaneous slope of f by the average slope between nearby discrete points — the key trade-off is that using points farther apart (larger h) reduces rounding error from data noise but increases truncation error from the linear approximation, while smaller h does the opposite, so an optimal h exists between these extremes.
 
 ## Explanation
 
-All formulas are derived from the Taylor expansion of f(xᵢ ± h):
+Think of estimating the slope of a hill: if you stand at one point and look at a nearby point, the ratio (height difference)/(horizontal distance) approximates the slope. If the two points are very close, your height measurements' rounding errors dominate the fraction (tiny denominator amplifies noise). If they are far apart, the slope between them poorly represents the slope at your exact position (the hill curves between the points). The optimal step size h balances these two competing effects.
 
-f(xᵢ + h) = f(xᵢ) + hf′(xᵢ) + (h²/2!)f″(xᵢ) + …
+The derivation starts from Taylor's theorem. Expanding f around xᵢ: f(xᵢ + h) = f(xᵢ) + hf′(xᵢ) + (h²/2)f″(xᵢ) + … Solving for f′(xᵢ) and discarding higher terms gives the forward difference: f′(xᵢ) ≈ [f(xᵢ + h) − f(xᵢ)] / h with error O(h). The backward difference replaces xᵢ + h with xᵢ − h. The central difference averages the two expansions: f′(xᵢ) ≈ [f(xᵢ + h) − f(xᵢ − h)] / (2h) — the O(h) terms cancel, yielding O(h²) accuracy for the same step size.
 
-Rearranging to isolate f′(xᵢ) and truncating gives different formulas with different orders of accuracy (error proportional to h or h²).
-
-**2-point formulas (O(h) accuracy):**
-
-Forward difference:
-f′(xᵢ) ≈ [f(xᵢ + h) − f(xᵢ)] / h = [f(xᵢ₊₁) − f(xᵢ)] / h
-
-Backward difference:
-f′(xᵢ) ≈ [f(xᵢ) − f(xᵢ − h)] / h = [f(xᵢ) − f(xᵢ₋₁)] / h
-
-**3-point formulas (O(h²) accuracy — more accurate):**
-
-Forward 3-point:
-f′(xᵢ) ≈ [−3f(xᵢ) + 4f(xᵢ+h) − f(xᵢ+2h)] / (2h)
-
-Backward 3-point:
-f′(xᵢ) ≈ [f(xᵢ−2h) − 4f(xᵢ−h) + 3f(xᵢ)] / (2h)
-
-Central 3-point (most accurate per formula):
-f′(xᵢ) ≈ [f(xᵢ+h) − f(xᵢ−h)] / (2h)
-
-**5-point formulas (O(h⁴) accuracy):** Available for even higher precision; use 5 data points.
-
-The central difference formula is generally preferred when data on both sides of xᵢ is available, as it has O(h²) accuracy vs. O(h) for one-sided formulas. However, at the boundaries of the data, only forward or backward formulas can be used.
+Three-point formulas improve accuracy by using three data points. The central 3-point formula [f(xᵢ + h) − f(xᵢ − h)] / (2h) is O(h²). The one-sided 3-point formulas (forward and backward) are also O(h²) but use asymmetric weights. Five-point formulas achieve O(h⁴). The central difference is always preferred for interior points because both accuracy and numerical stability are better; forward and backward formulas are used when the point is at a data boundary and one side is unavailable.
 
 ## Key Points
 
-- All formulas derived from Taylor series by rearrangement and truncation
-- Forward: uses f(xᵢ) and f(xᵢ+h) — for left boundary points
-- Backward: uses f(xᵢ) and f(xᵢ−h) — for right boundary points
-- Central: uses f(xᵢ+h) and f(xᵢ−h) — most accurate, for interior points
-- 3-point formulas are O(h²); 2-point are O(h); 5-point are O(h⁴)
-- Errors are amplified by differentiation — use data carefully
+- All formulas derived from Taylor series; truncating produces different accuracy orders
+- 2-point forward: f′(xᵢ) ≈ [f(xᵢ+h) − f(xᵢ)] / h — O(h) error; for left boundary
+- 2-point backward: f′(xᵢ) ≈ [f(xᵢ) − f(xᵢ−h)] / h — O(h) error; for right boundary
+- 3-point central: f′(xᵢ) ≈ [f(xᵢ+h) − f(xᵢ−h)] / (2h) — O(h²) error; preferred for interior
+- Central is most accurate; use forward/backward only at boundaries
 
 ## Example
 
-Data: x ∈ {1.00, 1.05, 1.10, 1.15, 1.20}, h = 0.05. Estimate f′(1.05).
+Data: f(x) = √x at x ∈ {1.00, 1.05, 1.10, 1.15, 1.20}, h = 0.05. Estimate f′(1.05).
 
-2-point forward: f′(1.05) ≈ (f(1.10) − f(1.05)) / 0.05 = (1.04881 − 1.02470)/0.05 = **0.4822**
+2-point forward: f′(1.05) ≈ [√1.10 − √1.05] / 0.05 = [1.04881 − 1.02470] / 0.05 = **0.4822**
 
-2-point backward: f′(1.05) ≈ (f(1.05) − f(1.00)) / 0.05 = (1.02470 − 1.00000)/0.05 = **0.4940**
+2-point backward: f′(1.05) ≈ [√1.05 − √1.00] / 0.05 = [1.02470 − 1.00000] / 0.05 = **0.4940**
 
-(Actual value: f(x) = √x, f′(1.05) = 1/(2√1.05) ≈ 0.4879 — central formula would be closer.)
+3-point central: f′(1.05) ≈ [√1.10 − √1.00] / (2 × 0.05) = [1.04881 − 1.00000] / 0.10 = **0.4881**
+
+Exact: f′(x) = 1/(2√x), f′(1.05) = 1/(2√1.05) ≈ **0.4879**. Central gives the closest result ✓.
+
+> [!recall] The function f is known only at discrete points: f(2.0) = 0.693, f(2.1) = 0.742, f(2.2) = 0.788. (a) Estimate f′(2.1) using the 3-point central difference. (b) Estimate f′(2.0) using the forward difference. (c) If the function is f(x) = ln(x), compute the exact f′(2.1) and compare. (d) Explain why you cannot use the central difference at x = 2.0 with only this data.
 
 ## See Also
 
-- [[numerical-error-types|Numerical Error Types]] — truncation error dominates finite difference accuracy
-- [[trapezoidal-rule|Trapezoidal Rule]] — numerical integration, the complement to differentiation
+- [[numerical-error-types|Numerical Error Types]] — truncation and rounding error in finite differences
+- [[trapezoidal-rule|Trapezoidal Rule]] — numerical integration, the complementary operation
 - [[interpolation-definition|Interpolation]] — difference tables used in both interpolation and differentiation

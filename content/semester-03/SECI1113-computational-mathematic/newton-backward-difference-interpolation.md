@@ -1,56 +1,58 @@
 ---
-title: "Newton Backward-Difference Formula Interpolates Using Differences Anchored at the Table End"
+title: "Newton Backward-Difference Interpolation"
 date: 2026-04-18
 tags: [semester-3, seci1113, discrete-math]
 ---
 
-# Newton Backward-Difference Formula Interpolates Using Differences Anchored at the Table End
+# Newton Backward-Difference Interpolation
 
-The **Newton Backward-Difference Formula** constructs an interpolating polynomial using backward differences anchored at the last row of an equally-spaced data table. It is most accurate when estimating values near the end of the table.
+The Newton backward-difference formula constructs an interpolating polynomial using backward differences anchored at the last row of an equally-spaced data table — it is the mirror of the forward formula and most accurate when estimating values near the end of the data range.
+
+> [!concept] Core Claim
+> Backward-difference interpolation is structurally identical to forward-difference interpolation but reads the difference table from the bottom up instead of the top down — anchoring at the last data point xₙ means the target x is always close to the reference point when estimating near the table end, keeping r small and the approximation accurate.
 
 ## Explanation
 
-For equally spaced data with step h, the backward difference operator ∇ is defined as:
-- ∇⁰yₖ = yₖ
-- ∇¹yₖ = yₖ − yₖ₋₁
-- ∇²yₖ = ∇¹yₖ − ∇¹yₖ₋₁ = yₖ − 2yₖ₋₁ + yₖ₋₂
-- ∇ʲyₖ = ∇ʲ⁻¹yₖ − ∇ʲ⁻¹yₖ₋₁
+Think of choosing between forward and backward interpolation like choosing which end of a measuring tape to anchor. If you want to measure near the left end, you clip the tape at the left (x₀, forward formula). If you want to measure near the right end, you clip it at the right (xₙ, backward formula). In both cases the tape is the same length, but anchoring at the closer end gives you the least slack (fewest accumulated difference terms) and the most precision.
 
-Build the **backward-difference table** — differences for the last row are ∇yₙ, ∇²yₙ, …, ∇ⁿyₙ.
+The backward difference operator ∇ subtracts the previous value from the current: ∇yₖ = yₖ − yₖ₋₁. Higher orders follow: ∇²yₖ = ∇yₖ − ∇yₖ₋₁, and in general ∇ʲyₖ = ∇ʲ⁻¹yₖ − ∇ʲ⁻¹yₖ₋₁. The backward-difference table is built exactly like the forward table, but the last row (∇yₙ, ∇²yₙ, …, ∇ⁿyₙ) is the one used in the formula. Set r = (x − xₙ)/h — because xₙ is the last (largest) point and x is typically slightly below it, r is typically slightly negative.
 
-**Formula (for x near the end):**
-Let r = (x − xₙ)/h (r will be negative or small when x is near xₙ). Then:
-
-pₙ(x) = yₙ + r·∇yₙ + [r(r+1)/2!]·∇²yₙ + [r(r+1)(r+2)/3!]·∇³yₙ + …
-
-**Key difference from forward formula:** The reference point is xₙ (last data point), and the sign of the binomial coefficients differs: the forward formula uses r(r−1), the backward uses r(r+1).
-
-Use backward difference when the target x is near the **end** of the data table. The forward formula would require differences far from the reference row, reducing accuracy.
+The formula is: pₙ(x) = yₙ + r·∇yₙ + [r(r+1)/2!]·∇²yₙ + [r(r+1)(r+2)/3!]·∇³yₙ + … Note the sign difference from the forward formula: the binomial coefficients use r(r+1) not r(r−1), because the backward formula counts differences in the reverse direction. For r ∈ [−1, 0] (x between xₙ₋₁ and xₙ), the approximation is most accurate.
 
 ## Key Points
 
-- Requires equally spaced x-values; reference point is xₙ (last point)
-- Backward difference: ∇yₖ = yₖ − yₖ₋₁ (subtract previous from current)
-- r = (x − xₙ) / h (typically negative when x is between xₙ₋₁ and xₙ)
-- Formula uses the bottom row of the difference table: yₙ, ∇yₙ, ∇²yₙ, …
-- Best for x near the **end** of the table
+- Requires equally-spaced x-values; reference point is xₙ (last data point)
+- Backward difference: ∇yₖ = yₖ − yₖ₋₁ (subtract previous)
+- r = (x − xₙ) / h (typically negative for x < xₙ)
+- Formula uses bottom row of difference table: yₙ, ∇yₙ, ∇²yₙ, …
+- Best for x near the end of the table (r ∈ [−1, 0])
 
 ## Example
 
 Same data: x ∈ {1.0, 1.2, 1.4, 1.6, 1.8, 2.0}, h = 0.2. Estimate y(1.9).
 
 Reference point: xₙ = x₅ = 2.0, yₙ = 0.3333.
+r = (1.9 − 2.0) / 0.2 = **−0.5**
 
-r = (1.9 − 2.0)/0.2 = **−0.5**
+Bottom row of backward-difference table:
+∇y₅ = −0.0238, ∇²y₅ = 0.0037, ∇³y₅ = −0.0009, (higher terms small)
 
-Bottom row of backward-difference table: ∇y₅ = −0.0238, ∇²y₅ = 0.0037, ∇³y₅ = −0.0009, …
+```
+p₅(1.9) = 0.3333
+         + (−0.5)(−0.0238)
+         + [(−0.5)(0.5)/2](0.0037)
+         + [(−0.5)(0.5)(1.5)/6](−0.0009)
+         + ...
+         = 0.3333 + 0.0119 − 0.000463 + 0.0000563...
+         ≈ 0.3447
+```
 
-p₅(1.9) = 0.3333 + (−0.5)(−0.0238) + [(−0.5)(0.5)/2](0.0037) + …
-= 0.3333 + 0.0119 − 0.000463 + …
-≈ **0.3571**
+Compare with the forward formula applied at the same point — both converge to the same polynomial, but the backward formula requires fewer terms because the reference is closer.
+
+> [!recall] You have 5 equally spaced data points for a function. You need to estimate the value at the second-to-last data interval. (a) Should you use the forward or backward formula? Justify your choice in terms of accuracy. (b) If r = (x − x₄)/h = −0.3, what does this tell you about the position of x relative to x₄ and x₃? (c) Write the first two terms of the backward-difference formula for this case.
 
 ## See Also
 
 - [[newton-forward-difference-interpolation|Newton Forward-Difference Interpolation]] — for values near the beginning of the table
-- [[interpolation-definition|Interpolation Definition]] — choosing which formula to use
+- [[interpolation-definition|Interpolation]] — overview and when to use each formula
 - [[absolute-and-relative-error|Absolute and Relative Error]] — comparing interpolated vs. true values

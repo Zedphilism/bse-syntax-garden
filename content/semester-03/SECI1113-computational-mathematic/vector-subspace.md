@@ -1,50 +1,49 @@
 ---
-title: "A Vector Subspace Is a Subset of a Vector Space That Is Itself a Vector Space"
+title: "Vector Subspace"
 date: 2026-04-18
 tags: [semester-3, seci1113, discrete-math]
 ---
 
-# A Vector Subspace Is a Subset of a Vector Space That Is Itself a Vector Space
+# Vector Subspace
 
-A **subspace** W of a vector space V is a non-empty subset of V that is itself a vector space under V's operations. Rather than checking all ten axioms, only two properties need to be verified: closure under addition and closure under scalar multiplication.
+A subspace W of a vector space V is a non-empty subset that is itself a vector space — and because it inherits its operations from V, only two conditions need checking: closure under addition and closure under scalar multiplication.
+
+> [!concept] Core Claim
+> The two-condition subspace test works because a subset that stays inside V under addition and scaling automatically satisfies all ten vector space axioms — it inherits commutativity, associativity, and all the rest from V — so the only thing that can break is "escaping" the subset, which is exactly what the closure conditions check.
 
 ## Explanation
 
-The two-condition subspace test: W ⊆ V is a subspace if and only if:
-1. **Closed under addition:** For any u, v ∈ W, u + v ∈ W
-2. **Closed under scalar multiplication:** For any u ∈ W and scalar c, cu ∈ W
+Think of a subspace like a swimming lane in a pool: the lane (W) is a smaller region inside the pool (V), and the water behaves the same way everywhere — the same physics, the same rules. If every valid stroke (addition or scaling) keeps you inside your lane, your lane qualifies as its own valid swimming environment. But if one stroke carries you into another lane, the lane is not self-contained and fails to be a subspace.
 
-If both conditions hold, W automatically inherits all other vector space properties from V (since the operations are the same). The zero vector must be in W (follows from condition 2 with c = 0), and additive inverses must be in W (follows from condition 2 with c = −1).
+The mechanism is the inheritance principle: if W ⊆ V uses V's addition and scalar multiplication operations, then all the algebraic properties (commutativity, associativity, distributivity, and so on) hold automatically inside W — they hold in all of V, so they certainly hold in W. The only properties that could fail are the ones that depend on the subset's specific boundaries: closure under addition (adding two elements of W might land outside W) and closure under scalar multiplication (scaling an element of W might exit W). These are the only two checks needed.
 
-Common subspace examples:
-- A line through the origin in R² is a subspace of R²
-- A plane through the origin in R³ is a subspace of R³
-- The set of all 2×2 matrices with trace 0 is a subspace of M₂ₓ₂
-
-**Non-example:** A subset with a third component always equal to 1 (e.g., {(a, b, 1)}) is NOT a subspace because the sum of two such vectors has third component 2, not 1 — closure under addition fails.
+Two important consequences follow for free. First, every subspace must contain the zero vector: applying scalar multiplication with c = 0 to any element u ∈ W gives 0·u = 0, which must stay in W by closure. So if a subset does not contain 0, it is immediately not a subspace. Second, every subspace must be closed under negation: c = −1 gives −u ∈ W for any u ∈ W. A line or plane through the origin passes both checks; a line or plane not through the origin fails immediately (0 is not in it).
 
 ## Key Points
 
-- Two conditions only: closed under addition AND closed under scalar multiplication
-- Both must hold; failing one disqualifies the subset
-- Zero vector must be in any subspace
-- A line/plane/hyperplane is a subspace only if it passes through the origin
-- Inherits all 10 axioms from the parent space V
+- Two conditions: closed under addition (u + v ∈ W) and closed under scalar multiplication (cu ∈ W)
+- Both must hold; failing either disqualifies the subset
+- Zero vector must be in any subspace (follows from scaling by 0)
+- Lines and planes are subspaces only if they pass through the origin
+- Span of any set of vectors is always a subspace
 
 ## Example
 
-Let V = R², and let W = {(a, 0) : a ∈ R} (the x-axis).
+V = R², W = {(a, 0) : a ∈ R} (the x-axis):
 
 Closure under addition: (a, 0) + (b, 0) = (a+b, 0) ∈ W ✓
-Closure under scalar multiplication: c·(a, 0) = (ca, 0) ∈ W ✓
+Closure under scalar multiplication: c(a, 0) = (ca, 0) ∈ W ✓
 → W is a subspace of R².
 
-Non-example: Let W = {(a, b, 1) : a, b ∈ R} ⊆ R³.
-(a₁, b₁, 1) + (a₂, b₂, 1) = (a₁+a₂, b₁+b₂, 2) ∉ W (third component is 2, not 1).
-→ W is **not** a subspace of R³.
+Non-example: W = {(a, b, 1) : a, b ∈ R} ⊆ R³.
+
+Zero vector test: (0, 0, 0) ∉ W (third component is 1, not 0). Fail immediately — not a subspace.
+Or: (a₁, b₁, 1) + (a₂, b₂, 1) = (a₁+a₂, b₁+b₂, 2) ∉ W — closure under addition fails.
+
+> [!recall] Let W = {(a, b, c) ∈ R³ : a + b + c = 0}. (a) Show W is a subspace by verifying the two conditions. (b) Geometrically, what shape is W? Does it pass through the origin? (c) Now let W′ = {(a, b, c) : a + b + c = 1}. Without doing arithmetic, explain immediately why W′ cannot be a subspace.
 
 ## See Also
 
-- [[vector-space-axioms|Vector Space Axioms]] — the full set W must ultimately satisfy
+- [[vector-space-axioms|Vector Space Axioms]] — the full set W ultimately must satisfy
 - [[linear-independence-and-dependence|Linear Independence and Dependence]] — basis and dimension concepts build on subspaces
 - [[linear-combination-of-vectors|Linear Combination of Vectors]] — the span of any set of vectors is always a subspace
