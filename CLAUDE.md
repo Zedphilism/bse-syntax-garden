@@ -91,9 +91,12 @@ This section is mandatory — every note must have at least one example.
 - Topic domain: `digital-logic`, `networking`, `discrete-math`, `hardware`, `glossary`
 - Do not invent new namespaces (`module-1`, `fundamentals`, `conversion`, etc.)
 
-**Title rules:** Phrase as a claim or complete thought, not a vague label.
-- Bad: `"Binary"` / `"Signals"` / `"Module 1 Notes"`
-- Good: `"Binary Digits Map to Physical Voltage Levels in Digital Circuits"`
+**Title rules:** Use a simple, direct label that names the concept clearly. Do NOT write long claim-style sentences as titles.
+- Bad: `"Binary Digits Map to Physical Voltage Levels in Digital Circuits"` (sentence, verbose)
+- Bad: `"Module 1 Notes"` / `"Signals"` (too vague)
+- Good: `"Binary and Voltage Levels"` / `"UDP: Connectionless Transport"` / `"Checksum Process"`
+- Format options: plain noun phrase, "Concept: Subtopic", or "Protocol: Role" — keep under 60 chars
+- The opening sentence of the note body (not the title) is where you state the claim or definition
 
 **Wikilink format:** Always `[[kebab-case-filename|Display Name]]` — never display-name-only links.
 
