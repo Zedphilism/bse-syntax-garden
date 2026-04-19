@@ -1,28 +1,32 @@
 ---
-title: "NAND Is a Universal Gate That Outputs LOW Only When All Inputs Are HIGH"
+title: "NAND Gate"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# NAND Is a Universal Gate That Outputs LOW Only When All Inputs Are HIGH
+# NAND Gate
 
-A NAND gate is the complement of AND: it outputs LOW only when every input is HIGH, and HIGH in all other cases. Because any Boolean function can be built from NAND gates alone, it is called a universal gate.
+A NAND gate outputs LOW only when every input is simultaneously HIGH, and outputs HIGH in all other cases — it is AND with its output inverted.
+
+> [!concept] Core Claim
+> NAND is a universal gate: by connecting NAND gates in specific configurations you can implement NOT, AND, OR, NOR, XOR, and XNOR, meaning any digital circuit in the world can be built using only NAND gates.
 
 ## Explanation
 
-NAND is AND followed immediately by NOT. Its Boolean expression is F = (A·B)'. The inversion flips the AND truth table so that the only LOW output becomes the only HIGH output of AND, and vice versa.
+Think of NAND as the "veto committee" rule: the only way to get a NO decision (LOW output) is if every single member votes YES (all inputs HIGH). If even one member abstains or votes NO (any input LOW), the output is YES (HIGH). This is the direct inversion of AND's "unanimous yes = yes" rule.
 
-NAND's "universal" property means that AND, OR, NOT, NOR, XOR, and XNOR can all be implemented using only NAND gates, without needing any other gate type. This matters in IC manufacturing: using a single gate type simplifies the fabrication process and reduces design complexity. Flash memory technology is built on NAND gates, which is why NAND flash memory is named after them.
+The mechanism is Boolean: F = (A·B)'. AND computes the product first, then NOT inverts it. In CMOS transistors, this is actually implemented the opposite way — the NOT stage is inherent in the transistor's behavior, making NAND more efficient to build in CMOS than a pure AND gate. This is why NAND is the dominant gate in semiconductor manufacturing.
 
-In practice, NAND is often preferred over AND in transistor-level design because NAND is naturally faster and easier to implement in CMOS technology than AND.
+NAND's universal property comes from its ability to reproduce any other function. The key insight is that connecting both inputs of a NAND together yields F = (A·A)' = A' — a NOT gate. Once you have NAND and NOT, you can reconstruct AND (NAND followed by NOT), OR (DeMorgan: three NANDs), and all others. Every logic function reduces to combinations of NAND.
 
 ## Key Points
 
-- F = (A·B)' = NAND(A, B)
+- Boolean expression: F = (A·B)'
 - Output = 0 only when ALL inputs = 1
 - Output = 1 whenever ANY input = 0
-- Universal gate: every logic function can be built from NAND alone
-- Symbol: AND shape with an output bubble
+- Universal gate: all logic functions implementable with NAND alone
+- Symbol: AND shape with output bubble (circle)
+- NAND with tied inputs = NOT gate
 
 ## Example
 
@@ -35,10 +39,13 @@ In practice, NAND is often preferred over AND in transistor-level design because
 | 1 | 0 |     1      |
 | 1 | 1 |     0      |
 
-NOT from NAND: connect both inputs together → F = (A·A)' = A'
+Building NOT from NAND: tie both inputs → F = (A·A)' = A' ✓
+Building AND from NAND: NAND output → feed into another NAND with both inputs tied (NOT) → F = ((A·B)')' = A·B ✓
+
+> [!recall] You must implement F = A+B using only 2-input NAND gates. Use DeMorgan's theorem to derive the NAND-only circuit, then verify your answer using A=0, B=1.
 
 ## See Also
 
 - [[and-gate-outputs-high-only-when-all-inputs-are-high|AND Gate]] — NAND is AND inverted
-- [[nor-gate-is-a-universal-gate-built-from-or-and-not|NOR Gate]] — the other universal gate
-- [[demorgans-theorems-transform-between-and-or-forms|DeMorgan's Theorems]] — explains the NAND/NOR equivalences
+- [[nor-gate-is-a-universal-gate-built-from-or-and-not|NOR Gate]] — the other universal gate; NOR-only designs are equally expressive
+- [[demorgans-theorems-transform-between-and-or-forms|DeMorgan's Theorems]] — explains the NAND/OR-with-bubbles equivalence

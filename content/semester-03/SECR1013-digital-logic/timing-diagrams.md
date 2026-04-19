@@ -1,53 +1,56 @@
 ---
-title: "Timing Diagrams Visualize How Multiple Signals Change Together Over Time"
+title: "Timing Diagrams"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# Timing Diagrams Visualize How Multiple Signals Change Together Over Time
+# Timing Diagrams
 
-A timing diagram is a graphical tool that plots the HIGH/LOW state of multiple digital signals on a shared time axis, making it possible to see exactly how signals relate, interact, and sequence relative to one another.
+A timing diagram plots the HIGH/LOW state of multiple digital signals on a shared time axis, making cause-and-effect relationships between signals visible at a glance.
+
+> [!concept] Core Claim
+> A timing diagram is the multi-signal version of a waveform plot: by aligning all signals on the same time axis, it reveals which signal changes cause which responses — indispensable for sequential circuit analysis and IC timing verification.
 
 ## Explanation
 
-In a digital system, many signals operate simultaneously — a clock drives a counter, whose output enables a register, whose load signal depends on an address decoder. Understanding the system requires seeing all these signals together in time. A timing diagram provides exactly that: each signal gets its own horizontal track, and all tracks share the same time axis so that cause-and-effect relationships become visible.
+Think of a timing diagram as a conductor's score: each instrument (signal) has its own staff (row), but they all share the same time axis so you can see which note triggers which response at exactly what moment. Reading down a vertical line at any point in time shows the complete state of every signal simultaneously.
 
-Timing diagrams are the primary tool for analyzing sequential logic, where the behavior of a circuit at any instant depends not just on current inputs but on the order in which events occurred. By reading across the diagram horizontally, an engineer can check whether a data signal is stable before the clock edge that is supposed to capture it, verify that two outputs never go HIGH simultaneously when they should not, or trace the source of an unexpected glitch.
+In a digital system, many signals operate concurrently and dependently. A clock edge triggers a flip-flop, which changes its output, which enables a logic gate, which changes a bus line. None of these relationships are visible from a single waveform — you need all signals aligned in time to trace the chain. A timing diagram provides exactly this: each signal row shows HIGH as a raised line and LOW as a depressed line, with vertical transitions marking edges.
 
-Timing diagrams are also used for specification — integrated circuit datasheets define signal requirements such as setup time and hold time using timing diagrams, making them a standard communication tool across the industry.
+Timing diagrams have two critical uses. The first is analysis: engineers use them to verify that a data signal is stable before the clock edge that captures it (setup time requirement), that signals don't glitch at the wrong moment, and that sequential state machines transition in the correct order. The second is specification: IC datasheets define every timing requirement — minimum pulse width, setup time, hold time, propagation delay — using timing diagrams, making them the universal language of hardware timing across the industry.
 
 ## Key Points
 
 - Each signal gets its own horizontal row; all rows share one time axis
-- Used to analyze: sequential logic behavior, clock synchronization, setup/hold timing, signal dependencies
-- Rising and falling edges on one signal often cause changes on others — timing diagrams make these dependencies explicit
-- Standard in IC datasheets to specify timing requirements
+- Reading down a vertical line = the complete logic state at that instant
+- Critical analysis uses: clock-to-output delay, setup/hold time, glitch detection, state sequencing
+- Standard format in datasheets for specifying timing requirements (setup, hold, propagation delay)
 
 ## Example
 
-A simple D flip-flop with clock (CLK), data input (D), and output (Q):
+D flip-flop with CLK, data input D, and output Q:
 
 ```
-Time:  0    1    2    3    4    5    6    7   (arbitrary units)
+Time:  0    1    2    3    4    5  (arbitrary units)
 
-CLK:   |____|    |____|    |____|    |____|
-       Lo   Hi   Lo   Hi   Lo   Hi   Lo   Hi
+CLK:   _____|    |____|    |____
+       Lo   Hi   Lo   Hi   Lo
 
-D:     __________|         |__________
-       Lo         Hi        Lo
+D:     __________||________|
+       Lo         Hi       Lo
 
-Q:          |____|         |____|
-       Lo    Hi   Lo        Hi   Lo
+Q:          |____|         |____
+       Lo    Hi   Lo        Hi
 ```
 
 Reading the diagram:
-- At time 1: rising CLK edge captures D = 0, so Q stays LOW
-- At time 3: rising CLK edge captures D = 1, so Q goes HIGH
-- At time 5: rising CLK edge captures D = 0, so Q returns LOW
+- At t=1: rising CLK edge captures D=1 → Q goes HIGH
+- At t=3: rising CLK edge captures D=0 → Q returns LOW
+- Q always updates exactly one clock edge after D changes — the diagram makes this one-cycle latency visible immediately
 
-The diagram immediately shows that Q always changes one edge after D because the flip-flop samples D only at rising CLK edges.
+> [!recall] A designer draws a timing diagram and notices that the data signal D changes at the same instant as the rising CLK edge. Explain why this is dangerous, what timing parameter defines the minimum required gap between them, and what the circuit will likely do if this constraint is violated.
 
 ## See Also
 
-- [[digital-waveforms-and-signal-behavior|Digital Waveforms Describe Signal Transitions Between HIGH and LOW Over Time]] — the individual waveform properties shown in each row
-- [[duty-cycle-concept|Duty Cycle Measures Signal ON Time as a Fraction of Its Period]] — a measurable property visible directly on a timing diagram
+- [[digital-waveforms-and-signal-behavior|Digital Waveforms and Signal Behavior]] — individual waveform properties shown in each row
+- [[duty-cycle-concept|Duty Cycle]] — a measurable property directly visible on a timing diagram

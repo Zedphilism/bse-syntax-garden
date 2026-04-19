@@ -1,46 +1,54 @@
 ---
-title: "Active-High and Active-Low Define the Polarity of a Logic Signal"
+title: "Active-High vs Active-Low"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# Active-High and Active-Low Define the Polarity of a Logic Signal
+# Active-High vs Active-Low
 
-Active-high and active-low describe whether a signal is asserted (true/enabled) when its voltage is HIGH or when it is LOW — the same physical voltage can carry the opposite logical meaning depending on polarity convention.
+Active-high and active-low describe whether a signal is asserted (enabled/true) when its voltage is HIGH or when it is LOW — the same physical voltage carries the opposite logical meaning depending on which convention the circuit uses.
+
+> [!concept] Core Claim
+> "Active" means "doing its job"; active-high asserts on HIGH voltage, active-low asserts on LOW voltage. Knowing which convention a pin uses determines whether driving it to 5 V turns something on or off.
 
 ## Explanation
 
-In an active-high signal, a HIGH voltage means the signal is asserted: the condition is true, the device is enabled, the action is triggered. This matches the intuitive convention where HIGH equals ON. Many enable and clock pins on basic logic chips operate this way.
+Think of a doorbell button as an active-high signal: when you press it (push to HIGH), the bell rings (function is asserted). An active-low signal is like a deadbolt lock: when the bolt is down (LOW), the door is secure (lock is engaged); when released to HIGH, the door is open and the lock is idle.
 
-In an active-low signal, a LOW voltage means the signal is asserted. When the pin is driven to 0 V the device activates; when it is HIGH the device is idle. Active-low signals are marked with an overline in schematics (e.g., EN with a bar, or ~EN in text) to indicate that the logic is inverted relative to voltage.
+In an active-high circuit, a HIGH voltage means the signal is asserted — the condition is true, the device is enabled, the action triggers. This matches the intuitive convention where HIGH equals ON. Most basic enable and clock pins on simple logic chips operate this way.
 
-Active-low designs are preferred in safety-critical and industrial systems because they are inherently fail-safe. If a wire breaks or a connection is lost, a pull-up resistor holds the input HIGH, keeping the device inactive. In an active-high design a broken wire could leave a pin floating and accidentally trigger the device. Active-low signals are also more noise-immune because pulling a line to ground is electrically more stable than driving it to supply voltage.
+In an active-low circuit, a LOW voltage means the signal is asserted. Driving the pin to 0 V activates the device; pulling it HIGH puts the device to sleep. The hardware reason for this design is fail-safe behavior: when a wire breaks, a pull-up resistor holds the disconnected input HIGH, keeping the device inactive by default. An active-high design with a broken wire would leave the pin floating, potentially triggering the device accidentally. Active-low signals are therefore the standard choice in safety-critical, industrial, and power-sensitive circuits.
+
+Active-low signals are conventionally marked with an overline in schematics (e.g., **CE** with a bar above), or with a tilde in text (~CE, ~RESET, ~CS). When you see that notation, read it as: "this function activates when this pin is LOW."
 
 ## Key Points
 
 - Active-high: HIGH voltage = asserted (ON / enabled / true)
 - Active-low: LOW voltage = asserted (ON / enabled / true)
-- Active-low notation: overline or tilde prefix (~EN, ~RESET, ~CS)
-- Active-low is preferred for fail-safe behavior, noise immunity, and default-off on power-up
+- Active-low notation: overline symbol or tilde prefix (~EN, ~RESET, ~CS)
+- Active-low is preferred for fail-safe behavior: broken wire → pull-up holds HIGH → device stays off
 
 ## Example
 
-An LED connected to a microcontroller output pin:
+An LED circuit illustrates the difference in safety behavior:
 
 ```
 Active-HIGH wiring:
   MCU pin --[R]--[LED]-- GND
-  Pin = HIGH (5V) -> current flows -> LED ON
-  Pin = LOW  (0V) -> no current   -> LED OFF
-  Wire breaks: pin floats -> LED may flicker (unsafe)
+  Pin = HIGH (5V) → current flows → LED ON
+  Pin = LOW  (0V) → no current   → LED OFF
+  Wire breaks: pin floats → LED may flicker unpredictably (unsafe)
 
 Active-LOW wiring:
-  VCC --[R]--[LED]--[MCU pin]
-  Pin = LOW  (0V) -> current flows -> LED ON
-  Pin = HIGH (5V) -> no current   -> LED OFF
-  Wire breaks: pull-up holds HIGH -> LED stays OFF (safe)
+  VCC --[R]--[LED]-- MCU pin
+  Pin = LOW  (0V) → current flows → LED ON
+  Pin = HIGH (5V) → no current   → LED OFF
+  Wire breaks: pull-up holds HIGH → LED stays OFF (safe, predictable)
 ```
+
+> [!recall] A chip's ~RESET pin is active-low. A designer accidentally leaves ~RESET unconnected (floating). Explain what will likely happen and why, then describe how a pull-up resistor fixes the problem.
 
 ## See Also
 
-- [[binary-digits-and-logic-levels|Binary Digits Map to Physical Voltage Levels in Digital Circuits]] — the voltage levels that HIGH and LOW refer to
+- [[binary-digits-and-logic-levels|Binary Digits and Logic Levels]] — the voltage levels that HIGH and LOW refer to
+- [[active-low-signals-provide-fail-safe-behavior|Active-Low Signals and Fail-Safe Behavior]] — deeper analysis of fail-safe design

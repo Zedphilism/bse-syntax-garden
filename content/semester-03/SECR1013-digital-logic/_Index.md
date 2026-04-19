@@ -11,63 +11,63 @@ Topics: Number systems, data codes, arithmetic, logic gates, Boolean algebra, co
 ## Notes
 
 ### Signals and Representation
-- [[analog-vs-digital|Digital Signals Use Discrete Voltage Levels While Analog Signals Are Continuous]]
-- [[binary-digits-and-logic-levels|Binary Digits Map to Physical Voltage Levels in Digital Circuits]]
-- [[active-high-vs-active-low|Active-High and Active-Low Define the Polarity of a Logic Signal]]
+- [[analog-vs-digital|Analog vs Digital Signals]]
+- [[binary-digits-and-logic-levels|Binary Digits and Logic Levels]]
+- [[active-high-vs-active-low|Active-High vs Active-Low]]
 
 ### Waveforms and Timing
-- [[digital-waveforms-and-signal-behavior|Digital Waveforms Describe Signal Transitions Between HIGH and LOW Over Time]]
-- [[duty-cycle-concept|Duty Cycle Measures Signal ON Time as a Fraction of Its Period]]
-- [[timing-diagrams|Timing Diagrams Visualize How Multiple Signals Change Together Over Time]]
+- [[digital-waveforms-and-signal-behavior|Digital Waveforms and Signal Behavior]]
+- [[duty-cycle-concept|Duty Cycle]]
+- [[timing-diagrams|Timing Diagrams]]
 
 ### Conversion
-- [[analog-digital-conversion|ADC and DAC Convert Signals Between Analog and Digital Domains]]
-- [[sampling-and-nyquist-theorem-concept|Nyquist Theorem Sets the Minimum Sampling Rate to Avoid Aliasing]]
+- [[analog-digital-conversion|Analog-to-Digital and Digital-to-Analog Conversion]]
+- [[sampling-and-nyquist-theorem-concept|Sampling and Nyquist Theorem]]
 
 ### Number Systems (Module 2a)
-- [[positional-number-systems-assign-value-based-on-place|Positional Number Systems Assign Value Based on Digit Place]]
-- [[binary-representation-uses-base-two-with-weighted-bits|Binary Representation Uses Base Two with Weighted Bit Positions]]
-- [[number-system-conversion-uses-division-and-multiplication|Decimal to Any Base Conversion Uses Division and Multiplication]]
-- [[binary-to-hexadecimal-conversion-uses-grouping-of-four-bits|Binary to Hexadecimal Conversion Uses Grouping of Four Bits]]
-- [[binary-to-octal-conversion-uses-grouping-of-three-bits|Binary to Octal Conversion Uses Grouping of Three Bits]]
+- [[positional-number-systems-assign-value-based-on-place|Positional Number Systems]]
+- [[binary-representation-uses-base-two-with-weighted-bits|Binary Representation]]
+- [[number-system-conversion-uses-division-and-multiplication|Number System Conversion]]
+- [[binary-to-hexadecimal-conversion-uses-grouping-of-four-bits|Binary-to-Hexadecimal Conversion]]
+- [[binary-to-octal-conversion-uses-grouping-of-three-bits|Binary-to-Octal Conversion]]
 
 ### Data Codes (Module 2b)
-- [[binary-coded-decimal-represents-digits-separately-in-binary|BCD Encodes Each Decimal Digit Separately as Four Binary Bits]]
-- [[gray-code-ensures-only-one-bit-changes-between-values|Gray Code Ensures Only One Bit Changes Between Consecutive Values]]
-- [[parity-bit-detects-errors-using-even-or-odd-counts|Parity Bit Detects Single-Bit Errors by Enforcing an Even or Odd Count]]
-- [[ascii-encodes-characters-as-binary-values|ASCII Assigns a Unique 7-Bit Binary Code to Each Printable Character]]
+- [[binary-coded-decimal-represents-digits-separately-in-binary|Binary Coded Decimal (BCD)]]
+- [[gray-code-ensures-only-one-bit-changes-between-values|Gray Code]]
+- [[parity-bit-detects-errors-using-even-or-odd-counts|Parity Bit]]
+- [[ascii-encodes-characters-as-binary-values|ASCII Encoding]]
 
 ### Arithmetic and Signed Numbers (Module 2c)
-- [[unsigned-binary-integers-represent-only-non-negative-values|Unsigned Binary Uses All Bits for Magnitude with No Sign]]
-- [[sign-magnitude-representation-separates-sign-and-value|Sign-Magnitude Representation Uses the MSB as a Sign Flag]]
-- [[ones-complement-inverts-bits-to-represent-negative-values|One's Complement Negates a Number by Inverting Every Bit]]
-- [[twos-complement-enables-subtraction-using-addition|Two's Complement Lets Hardware Subtract by Adding a Negative]]
-- [[binary-overflow-occurs-when-results-exceed-bit-capacity|Binary Overflow Occurs When a Result Exceeds the Fixed Bit-Width Range]]
+- [[unsigned-binary-integers-represent-only-non-negative-values|Unsigned Binary Integers]]
+- [[sign-magnitude-representation-separates-sign-and-value|Sign-Magnitude Representation]]
+- [[ones-complement-inverts-bits-to-represent-negative-values|Ones Complement]]
+- [[twos-complement-enables-subtraction-using-addition|Two's Complement]]
+- [[binary-overflow-occurs-when-results-exceed-bit-capacity|Binary Overflow]]
 
 ### Logic Gates (Module 3)
-- [[logic-gates-implement-boolean-operations-using-binary-inputs|Logic Gates Are the Hardware Implementation of Boolean Operations]]
-- [[truth-tables-enumerate-all-possible-input-output-combinations|Truth Tables Enumerate Every Input Combination and Its Output]]
-- [[and-gate-outputs-high-only-when-all-inputs-are-high|AND Gate Outputs HIGH Only When Every Input Is HIGH]]
-- [[or-gate-outputs-high-when-any-input-is-high|OR Gate Outputs HIGH When At Least One Input Is HIGH]]
-- [[not-gate-inverts-the-input-logic-level|NOT Gate Inverts Its Single Input to the Opposite Logic Level]]
-- [[nand-gate-is-a-universal-gate-built-from-and-and-not|NAND Is a Universal Gate That Outputs LOW Only When All Inputs Are HIGH]]
-- [[nor-gate-is-a-universal-gate-built-from-or-and-not|NOR Is a Universal Gate That Outputs HIGH Only When All Inputs Are LOW]]
-- [[xor-gate-outputs-high-when-inputs-are-different|XOR Gate Outputs HIGH Only When Its Inputs Differ]]
-- [[xnor-gate-outputs-high-when-inputs-are-equal|XNOR Gate Outputs HIGH Only When Its Inputs Are Equal]]
+- [[logic-gates-implement-boolean-operations-using-binary-inputs|Logic Gates]]
+- [[truth-tables-enumerate-all-possible-input-output-combinations|Truth Tables]]
+- [[and-gate-outputs-high-only-when-all-inputs-are-high|AND Gate]]
+- [[or-gate-outputs-high-when-any-input-is-high|OR Gate]]
+- [[not-gate-inverts-the-input-logic-level|NOT Gate]]
+- [[nand-gate-is-a-universal-gate-built-from-and-and-not|NAND Gate]]
+- [[nor-gate-is-a-universal-gate-built-from-or-and-not|NOR Gate]]
+- [[xor-gate-outputs-high-when-inputs-are-different|XOR Gate]]
+- [[xnor-gate-outputs-high-when-inputs-are-equal|XNOR Gate]]
 
 ### Boolean Algebra (Module 4a)
-- [[boolean-algebra-simplifies-logic-expressions-without-changing-output|Boolean Algebra Reduces Logic Expressions While Preserving Output]]
-- [[boolean-variables-and-complements-define-binary-logic-behavior|Boolean Variables Are Binary and Appear as Literals or Complements]]
-- [[commutative-associative-and-distributive-laws-preserve-logic-equivalence|Commutative, Associative, and Distributive Laws Hold in Boolean Algebra]]
-- [[boolean-rules-provide-direct-simplification-shortcuts|Boolean Identities Provide Direct Shortcuts for Simplifying Logic Expressions]]
-- [[demorgans-theorems-transform-between-and-or-forms|DeMorgan's Theorems Convert Complement of AND/OR to OR/AND of Complements]]
-- [[combinational-logic-circuits-depend-only-on-current-inputs|Combinational Logic Output Depends Solely on Current Inputs]]
-- [[logic-circuits-implement-boolean-expressions-physically|Logic Circuits Implement Boolean Expressions as Interconnected Gates]]
-- [[boolean-expression-to-truth-table-maps-all-inputs-to-output|Deriving a Truth Table from a Boolean Expression]]
+- [[boolean-algebra-simplifies-logic-expressions-without-changing-output|Boolean Algebra]]
+- [[boolean-variables-and-complements-define-binary-logic-behavior|Boolean Variables and Complements]]
+- [[commutative-associative-and-distributive-laws-preserve-logic-equivalence|Laws of Boolean Algebra]]
+- [[boolean-rules-provide-direct-simplification-shortcuts|Boolean Simplification Rules]]
+- [[demorgans-theorems-transform-between-and-or-forms|DeMorgan's Theorems]]
+- [[combinational-logic-circuits-depend-only-on-current-inputs|Combinational Logic Circuits]]
+- [[logic-circuits-implement-boolean-expressions-physically|Logic Circuits and Boolean Expressions]]
+- [[boolean-expression-to-truth-table-maps-all-inputs-to-output|Boolean Expressions to Truth Tables]]
 
 ### Supplemental (Thomas Floyd)
-- [[active-low-signals-provide-fail-safe-behavior|Active-Low Signals Provide Fail-Safe Behavior on Faults]]
-- [[propagation-delay-limits-digital-circuit-speed|Propagation Delay Is the Time a Signal Takes to Travel Through a Gate]]
+- [[active-low-signals-provide-fail-safe-behavior|Active-Low Signals and Fail-Safe Behavior]]
+- [[propagation-delay-limits-digital-circuit-speed|Propagation Delay]]
 
 ## See Also
 

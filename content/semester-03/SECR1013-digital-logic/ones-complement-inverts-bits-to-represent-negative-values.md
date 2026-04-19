@@ -1,44 +1,58 @@
 ---
-title: "One's Complement Negates a Number by Inverting Every Bit"
+title: "Ones Complement"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# One's Complement Negates a Number by Inverting Every Bit
+# Ones Complement
 
-In one's complement representation, a negative number is obtained by flipping every bit of the corresponding positive value.
+One's complement represents a negative number by inverting every bit of the corresponding positive number — the MSB still signals sign, but the entire bit pattern changes, enabling a simpler addition circuit than sign-magnitude.
+
+> [!concept] Core Claim
+> One's complement was designed so that the same addition hardware handles both positive and negative numbers, at the cost of an end-around carry correction step and the persistent problem of two zeros (+0 = 000...0, −0 = 111...1).
 
 ## Explanation
 
-One's complement improves on sign-magnitude because the sign and magnitude are no longer stored separately — the MSB still acts as a sign indicator (0 = positive, 1 = negative), but the entire bit pattern changes rather than just one bit. Addition of a positive and its one's complement always yields all-ones, which is one reason for the name.
+Think of one's complement as a mirror: +25 and −25 are exact mirror images of each other's bit pattern (every 0 becomes 1 and vice versa). Any number plus its one's complement gives all-ones (1111...1 = −0), which is the complement property the name refers to. This is more symmetric than sign-magnitude, where the relationship between a number and its negative is only in the sign bit.
 
-Unfortunately, one's complement still suffers from two representations of zero: all-zeros (+0) and all-ones (−0). This means arithmetic can produce −0 as a result, which requires end-around carry correction to normalise: after the main addition, any carry out of the MSB is added back into the LSB.
+The mechanism is bitwise NOT: negate any number by flipping all its bits. Positive numbers still have MSB = 0; negative numbers have MSB = 1 (since the MSB of any positive number is 0, flipping it gives 1). Addition is now almost unified: run both numbers through the same adder. However, if the addition produces a carry out of the MSB, that carry must be added back into the LSB — this is the end-around carry correction. Without it, the result could be −0 when +0 is expected.
 
-This extra step makes hardware more complex and is the main reason one's complement was superseded by two's complement, which has only one zero and needs no correction step.
+The end-around carry complicates hardware compared to two's complement, which requires no correction. The dual-zero problem also persists: 0000 0000 = +0 and 1111 1111 = −0. This is why one's complement was a stepping stone, not a destination. Its legacy lives on in the Internet checksum algorithm, which uses one's complement addition because the end-around carry makes the sum byte-order-independent — an important property for cross-platform network communication.
 
 ## Key Points
 
-- Negative = bitwise NOT (invert every bit)
+- Negative = bitwise NOT (invert all bits)
 - MSB = 0 → positive; MSB = 1 → negative
-- Two zeros still exist (+0 = 0000…0, −0 = 1111…1)
-- Range for n bits: −(2ⁿ⁻¹ − 1) to +(2ⁿ⁻¹ − 1)
-- Addition requires end-around carry correction
+- Two zeros still exist: +0 = 000...0, −0 = 111...1
+- Range: −(2ⁿ⁻¹ − 1) to +(2ⁿ⁻¹ − 1) (same as sign-magnitude)
+- Addition requires end-around carry: add carry-out back to the LSB
 
 ## Example
 
 8-bit one's complement:
 
+```
 +25 = 0001 1001
-−25 = 1110 0110 (every bit flipped)
+−25 = 1110 0110  (every bit flipped)
 
-Check: 0001 1001 + 1110 0110 = 1111 1111 = −0 ✓
+Verify: 0001 1001 + 1110 0110 = 1111 1111 = −0 ✓
+```
 
-End-around carry example:
-+5 + (−3):
-0000 0101 + 1111 1100 = 1 0000 0001
-Carry out → add 1 to result: 0000 0001 + 1 = 0000 0010 = 2 ✓
+End-around carry example (+5 + (−3)):
+
+```
+  0000 0101   (+5)
++ 1111 1100   (−3 in one's complement)
+-----------
+1 0000 0001   carry out!
+        +1    end-around carry
+-----------
+  0000 0010 = +2 ✓
+```
+
+> [!recall] Compute +7 + (−4) in 4-bit one's complement. Show the full addition including the end-around carry step. Then explain why two's complement eliminated the need for this step.
 
 ## See Also
 
-- [[sign-magnitude-representation-separates-sign-and-value|Sign-Magnitude]] — predecessor with different negative encoding
-- [[twos-complement-enables-subtraction-using-addition|Two's Complement]] — eliminates the double-zero problem
+- [[sign-magnitude-representation-separates-sign-and-value|Sign-Magnitude Representation]] — the predecessor encoding
+- [[twos-complement-enables-subtraction-using-addition|Two's Complement]] — adds 1 to one's complement; eliminates double-zero and end-around carry

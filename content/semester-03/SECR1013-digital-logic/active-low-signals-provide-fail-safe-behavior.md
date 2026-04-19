@@ -1,41 +1,57 @@
 ---
-title: "Active-Low Signals Provide Fail-Safe Behavior Because Faults Default to Safe State"
+title: "Active-Low Signals and Fail-Safe Behavior"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic, supplemental, thomas-floyd]
 ---
 
-# Active-Low Signals Provide Fail-Safe Behavior Because Faults Default to Safe State
+# Active-Low Signals and Fail-Safe Behavior
 
-Active-low signaling designates LOW voltage (logic 0) as the "active" or "asserted" state, which causes circuits to default to a safe condition when a wire breaks or a fault occurs.
+An active-low signal does its job (is "asserted") when its voltage is LOW — this means a broken wire defaults the signal to HIGH (de-asserted), producing a safe inactive state rather than an accidental activation.
+
+> [!concept] Core Claim
+> Active-low design embeds fault safety into the circuit's physics: because broken wires float HIGH and active-low signals are inactive when HIGH, the most common hardware failure mode automatically pushes the system to its safe default state.
 
 ## Explanation
 
-In digital circuits, a signal is either active-high (does its job when HIGH) or active-low (does its job when LOW). The choice matters for reliability.
+Think of an active-low signal like a deadman switch on a train: the driver must actively hold the handle (hold the signal LOW) to keep the train running. If the driver releases — or if anything goes wrong with the handle (wire breaks, connection fails, pull-up resistor holds HIGH) — the train automatically stops. Safety is the default, not the exception.
 
-When a signal wire is disconnected or damaged, it tends to float or be pulled to the supply voltage (HIGH). In an active-high system, a broken wire fakes a "signal present" condition — a dangerous fault. In an active-low system, a broken wire fakes a "signal absent" condition — the safer default.
+The mechanism exploits the physics of pull-up resistors: when a wire is disconnected, a pull-up resistor connected to the supply voltage holds the pin at HIGH by default. In an active-high circuit, this floating-to-HIGH behavior accidentally asserts the signal, potentially activating whatever the signal controls. In an active-low circuit, floating-to-HIGH de-asserts the signal — the device stays inactive. A faulty connection literally cannot cause an accidental activation.
 
-Additionally, LOW signals are less susceptible to noise. Capacitive coupling and electromagnetic interference are more likely to inject spurious HIGH states than spurious LOW states (it is harder to pull a signal below ground than to inject noise above the threshold). This means active-low circuits are more robust in noisy industrial environments.
+The electromagnetic consequence also favors active-low: noise from adjacent wires, capacitive coupling, and electromagnetic interference more easily injects spurious HIGH pulses than spurious LOW pulses (it is physically harder to pull a signal below ground than to push it above the logic threshold). Active-low signals are therefore more resistant to noise-induced false triggering in industrial and automotive environments.
 
-Active-low signals are identified by a bar over the signal name (e.g., /RESET, ENABLE) or by a bubble on the gate pin in circuit diagrams.
+Active-low signals are identified by an overbar on the name (RESET̄), a forward slash (/RESET or ~RESET in text), or a small bubble on the gate input or output pin in a schematic.
 
 ## Key Points
 
-- Active-low: signal is "asserted" when LOW (logic 0)
-- Fault default: broken wire → floats HIGH → signal de-asserted (safe)
-- More noise-immune than active-high in practice
-- Notation: overbar (RESET̄), forward slash (/RESET), or bubble on gate symbol
+- Active-low: signal is asserted (active/ON) when LOW (logic 0)
+- Fault default: broken wire or lost connection → floats HIGH → signal de-asserted (safe)
+- More noise-immune: high-noise environments inject fewer spurious LOW states than HIGH states
+- Notation: RESET̄, /RESET, ~RESET, or bubble symbol on schematics
 
 ## Example
 
-Emergency stop circuit (active-low):
+Emergency stop design comparison:
 
-Normal operation: /STOP = HIGH → machine runs
-Button pressed: /STOP = LOW → machine halts
-Wire cut: /STOP floats HIGH → machine continues (but design forces HIGH → machine keeps running)
+```
+Active-HIGH /STOP:
+  Wire intact, button released → STOP = LOW → no stop → machine runs
+  Button pressed                → STOP = HIGH → machine halts ✓
+  Wire cut or fault             → STOP floats HIGH → machine halts ✓ (safe in this case)
 
-A better design using active-low: system starts only when /ENABLE = LOW (button held). Wire cut → /ENABLE = HIGH → system de-asserts → stops. Machine stops on failure. ✓
+But for an ENABLE signal (machine runs only when ENABLE = HIGH):
+  Wire cut → ENABLE floats HIGH → machine unexpectedly activates ✗
+
+Active-LOW ~ENABLE:
+  Wire intact, button held      → ~ENABLE = LOW → machine enabled ✓
+  Button released               → ~ENABLE = HIGH → machine stops ✓
+  Wire cut → ~ENABLE floats HIGH → machine stops ✓ (safe by default)
+```
+
+Active-low ~ENABLE is fail-safe: any fault deactivates the machine.
+
+> [!recall] A nuclear plant uses an active-high "PUMP_ON" signal. An active-low alternative "~PUMP_OFF" is proposed. A cable fault causes the control wire to disconnect. Compare the behavior of both designs under this fault, and argue which is safer for this application. What role does the pull-up resistor play in each scenario?
 
 ## See Also
 
-- [[active-high-vs-active-low|Active-High vs Active-Low Polarity]] — overview of both conventions
+- [[active-high-vs-active-low|Active-High vs Active-Low]] — overview of both polarity conventions
 - [[not-gate-inverts-the-input-logic-level|NOT Gate]] — used to convert between active-high and active-low signals

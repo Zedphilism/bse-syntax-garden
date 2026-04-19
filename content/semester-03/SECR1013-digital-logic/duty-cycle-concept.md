@@ -1,51 +1,56 @@
 ---
-title: "Duty Cycle Measures Signal ON Time as a Fraction of Its Period"
+title: "Duty Cycle"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# Duty Cycle Measures Signal ON Time as a Fraction of Its Period
+# Duty Cycle
 
-Duty cycle is the ratio of the time a digital signal spends in the HIGH (ON) state to the total period of one cycle, expressed as a percentage.
+Duty cycle is the fraction of one period during which a digital signal is HIGH (ON), expressed as a percentage — it measures how much of the time a signal is active relative to its total cycle time.
+
+> [!concept] Core Claim
+> Duty cycle controls the average energy delivered by a periodic signal: a 25% duty cycle means the load receives energy for only one-quarter of each cycle, making duty cycle the tuning knob for PWM-based power control without changing frequency.
 
 ## Explanation
 
-For any periodic digital signal, the period T is divided into ON time (t_on, when the signal is HIGH) and OFF time (t_off, when the signal is LOW). The duty cycle quantifies what fraction of each cycle the signal is active. A 50% duty cycle means the signal is HIGH for exactly half the period and LOW for the other half — a perfectly balanced square wave. A 25% duty cycle means the signal is HIGH for only one quarter of each cycle.
+Think of duty cycle like a dimmer switch that works by rapid blinking: a 10% duty cycle blinks the light on for only 10% of every second — so fast you don't see the flicker, but your eye averages it as a dim glow. A 90% duty cycle blinks it off for only 10% of each second, so it looks nearly fully bright. The mechanism is time-averaging: even though the signal is always either full ON or full OFF, the proportion of on-time controls the perceived or delivered power.
 
-Duty cycle is a critical parameter in Pulse Width Modulation (PWM), a technique used to control the average power delivered to a load without changing the voltage or frequency. A motor driven by a PWM signal at 25% duty cycle receives, on average, only 25% of the supply voltage — allowing precise speed control by simply adjusting the duty cycle. The same principle controls LED brightness, heater elements, and switching power supplies.
+The formula is: Duty Cycle (%) = (t_on / T) × 100, where t_on is the HIGH time per cycle and T is the period. A 50% duty cycle means t_on = t_off = T/2, producing a symmetric square wave. The duty cycle and the frequency are completely independent parameters — you can have a 25% duty cycle at 1 Hz or at 1 MHz, and both describe the same proportion of on-time relative to the period.
 
-It is important to note that duty cycle describes the shape of the waveform, not its frequency. Two signals can share the same frequency but have completely different duty cycles, and vice versa.
+The engineering consequence is Pulse Width Modulation (PWM): by rapidly toggling a digital output at a fixed frequency while varying the duty cycle, a microcontroller can deliver precisely controlled average power to a motor, LED, heater, or switching power supply. No analog voltage regulation is needed — the digital signal itself becomes the power control mechanism.
 
 ## Key Points
 
-- Formula: Duty Cycle (%) = (t_on / T) x 100
-- t_on = HIGH time, T = total period, t_off = T - t_on
-- 50% duty cycle = equal HIGH and LOW time (square wave)
-- Duty cycle controls average power in PWM applications without changing frequency
-- Duty cycle and frequency are independent parameters of a waveform
+- Formula: Duty Cycle (%) = (t_on / T) × 100
+- t_on = HIGH time per cycle, T = total period, t_off = T − t_on
+- 50% duty cycle = equal HIGH and LOW (symmetric square wave)
+- Duty cycle controls average power in PWM without changing frequency
+- Duty cycle and frequency are independent — changing one does not affect the other
 
 ## Example
 
-A PWM signal with period T = 1,000 ms and a 25% duty cycle:
+A PWM motor control signal: T = 1,000 ms, duty cycle = 25%:
 
 ```
-t_on  = 25% of 1,000 ms = 250 ms
-t_off = 75% of 1,000 ms = 750 ms
+t_on  = 0.25 × 1,000 ms = 250 ms
+t_off = 0.75 × 1,000 ms = 750 ms
 
-HIGH --|____      |____
-       |    |     |    |
-LOW  --|    |_____|    |_____
-       0   250   1000  1250   (ms)
+HIGH --|‾‾‾‾|         |‾‾‾‾|
+       |    |         |    |
+LOW  --|    |_________|    |_________
+       0   250       1000 1250      (ms)
 ```
 
 Comparing duty cycles at the same frequency (T = 1,000 ms):
 
-| Duty Cycle | t_on  | t_off | Typical use         |
-|------------|-------|-------|---------------------|
-| 25%        | 250ms | 750ms | Low power / dim LED |
-| 50%        | 500ms | 500ms | Half power / medium |
-| 75%        | 750ms | 250ms | High power / bright |
+| Duty Cycle | t_on  | t_off | Effect on motor/LED       |
+|------------|-------|-------|---------------------------|
+| 25%        | 250ms | 750ms | Low power / dim           |
+| 50%        | 500ms | 500ms | Half power / medium       |
+| 75%        | 750ms | 250ms | High power / bright       |
+
+> [!recall] A PWM signal drives an LED at 5 V. The current frequency is 1 kHz with a 30% duty cycle. You want to double the LED brightness without changing the supply voltage or the frequency. What single parameter do you adjust, and what is its new value? Will the LED flicker?
 
 ## See Also
 
-- [[digital-waveforms-and-signal-behavior|Digital Waveforms Describe Signal Transitions Between HIGH and LOW Over Time]] — the waveform properties that duty cycle describes
+- [[digital-waveforms-and-signal-behavior|Digital Waveforms and Signal Behavior]] — the waveform properties that duty cycle modifies

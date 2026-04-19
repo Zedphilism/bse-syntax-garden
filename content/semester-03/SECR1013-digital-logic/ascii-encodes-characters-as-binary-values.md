@@ -1,28 +1,32 @@
 ---
-title: "ASCII Assigns a Unique 7-Bit Binary Code to Each Printable Character"
+title: "ASCII Encoding"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# ASCII Assigns a Unique 7-Bit Binary Code to Each Printable Character
+# ASCII Encoding
 
-ASCII (American Standard Code for Information Interchange) maps each letter, digit, punctuation mark, and control character to a unique 7-bit binary number, allowing computers to store and transmit text in a standard format.
+ASCII (American Standard Code for Information Interchange) assigns each printable character, digit, and control code a unique 7-bit binary number in the range 0–127, giving computers a shared language for storing and transmitting text.
+
+> [!concept] Core Claim
+> ASCII is a lookup table baked into every computer: the bit pattern 0100 0001 means the letter 'A' everywhere, because all systems agreed on this mapping — without that agreement, the same bits would mean different things on different machines.
 
 ## Explanation
 
-Without a shared encoding standard, two computers would have no way to agree on what a stored bit pattern means as text. ASCII solves this by assigning numbers 0–127 to 128 characters: 33 non-printable control characters (0–31, 127), 10 digits (48–57), 26 uppercase letters (65–90), 26 lowercase letters (97–122), and various punctuation marks.
+Think of ASCII like the Morse code alphabet: it is a pre-agreed translation table between symbols and signals. Before ASCII, different computer manufacturers used incompatible codes for text — 'A' might be stored as 65 on one machine and 193 on another. ASCII ended that chaos by establishing a single international standard that all systems could implement.
 
-A useful pattern: uppercase letters start at 65 (A = 0100 0001), and lowercase letters start at 97 (a = 0110 0001). The only difference is bit 5 — toggling bit 5 converts between cases. This regularity makes case conversion trivial in hardware.
+The mechanism is a 128-entry lookup table mapped to 7 bits (2⁷ = 128). Characters 0–31 and 127 are non-printable control codes (e.g., 10 = newline, 13 = carriage return, 8 = backspace) that control terminal behavior. Characters 32–126 are printable: 32 is space, 48–57 are the digits '0'–'9', 65–90 are uppercase 'A'–'Z', 97–122 are lowercase 'a'–'z', and the remaining slots hold punctuation and symbols.
 
-Extended ASCII uses 8 bits, adding another 128 code points (128–255) for accented characters and symbols. Modern systems use Unicode/UTF-8, which is a superset of ASCII — the first 128 code points are identical.
+The most useful pattern is the relationship between uppercase and lowercase letters: 'A' = 65 = 0100 0001 and 'a' = 97 = 0110 0001. The only difference is bit 5 (the third bit from the left in the 7-bit code). Flipping bit 5 converts between cases — toggling one bit is all any hardware needs to perform case conversion. The consequence for digital systems is that case comparisons and conversions are single-operation bit manipulations, not table lookups, making text handling efficient even in minimal hardware.
 
 ## Key Points
 
-- 7-bit standard (0–127), 128 characters total
-- Digits: 48–57 (i.e., '0' = 48 = 0011 0000)
-- Uppercase A–Z: 65–90
-- Lowercase a–z: 97–122
-- Bit 5 distinguishes upper/lowercase (0 = upper, 1 = lower)
+- 7-bit standard: 128 characters (codes 0–127)
+- Digits '0'–'9': codes 48–57
+- Uppercase 'A'–'Z': codes 65–90
+- Lowercase 'a'–'z': codes 97–122
+- Upper vs lowercase: only bit 5 differs (0 = upper, 1 = lower)
+- Extended ASCII: 8-bit (0–255); Unicode/UTF-8 is a superset of ASCII for the first 128 codes
 
 ## Example
 
@@ -36,9 +40,13 @@ Character 'M':
 - Binary: 0100 1101
 - Hex: 4D
 
-'m' vs 'M': only bit 5 differs (1 vs 0) — all other bits identical.
+'m' vs 'M': bit 5 is 1 vs 0 — all other bits identical.
+
+Case conversion: 'm' OR 0xDF = 'M' (clears bit 5); 'M' OR 0x20 = 'm' (sets bit 5).
+
+> [!recall] A keystroke produces the 7-bit code 0110 1111. Without a lookup table, determine the character using the ASCII structure described here. Then explain how you would modify this code to produce its uppercase equivalent, and verify by calculating the resulting decimal value.
 
 ## See Also
 
-- [[binary-coded-decimal-represents-digits-separately-in-binary|BCD Encoding]] — digit-only alternative encoding
-- [[parity-bit-detects-errors-using-even-or-odd-counts|Parity Bit]] — historically added to ASCII transmissions for error detection
+- [[binary-coded-decimal-represents-digits-separately-in-binary|Binary Coded Decimal (BCD)]] — digit-only alternative encoding
+- [[parity-bit-detects-errors-using-even-or-odd-counts|Parity Bit]] — historically appended to ASCII for error detection in serial transmission

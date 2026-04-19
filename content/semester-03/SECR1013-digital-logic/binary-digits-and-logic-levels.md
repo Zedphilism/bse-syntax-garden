@@ -1,48 +1,53 @@
 ---
-title: "Binary Digits Map to Physical Voltage Levels in Digital Circuits"
+title: "Binary Digits and Logic Levels"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# Binary Digits Map to Physical Voltage Levels in Digital Circuits
+# Binary Digits and Logic Levels
 
-A binary digit (bit) is not just an abstract 0 or 1 — in a physical circuit it corresponds to a defined voltage range, and any voltage outside those ranges is treated as invalid.
+A binary digit (bit) is not just an abstract 0 or 1 — in a physical circuit it corresponds to a defined voltage range, and any voltage outside the valid ranges is treated as undefined and dangerous.
+
+> [!concept] Core Claim
+> The bit values 0 and 1 are physical voltage regions, not exact voltages; the gaps between regions give circuits a built-in noise margin that prevents small fluctuations from flipping the interpreted logic level.
 
 ## Explanation
 
-Every digital circuit operates by interpreting voltage levels as logical states. The bit value 1 is assigned to a HIGH voltage range and the bit value 0 is assigned to a LOW voltage range. These ranges are defined by the logic family being used (TTL, CMOS, etc.) and they include deliberate margins to tolerate small noise variations.
+Think of a bit's voltage ranges like traffic light zones on a road: there is a green zone (HIGH = logic 1), a red zone (LOW = logic 0), and an illegal yellow zone (forbidden region) that vehicles — signals — must never park in. If a signal rests in the yellow zone, the circuit has no reliable way to decide which zone it belongs to.
 
-Between the HIGH and LOW ranges lies an invalid region — sometimes called the forbidden zone or transition region. A signal resting in this region produces undefined behavior: the circuit may interpret it as either 0 or 1 unpredictably. Well-designed circuits spend the absolute minimum time passing through this region during signal transitions.
+The mechanism works through voltage comparators in the gate's input circuitry. Any input voltage above the HIGH threshold is registered as 1; any input below the LOW threshold is registered as 0. The gap between the thresholds is the noise margin — it absorbs voltage spikes, temperature drift, and wire resistance without flipping the logic level. This is why a 3.8 V signal and a 4.9 V signal are both read as logic 1 with identical results, even though their voltages differ by over a volt.
 
-It is important to understand that a bit represents a state, not a numeric quantity. Logic HIGH does not mean "the number one exists here"; it means the circuit is in the asserted state. This distinction matters especially when working with active-low signals, where the asserted condition is represented by LOW voltage.
+The consequence is that a bit represents a logic state, not a quantity. HIGH does not mean "one unit of something" — it means "the circuit is in the asserted condition." This matters especially when active-low signals are used, where the asserted condition (logic TRUE) is physically represented by LOW voltage.
 
 ## Key Points
 
-- Bit = smallest unit of digital information, value is 0 or 1
-- HIGH voltage = logic 1 | LOW voltage = logic 0
-- Invalid region exists between HIGH and LOW — signals must not rest here
-- TTL reference levels: HIGH = 2.4 V to 5 V, LOW = 0 V to 0.8 V, invalid = 0.8 V to 2.4 V
-- A bit represents a logic state, not a numeric quantity
+- Bit = smallest unit of digital information; value is 0 or 1
+- HIGH voltage range = logic 1 | LOW voltage range = logic 0
+- Forbidden zone between HIGH and LOW — signals must not rest here
+- TTL reference: HIGH = 2.4–5 V, LOW = 0–0.8 V, forbidden = 0.8–2.4 V
+- Noise margin = range a signal can deviate without flipping the logic level
 
 ## Example
 
-In a 5 V TTL system the voltage thresholds are:
+In a 5 V TTL system:
 
 ```
 5.0 V ---|
-         |  HIGH region (logic 1)     e.g. 4.2 V -> read as 1
+         |  HIGH region (logic 1)    e.g. 4.2 V → read as 1
 2.4 V ---|
-         |  INVALID region            e.g. 1.5 V -> undefined!
+         |  FORBIDDEN region          e.g. 1.5 V → undefined behavior!
 0.8 V ---|
-         |  LOW region  (logic 0)     e.g. 0.3 V -> read as 0
+         |  LOW region (logic 0)     e.g. 0.3 V → read as 0
 0.0 V ---|
 ```
 
-A voltage of 4.2 V is reliably read as logic 1.
-A voltage of 0.3 V is reliably read as logic 0.
-A voltage of 1.5 V is invalid — the circuit output is unpredictable.
+4.2 V → reliably logic 1 ✓
+0.3 V → reliably logic 0 ✓
+1.5 V → undefined — the gate may output 0 or 1 unpredictably ✗
+
+> [!recall] A gate output is measured at 1.0 V in a TTL system (HIGH threshold = 2.4 V, LOW threshold = 0.8 V). Explain what region this voltage is in and predict what will happen when this is connected to a downstream gate's input.
 
 ## See Also
 
-- [[analog-vs-digital|Digital Signals Use Discrete Voltage Levels While Analog Signals Are Continuous]] — why only two valid levels exist
-- [[active-high-vs-active-low|Active-High and Active-Low Define the Polarity of a Logic Signal]] — how HIGH/LOW maps to true/false depending on signal polarity
+- [[analog-vs-digital|Analog vs Digital Signals]] — why only two valid logic levels exist
+- [[active-high-vs-active-low|Active-High vs Active-Low]] — how HIGH/LOW maps to true/false depending on signal polarity

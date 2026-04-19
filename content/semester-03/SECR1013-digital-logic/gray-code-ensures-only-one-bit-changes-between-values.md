@@ -1,54 +1,56 @@
 ---
-title: "Gray Code Ensures Only One Bit Changes Between Consecutive Values"
+title: "Gray Code"
 date: 2026-04-18
 tags: [semester-3, secr1013, digital-logic]
 ---
 
-# Gray Code Ensures Only One Bit Changes Between Consecutive Values
+# Gray Code
 
-Gray code is a binary encoding where any two consecutive values differ in exactly one bit position, eliminating multi-bit transition errors.
+Gray code is a binary encoding where consecutive values differ in exactly one bit — it eliminates the multi-bit transition glitches that standard binary counting produces.
+
+> [!concept] Core Claim
+> Gray code solves the reliability problem in mechanical sensing: because only one bit changes at a time, there is never an ambiguous intermediate state during a transition, making it the standard encoding for rotary encoders and position sensors.
 
 ## Explanation
 
-In standard binary counting, transitioning from 3 (011) to 4 (100) flips three bits simultaneously. If those bits change at slightly different times due to physical delays, the circuit momentarily reads an invalid intermediate value like 010 or 110. This causes spurious glitches.
+Think of a rotary encoder on a dial — a sensor that reads the dial's position as a binary number. In standard binary, turning from position 3 (011) to position 4 (100) requires all three bits to flip simultaneously. In reality, the three bits flip at slightly different instants due to mechanical tolerances. During the brief overlap, the sensor might read 001, 010, 100, or 110 — spurious positions that were never actually reached. These false readings are called glitches.
 
-Gray code is designed so that no transition ever flips more than one bit. Moving from one value to the next changes exactly one bit, so there is no ambiguous intermediate state. The cost is that Gray code values are not directly usable for arithmetic — they require conversion back to standard binary first.
+Gray code is designed so that any transition between consecutive positions changes exactly one bit. This means there is only one bit changing at a time — no overlap, no ambiguous state. If the mechanical transition is caught mid-change, the sensor reads either the previous position or the next position, but never a phantom position in between.
 
-To convert binary to Gray code: keep the MSB the same; each subsequent Gray bit is the XOR of the current and previous binary bits. To convert Gray code back to binary: keep the MSB; each subsequent binary bit is the XOR of the previous binary bit and the current Gray bit.
-
-Gray code is heavily used in rotary encoders, position sensors, and any system where mechanical transitions between states must be read reliably.
+The conversion algorithm from binary to Gray code is simple: keep the most significant bit unchanged; for every subsequent bit position, XOR the current binary bit with the one to its left. To convert Gray code back to binary: keep the MSB; for each subsequent position, XOR the previous decoded binary bit with the current Gray bit. The important caveat is that Gray code values are not positionally weighted like binary — you cannot do arithmetic directly on Gray code values; they must first be decoded back to binary.
 
 ## Key Points
 
 - Only one bit changes between consecutive values
 - Prevents erroneous intermediate readings during transitions
-- Not usable for arithmetic directly — must convert to binary first
-- Conversion formula (binary → Gray): G_MSB = B_MSB; Gᵢ = Bᵢ XOR Bᵢ₊₁
+- Not directly usable for arithmetic — must decode to binary first
+- Binary → Gray: G_MSB = B_MSB; Gᵢ = Bᵢ XOR Bᵢ₋₁ (current XOR adjacent-left)
+- Gray → Binary: B_MSB = G_MSB; Bᵢ = Bᵢ₋₁ XOR Gᵢ
 
 ## Example
 
-Convert binary 1001 to Gray code:
+Binary 0–4 vs Gray code — notice only one bit changes per row:
 
-| Binary | Gray  |
-|--------|-------|
-| 1      | 1     |
-| 0      | 1⊕0=1 |
-| 0      | 0⊕0=0 |
-| 1      | 0⊕1=1 |
+| Decimal | Binary | Gray | Bit change |
+|---------|--------|------|------------|
+| 0       | 000    | 000  | —          |
+| 1       | 001    | 001  | bit 0      |
+| 2       | 010    | 011  | bit 1      |
+| 3       | 011    | 010  | bit 1      |
+| 4       | 100    | 110  | bit 2      |
 
-Result: 1101 (Gray)
+Convert binary 1001₂ to Gray code:
 
-Standard binary 0 through 4 vs Gray:
+```
+B:  1  0  0  1
+    ↓  ↓  ↓  ↓
+G:  1  1⊕0  0⊕0  0⊕1  =  1  1  0  1
+```
+Gray result: 1101
 
-| Decimal | Binary | Gray |
-|---------|--------|------|
-| 0       | 000    | 000  |
-| 1       | 001    | 001  |
-| 2       | 010    | 011  |
-| 3       | 011    | 010  |
-| 4       | 100    | 110  |
+> [!recall] A rotary encoder uses standard binary. At the transition from 7 (0111) to 8 (1000), list all invalid intermediate states the sensor could read due to asynchronous bit transitions. Then show the Gray code for both 7 and 8 and explain why Gray code eliminates the problem.
 
 ## See Also
 
-- [[binary-representation-uses-base-two-with-weighted-bits|Binary Representation]] — the base encoding Gray code converts from
-- [[parity-bit-detects-errors-using-even-or-odd-counts|Parity Bit]] — another error-reduction technique
+- [[binary-representation-uses-base-two-with-weighted-bits|Binary Representation]] — the standard encoding Gray code converts from
+- [[parity-bit-detects-errors-using-even-or-odd-counts|Parity Bit]] — a different error-mitigation technique (detection rather than prevention)
