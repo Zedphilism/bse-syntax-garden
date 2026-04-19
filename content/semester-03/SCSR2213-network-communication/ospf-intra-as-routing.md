@@ -1,10 +1,10 @@
 ---
-title: "OSPF Is a Link-State Intra-AS Routing Protocol with Hierarchical Areas"
+title: "OSPF: Intra-AS Routing"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# OSPF Is a Link-State Intra-AS Routing Protocol with Hierarchical Areas
+# OSPF: Intra-AS Routing
 
 OSPF (Open Shortest Path First) is the standard link-state intra-AS (interior gateway) routing protocol that floods link-state advertisements directly over IP, runs Dijkstra's algorithm to compute shortest paths, and scales to large networks through hierarchical area decomposition.
 

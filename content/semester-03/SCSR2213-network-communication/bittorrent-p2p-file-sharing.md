@@ -1,10 +1,10 @@
 ---
-title: "BitTorrent Uses Rarest-First Chunk Requests and Tit-for-Tat Upload to Share Files Efficiently"
+title: "BitTorrent: P2P File Sharing"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# BitTorrent Uses Rarest-First Chunk Requests and Tit-for-Tat Upload to Share Files Efficiently
+# BitTorrent: P2P File Sharing
 
 BitTorrent is a P2P file distribution protocol where a file is divided into 256 KB chunks that peers exchange directly with each other, using rarest-first requesting and tit-for-tat upload incentives to maximise swarm efficiency.
 

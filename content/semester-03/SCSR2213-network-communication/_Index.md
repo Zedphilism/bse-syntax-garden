@@ -16,36 +16,36 @@ Source: *Computer Networking: A Top-Down Approach*, Kurose & Ross (7th/8th Ed.)
 
 ### The Internet
 
-- [[internet-nuts-and-bolts-view|The Internet Is a Network of Networks Built from Hosts, Links, and Switches]]
-- [[internet-service-view|The Internet Provides a Programmable Infrastructure for Distributed Applications]]
-- [[network-protocols-defined|Protocols Define the Format and Order of Messages Exchanged Between Network Entities]]
-- [[internet-isp-hierarchy|The Internet Has a Hierarchical ISP Structure with Tier-1 ISPs at the Core]]
+- [[internet-nuts-and-bolts-view|The Internet: Nuts and Bolts View]]
+- [[internet-service-view|The Internet: Service View]]
+- [[network-protocols-defined|What Is a Protocol?]]
+- [[internet-isp-hierarchy|Internet ISP Hierarchy]]
 
 ### Access Networks & Physical Media
 
-- [[access-networks-overview|Access Networks Physically Connect End Systems to the First Router on the Internet Path]]
-- [[physical-media-types|Physical Media Carry Bits as Guided or Unguided Electromagnetic Signals]]
+- [[access-networks-overview|Access Networks]]
+- [[physical-media-types|Physical Media Types]]
 
 ### Network Core
 
-- [[packet-switching-store-and-forward|Packet Switching Forwards Data in Chunks Using Store-and-Forward at Each Router]]
-- [[circuit-switching-fdm-tdm|Circuit Switching Reserves Dedicated Resources for a Connection Using FDM or TDM]]
-- [[packet-vs-circuit-switching|Packet Switching Supports More Users Than Circuit Switching on Bursty Traffic]]
+- [[packet-switching-store-and-forward|Packet Switching: Store and Forward]]
+- [[circuit-switching-fdm-tdm|Circuit Switching: FDM and TDM]]
+- [[packet-vs-circuit-switching|Packet Switching vs Circuit Switching]]
 
 ### Performance
 
-- [[four-sources-of-packet-delay|Packets Experience Four Types of Delay at Every Router Along Their Path]]
-- [[throughput-and-bottleneck-links|Throughput Is Constrained by the Slowest Link — the Bottleneck — on the End-to-End Path]]
+- [[four-sources-of-packet-delay|Four Sources of Packet Delay]]
+- [[throughput-and-bottleneck-links|Throughput and Bottleneck Links]]
 
 ### Protocol Layers
 
-- [[osi-model-seven-layers|The OSI Model Organises Network Communication Functions into Seven Distinct Layers]]
-- [[tcp-ip-internet-stack|The TCP/IP Internet Stack Has Five Layers from Physical Bits to Application Messages]]
-- [[encapsulation-in-protocol-layers|Encapsulation Wraps Data with Layer-Specific Headers as It Descends the Protocol Stack]]
+- [[osi-model-seven-layers|OSI Model: Seven Layers]]
+- [[tcp-ip-internet-stack|TCP/IP Internet Stack]]
+- [[encapsulation-in-protocol-layers|Encapsulation in Protocol Layers]]
 
 ### Security
 
-- [[network-security-threats|The Internet's Major Security Threats Are Malware, DoS, Packet Sniffing, and IP Spoofing]]
+- [[network-security-threats|Network Security Threats]]
 
 ---
 
@@ -53,28 +53,28 @@ Source: *Computer Networking: A Top-Down Approach*, Kurose & Ross (7th/8th Ed.)
 
 ### Application Architecture
 
-- [[client-server-vs-p2p-architecture|Application Architectures Are Either Client-Server or Peer-to-Peer]]
+- [[client-server-vs-p2p-architecture|Client-Server vs P2P Architecture]]
 
 ### HTTP & The Web
 
-- [[http-stateless-protocol|HTTP Is a Stateless Client-Server Protocol That Transfers Web Objects over TCP]]
-- [[http-persistent-vs-non-persistent|Persistent HTTP Reuses One TCP Connection While Non-Persistent HTTP Opens a New One Per Object]]
-- [[http-cookies-for-state|HTTP Cookies Allow Servers to Maintain User State Across Stateless HTTP Requests]]
-- [[web-caching-proxy-servers|Web Caches Reduce Response Time and Access Link Load by Serving Locally Stored Copies]]
+- [[http-stateless-protocol|HTTP: Stateless Protocol]]
+- [[http-persistent-vs-non-persistent|HTTP: Persistent vs Non-Persistent Connections]]
+- [[http-cookies-for-state|HTTP Cookies]]
+- [[web-caching-proxy-servers|Web Caching and Proxy Servers]]
 
 ### Email
 
-- [[smtp-email-protocol|SMTP Pushes Email Between Mail Servers over TCP While POP3 and IMAP Handle Retrieval]]
+- [[smtp-email-protocol|SMTP, POP3, and IMAP]]
 
 ### DNS
 
-- [[dns-hierarchy-and-resolution|DNS Translates Hostnames to IP Addresses via a Distributed Hierarchy of Name Servers]]
-- [[dns-resource-records|DNS Resource Records Map Names to Addresses, Mail Servers, and Canonical Hostnames]]
+- [[dns-hierarchy-and-resolution|DNS: Hierarchy and Resolution]]
+- [[dns-resource-records|DNS Resource Records]]
 
 ### P2P & Video Streaming
 
-- [[bittorrent-p2p-file-sharing|BitTorrent Uses Rarest-First Chunk Requests and Tit-for-Tat Upload to Share Files Efficiently]]
-- [[dash-adaptive-video-streaming|DASH Adapts Video Quality Dynamically Based on Client Bandwidth and Buffer State]]
+- [[bittorrent-p2p-file-sharing|BitTorrent: P2P File Sharing]]
+- [[dash-adaptive-video-streaming|DASH: Adaptive Video Streaming]]
 
 ---
 
@@ -82,23 +82,39 @@ Source: *Computer Networking: A Top-Down Approach*, Kurose & Ross (7th/8th Ed.)
 
 ### Transport Layer Fundamentals
 
-- [[transport-layer-vs-network-layer|The Transport Layer Extends Network Delivery from Hosts to Processes]]
-- [[multiplexing-and-demultiplexing|Multiplexing Uses Port Numbers to Direct Segments to the Right Process]]
-- [[udp-connectionless-transport|UDP Provides Bare-Bones Transport with No Delivery Guarantees]]
+- [[transport-layer-vs-network-layer|Transport Layer vs Network Layer]]
+- [[multiplexing-and-demultiplexing|Multiplexing and Demultiplexing]]
+
+### UDP
+
+- [[udp-connectionless-transport|UDP: Connectionless Transport]]
+- [[checksum-process|Checksum Process]]
+- [[checksum-exam-style|Checksum: Exam-Style Worked Example]]
 
 ### Reliable Data Transfer
 
-- [[reliable-data-transfer-principles|Reliable Data Transfer Builds Correctness on Top of an Unreliable Channel]]
-- [[go-back-n-vs-selective-repeat|Go-Back-N and Selective Repeat Are Pipelined Protocols with Different Retransmission Strategies]]
+- [[reliable-data-transfer-principles|Principles of Reliable Data Transfer]]
+- [[rdt-1-0-to-3-0|rdt 1.0 to rdt 3.0: Detailed Process]]
+- [[stop-and-wait-protocol|Stop-and-Wait Protocol]]
+- [[go-back-n-vs-selective-repeat|Go-Back-N and Selective Repeat]]
 
 ### TCP
 
-- [[tcp-segment-structure|TCP Segment Header Carries Sequence Numbers, ACKs, and Control Flags]]
-- [[tcp-rtt-estimation-and-timeout|TCP Estimates RTT with EWMA to Set a Dynamic Retransmission Timeout]]
-- [[tcp-fast-retransmit|TCP Fast Retransmit Uses Duplicate ACKs to Retransmit Before Timeout]]
-- [[tcp-flow-control|TCP Flow Control Uses the Receive Window to Prevent Buffer Overflow]]
-- [[tcp-three-way-handshake|TCP Uses a Three-Way Handshake to Establish and a Four-Way Close to Terminate]]
-- [[tcp-congestion-control|TCP Congestion Control Uses AIMD to Share Network Capacity Fairly]]
+- [[tcp-connection-oriented-transport|TCP: Connection-Oriented Transport]]
+- [[tcp-segment-structure|TCP Segment Structure]]
+- [[tcp-rtt-estimation-and-timeout|TCP RTT Estimation and Timeout]]
+- [[tcp-fast-retransmit|TCP Fast Retransmit]]
+- [[tcp-flow-control|TCP Flow Control]]
+- [[tcp-three-way-handshake|TCP: Three-Way Handshake and Close]]
+
+### Congestion Control
+
+- [[congestion-control-principles|Principles of Congestion Control]]
+- [[tcp-congestion-control|TCP Congestion Control]]
+
+### Evolution
+
+- [[transport-layer-evolution|Evolution of Transport Layer Functionality]]
 
 ---
 
@@ -106,21 +122,21 @@ Source: *Computer Networking: A Top-Down Approach*, Kurose & Ross (7th/8th Ed.)
 
 ### Forwarding and Router Architecture
 
-- [[network-layer-data-vs-control-plane|The Network Layer Has Two Planes — Data Plane Forwards, Control Plane Routes]]
-- [[router-architecture-overview|A Router Has Input Ports, a Switching Fabric, and Output Ports]]
+- [[network-layer-data-vs-control-plane|Data Plane vs Control Plane]]
+- [[router-architecture-overview|Router Architecture]]
 
 ### IP: The Internet Protocol
 
-- [[ip-datagram-format|An IP Datagram Has a 20-Byte Header Carrying Addressing and Control Fields]]
-- [[ip-fragmentation-and-reassembly|IP Fragmentation Splits Large Datagrams to Fit Link MTU]]
-- [[ipv4-addressing-and-subnets|IPv4 Addresses Identify Interfaces and Are Grouped into Subnets]]
-- [[subnetting-cidr-vs-classful|CIDR Replaced Classful Addressing to Eliminate Wasteful Address Allocation]]
+- [[ip-datagram-format|IP Datagram Format]]
+- [[ip-fragmentation-and-reassembly|IP Fragmentation and Reassembly]]
+- [[ipv4-addressing-and-subnets|IPv4 Addressing and Subnets]]
+- [[subnetting-cidr-vs-classful|CIDR vs Classful Addressing]]
 
 ### Network Configuration
 
-- [[dhcp-dynamic-host-configuration|DHCP Automatically Assigns IP Addresses to Hosts on a Network]]
-- [[nat-network-address-translation|NAT Maps Many Private Addresses to One Public IP Using Port Numbers]]
-- [[ipv6-addressing-and-format|IPv6 Uses 128-Bit Addresses and a Simplified Fixed-Length Header]]
+- [[dhcp-dynamic-host-configuration|DHCP: Dynamic Host Configuration]]
+- [[nat-network-address-translation|NAT: Network Address Translation]]
+- [[ipv6-addressing-and-format|IPv6: Addressing and Format]]
 
 ---
 
@@ -128,18 +144,18 @@ Source: *Computer Networking: A Top-Down Approach*, Kurose & Ross (7th/8th Ed.)
 
 ### Routing Algorithms
 
-- [[link-state-routing-dijkstra|Link-State Routing Uses Dijkstra's Algorithm on a Global Topology Map]]
-- [[distance-vector-routing-bellman-ford|Distance-Vector Routing Uses the Bellman-Ford Equation to Compute Paths Iteratively]]
+- [[link-state-routing-dijkstra|Link-State Routing: Dijkstra's Algorithm]]
+- [[distance-vector-routing-bellman-ford|Distance-Vector Routing: Bellman-Ford]]
 
 ### Internet Routing Protocols
 
-- [[ospf-intra-as-routing|OSPF Is a Link-State Intra-AS Routing Protocol with Hierarchical Areas]]
-- [[bgp-inter-as-routing|BGP Is the Inter-AS Routing Protocol That Connects the Internet's Autonomous Systems]]
+- [[ospf-intra-as-routing|OSPF: Intra-AS Routing]]
+- [[bgp-inter-as-routing|BGP: Inter-AS Routing]]
 
 ### SDN and ICMP
 
-- [[sdn-control-plane|SDN Separates the Control Plane from Data Plane Hardware into a Remote Controller]]
-- [[icmp-internet-control-message-protocol|ICMP Reports Network Errors and Is Used by Ping and Traceroute]]
+- [[sdn-control-plane|SDN: Software-Defined Networking]]
+- [[icmp-internet-control-message-protocol|ICMP: Internet Control Message Protocol]]
 
 ---
 

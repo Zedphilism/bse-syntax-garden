@@ -1,10 +1,10 @@
 ---
-title: "Persistent HTTP Reuses One TCP Connection While Non-Persistent HTTP Opens a New One Per Object"
+title: "HTTP: Persistent vs Non-Persistent Connections"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Persistent HTTP Reuses One TCP Connection While Non-Persistent HTTP Opens a New One Per Object
+# HTTP: Persistent vs Non-Persistent Connections
 
 HTTP has two connection modes: non-persistent (HTTP/1.0) opens and closes a TCP connection for each object, costing 2 RTTs per object; persistent (HTTP/1.1) keeps the connection open for multiple objects, reducing overhead to as little as 1 RTT for all subsequent objects.
 

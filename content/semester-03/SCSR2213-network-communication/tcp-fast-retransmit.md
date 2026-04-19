@@ -1,10 +1,10 @@
 ---
-title: "TCP Fast Retransmit Uses Duplicate ACKs to Retransmit Before Timeout"
+title: "TCP Fast Retransmit"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# TCP Fast Retransmit Uses Duplicate ACKs to Retransmit Before Timeout
+# TCP Fast Retransmit
 
 TCP fast retransmit allows the sender to infer a lost segment from three duplicate ACKs and retransmit it immediately, without waiting for the full retransmission timeout to expire.
 

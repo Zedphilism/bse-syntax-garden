@@ -1,10 +1,10 @@
 ---
-title: "TCP Flow Control Uses the Receive Window to Prevent Buffer Overflow"
+title: "TCP Flow Control"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# TCP Flow Control Uses the Receive Window to Prevent Buffer Overflow
+# TCP Flow Control
 
 TCP flow control is a speed-matching mechanism where the receiver advertises its available buffer space (rwnd) in every ACK, and the sender limits the amount of unacknowledged data in flight to that value, preventing the receiver's buffer from overflowing.
 

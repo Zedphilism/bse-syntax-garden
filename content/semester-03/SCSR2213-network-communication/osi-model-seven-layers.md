@@ -1,10 +1,10 @@
 ---
-title: "The OSI Model Organises Network Communication Functions into Seven Distinct Layers"
+title: "OSI Model: Seven Layers"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The OSI Model Organises Network Communication Functions into Seven Distinct Layers
+# OSI Model: Seven Layers
 
 The OSI (Open Systems Interconnection) reference model is a conceptual framework that divides network communication into seven layers, each responsible for a specific function and each relying only on services provided by the layer below it.
 

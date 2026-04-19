@@ -1,10 +1,10 @@
 ---
-title: "HTTP Cookies Allow Servers to Maintain User State Across Stateless HTTP Requests"
+title: "HTTP Cookies"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# HTTP Cookies Allow Servers to Maintain User State Across Stateless HTTP Requests
+# HTTP Cookies
 
 Cookies are small pieces of data that a web server sends to a browser to be stored and returned with future requests, giving the illusion of statefulness to an otherwise stateless HTTP protocol.
 

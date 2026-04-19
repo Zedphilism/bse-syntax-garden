@@ -1,10 +1,10 @@
 ---
-title: "Application Architectures Are Either Client-Server or Peer-to-Peer"
+title: "Client-Server vs P2P Architecture"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Application Architectures Are Either Client-Server or Peer-to-Peer
+# Client-Server vs P2P Architecture
 
 The two dominant paradigms for structuring distributed network applications are client-server, where an always-on server handles requests from many clients, and peer-to-peer (P2P), where end systems communicate directly with each other without a dedicated server.
 

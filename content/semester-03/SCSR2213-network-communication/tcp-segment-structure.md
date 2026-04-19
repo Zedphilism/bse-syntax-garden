@@ -1,10 +1,10 @@
 ---
-title: "TCP Segment Header Carries Sequence Numbers, ACKs, and Control Flags"
+title: "TCP Segment Structure"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# TCP Segment Header Carries Sequence Numbers, ACKs, and Control Flags
+# TCP Segment Structure
 
 A TCP segment consists of a 20-byte minimum header containing source/destination ports, sequence number, acknowledgement number, receive window, flags, and checksum, followed by optional fields and the data payload.
 

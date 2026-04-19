@@ -1,10 +1,10 @@
 ---
-title: "TCP Uses a Three-Way Handshake to Establish and a Four-Way Close to Terminate"
+title: "TCP: Three-Way Handshake and Close"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# TCP Uses a Three-Way Handshake to Establish and a Four-Way Close to Terminate
+# TCP: Three-Way Handshake and Close
 
 A TCP connection is established by exchanging three segments (SYN → SYN-ACK → ACK) that synchronise sequence numbers on both sides, and terminated by four segments (FIN → ACK, FIN → ACK) that allow each side to close independently.
 

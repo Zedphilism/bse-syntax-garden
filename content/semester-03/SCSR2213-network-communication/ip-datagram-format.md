@@ -1,10 +1,10 @@
 ---
-title: "An IP Datagram Has a 20-Byte Header Carrying Addressing and Control Fields"
+title: "IP Datagram Format"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# An IP Datagram Has a 20-Byte Header Carrying Addressing and Control Fields
+# IP Datagram Format
 
 An IPv4 datagram begins with a minimum 20-byte header containing version, header length, service type, total length, fragmentation fields, TTL, protocol, checksum, and 32-bit source and destination addresses.
 

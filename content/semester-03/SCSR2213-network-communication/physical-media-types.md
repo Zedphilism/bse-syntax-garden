@@ -1,10 +1,10 @@
 ---
-title: "Physical Media Carry Bits as Guided or Unguided Electromagnetic Signals"
+title: "Physical Media Types"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Physical Media Carry Bits as Guided or Unguided Electromagnetic Signals
+# Physical Media Types
 
 Physical media are the actual physical substances through which bits propagate between a transmitter and a receiver, classified as guided (signals travel through a solid medium) or unguided (signals propagate freely through the air).
 

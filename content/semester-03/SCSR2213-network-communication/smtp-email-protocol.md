@@ -1,10 +1,10 @@
 ---
-title: "SMTP Pushes Email Between Mail Servers over TCP While POP3 and IMAP Handle Retrieval"
+title: "SMTP, POP3, and IMAP"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# SMTP Pushes Email Between Mail Servers over TCP While POP3 and IMAP Handle Retrieval
+# SMTP, POP3, and IMAP
 
 The Internet email system has three components — user agents, mail servers, and SMTP — where SMTP (port 25) is used to push messages from sender to receiver's mail server, and POP3 or IMAP is used by the recipient to pull messages from their mail server.
 

@@ -1,10 +1,10 @@
 ---
-title: "HTTP Is a Stateless Client-Server Protocol That Transfers Web Objects over TCP"
+title: "HTTP: Stateless Protocol"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# HTTP Is a Stateless Client-Server Protocol That Transfers Web Objects over TCP
+# HTTP: Stateless Protocol
 
 HTTP (HyperText Transfer Protocol) is the application-layer protocol of the Web, running over TCP on port 80, in which a client sends requests for named objects and a server responds with those objects — and the server retains no memory of past requests.
 

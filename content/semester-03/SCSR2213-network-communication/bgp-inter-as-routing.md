@@ -1,10 +1,10 @@
 ---
-title: "BGP Is the Inter-AS Routing Protocol That Connects the Internet's Autonomous Systems"
+title: "BGP: Inter-AS Routing"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# BGP Is the Inter-AS Routing Protocol That Connects the Internet's Autonomous Systems
+# BGP: Inter-AS Routing
 
 BGP (Border Gateway Protocol) is the policy-driven path-vector routing protocol used between Autonomous Systems (ASes) — it advertises IP prefixes reachable through each AS and selects routes based on business relationships and policy rather than purely on cost.
 

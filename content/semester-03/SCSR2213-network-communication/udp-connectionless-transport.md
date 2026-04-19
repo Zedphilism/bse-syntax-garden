@@ -1,10 +1,10 @@
 ---
-title: "UDP Provides Bare-Bones Transport with No Delivery Guarantees"
+title: "UDP: Connectionless Transport"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# UDP Provides Bare-Bones Transport with No Delivery Guarantees
+# UDP: Connectionless Transport
 
 UDP (User Datagram Protocol) is a connectionless transport protocol that adds only port-based multiplexing and an optional checksum on top of IP, offering no reliability, ordering, or flow control.
 

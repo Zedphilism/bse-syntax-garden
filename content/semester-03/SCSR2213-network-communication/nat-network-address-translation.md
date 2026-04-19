@@ -1,10 +1,10 @@
 ---
-title: "NAT Maps Many Private Addresses to One Public IP Using Port Numbers"
+title: "NAT: Network Address Translation"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# NAT Maps Many Private Addresses to One Public IP Using Port Numbers
+# NAT: Network Address Translation
 
 Network Address Translation (NAT) allows an entire home or office network of devices with private IP addresses to share a single ISP-assigned public IP address by using a translation table that maps (private IP, port) pairs to (public IP, new port) pairs.
 

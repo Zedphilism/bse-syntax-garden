@@ -1,10 +1,10 @@
 ---
-title: "Packet Switching Forwards Data in Chunks Using Store-and-Forward at Each Router"
+title: "Packet Switching: Store and Forward"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Packet Switching Forwards Data in Chunks Using Store-and-Forward at Each Router
+# Packet Switching: Store and Forward
 
 In packet switching, a host breaks application messages into fixed-size chunks called packets, which are forwarded independently from router to router across the network — each router must receive and store an entire packet before forwarding it onward.
 

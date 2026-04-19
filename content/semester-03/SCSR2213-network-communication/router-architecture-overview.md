@@ -1,10 +1,10 @@
 ---
-title: "A Router Has Input Ports, a Switching Fabric, and Output Ports"
+title: "Router Architecture"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# A Router Has Input Ports, a Switching Fabric, and Output Ports
+# Router Architecture
 
 A router consists of input ports that perform line-termination and lookup, a switching fabric that moves datagrams from input to output, and output ports that queue and transmit datagrams — all operating independently at hardware speed.
 

@@ -1,10 +1,10 @@
 ---
-title: "DNS Resource Records Map Names to Addresses, Mail Servers, and Canonical Hostnames"
+title: "DNS Resource Records"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# DNS Resource Records Map Names to Addresses, Mail Servers, and Canonical Hostnames
+# DNS Resource Records
 
 DNS stores information as Resource Records (RRs) in the format (name, value, type, TTL), where the type field determines what kind of mapping the record provides — address, name server, canonical name, or mail server.
 

@@ -1,10 +1,10 @@
 ---
-title: "Distance-Vector Routing Uses the Bellman-Ford Equation to Compute Paths Iteratively"
+title: "Distance-Vector Routing: Bellman-Ford"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Distance-Vector Routing Uses the Bellman-Ford Equation to Compute Paths Iteratively
+# Distance-Vector Routing: Bellman-Ford
 
 In distance-vector routing, each router maintains a table of estimated costs to all destinations, shares this table only with direct neighbors, and iteratively updates its estimates using the Bellman-Ford equation until the network converges — without any router having global topology knowledge.
 

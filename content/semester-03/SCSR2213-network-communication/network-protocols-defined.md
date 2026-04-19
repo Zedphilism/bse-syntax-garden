@@ -1,10 +1,10 @@
 ---
-title: "Protocols Define the Format and Order of Messages Exchanged Between Network Entities"
+title: "What Is a Protocol?"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Protocols Define the Format and Order of Messages Exchanged Between Network Entities
+# What Is a Protocol?
 
 A network protocol is a set of rules that governs how two or more communicating entities exchange messages, specifying message format, message order, and the actions taken upon sending or receiving messages.
 

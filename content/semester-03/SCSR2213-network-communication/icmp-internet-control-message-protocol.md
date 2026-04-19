@@ -1,10 +1,10 @@
 ---
-title: "ICMP Reports Network Errors and Is Used by Ping and Traceroute"
+title: "ICMP: Internet Control Message Protocol"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# ICMP Reports Network Errors and Is Used by Ping and Traceroute
+# ICMP: Internet Control Message Protocol
 
 ICMP (Internet Control Message Protocol) is a network-layer companion to IP that carries error and informational messages between routers and hosts — it cannot deliver application data but enables tools like ping and traceroute to diagnose network connectivity and path issues.
 

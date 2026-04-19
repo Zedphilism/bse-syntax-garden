@@ -1,10 +1,10 @@
 ---
-title: "Circuit Switching Reserves Dedicated Resources for a Connection Using FDM or TDM"
+title: "Circuit Switching: FDM and TDM"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Circuit Switching Reserves Dedicated Resources for a Connection Using FDM or TDM
+# Circuit Switching: FDM and TDM
 
 In circuit switching, end-to-end resources (bandwidth, buffers) are reserved and dedicated to a call for its entire duration, guaranteeing performance but wasting capacity when the circuit is idle.
 

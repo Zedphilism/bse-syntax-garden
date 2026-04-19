@@ -1,10 +1,10 @@
 ---
-title: "The Transport Layer Extends Network Delivery from Hosts to Processes"
+title: "Transport Layer vs Network Layer"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The Transport Layer Extends Network Delivery from Hosts to Processes
+# Transport Layer vs Network Layer
 
 The transport layer provides logical communication between application processes on different hosts, extending the network layer's host-to-host delivery down to the process level.
 

@@ -1,10 +1,10 @@
 ---
-title: "Encapsulation Wraps Data with Layer-Specific Headers as It Descends the Protocol Stack"
+title: "Encapsulation in Protocol Layers"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Encapsulation Wraps Data with Layer-Specific Headers as It Descends the Protocol Stack
+# Encapsulation in Protocol Layers
 
 Encapsulation is the process by which each layer in the protocol stack adds its own header to the payload it receives from the layer above, creating a layered packet structure that is progressively unwrapped at the destination.
 

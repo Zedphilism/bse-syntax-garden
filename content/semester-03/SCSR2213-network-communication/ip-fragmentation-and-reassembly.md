@@ -1,10 +1,10 @@
 ---
-title: "IP Fragmentation Splits Large Datagrams to Fit Link MTU"
+title: "IP Fragmentation and Reassembly"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# IP Fragmentation Splits Large Datagrams to Fit Link MTU
+# IP Fragmentation and Reassembly
 
 When an IP datagram is larger than the Maximum Transmission Unit (MTU) of a link, the router splits it into fragments, each with the same identification number, a fragment offset, and a "more fragments" flag, and the destination host reassembles them into the original datagram.
 

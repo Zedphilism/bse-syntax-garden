@@ -1,10 +1,10 @@
 ---
-title: "CIDR Replaced Classful Addressing to Eliminate Wasteful Address Allocation"
+title: "CIDR vs Classful Addressing"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# CIDR Replaced Classful Addressing to Eliminate Wasteful Address Allocation
+# CIDR vs Classful Addressing
 
 Classless Inter-Domain Routing (CIDR) generalises IP address allocation by allowing any prefix length, enabling ISPs to assign address blocks that precisely match an organisation's needs rather than forcing them into oversized Class A, B, or C blocks.
 

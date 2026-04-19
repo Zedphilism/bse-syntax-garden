@@ -1,10 +1,10 @@
 ---
-title: "Go-Back-N and Selective Repeat Are Pipelined Protocols with Different Retransmission Strategies"
+title: "Go-Back-N and Selective Repeat"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Go-Back-N and Selective Repeat Are Pipelined Protocols with Different Retransmission Strategies
+# Go-Back-N and Selective Repeat
 
 Go-Back-N (GBN) retransmits an entire window of packets after a loss, while Selective Repeat (SR) retransmits only the specific lost or corrupted packet, trading sender simplicity for receiver complexity.
 

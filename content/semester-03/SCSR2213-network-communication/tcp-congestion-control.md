@@ -1,10 +1,10 @@
 ---
-title: "TCP Congestion Control Uses AIMD to Share Network Capacity Fairly"
+title: "TCP Congestion Control"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# TCP Congestion Control Uses AIMD to Share Network Capacity Fairly
+# TCP Congestion Control
 
 TCP infers network congestion from packet loss events and reacts by reducing its sending rate, using Additive Increase / Multiplicative Decrease (AIMD) to converge toward a fair allocation of bottleneck link bandwidth.
 

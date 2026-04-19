@@ -1,10 +1,10 @@
 ---
-title: "The TCP/IP Internet Stack Has Five Layers from Physical Bits to Application Messages"
+title: "TCP/IP Internet Stack"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The TCP/IP Internet Stack Has Five Layers from Physical Bits to Application Messages
+# TCP/IP Internet Stack
 
 The Internet protocol stack is a five-layer architecture — Application, Transport, Network, Link, and Physical — where each layer performs a distinct function and communicates with its peer layer on the remote host through protocol rules.
 

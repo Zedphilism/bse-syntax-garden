@@ -1,10 +1,10 @@
 ---
-title: "IPv6 Uses 128-Bit Addresses and a Simplified Fixed-Length Header"
+title: "IPv6: Addressing and Format"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# IPv6 Uses 128-Bit Addresses and a Simplified Fixed-Length Header
+# IPv6: Addressing and Format
 
 IPv6 replaces IPv4's 32-bit addresses with 128-bit addresses (providing 3.4×10^38 addresses) and redesigns the IP header as a fixed 40-byte structure that removes fragmentation fields, eliminates the checksum, and adds a flow label for QoS support.
 

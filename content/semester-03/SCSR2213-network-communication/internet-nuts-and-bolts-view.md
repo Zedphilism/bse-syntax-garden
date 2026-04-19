@@ -1,10 +1,10 @@
 ---
-title: "The Internet Is a Network of Networks Built from Hosts, Links, and Switches"
+title: "The Internet: Nuts and Bolts View"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The Internet Is a Network of Networks Built from Hosts, Links, and Switches
+# The Internet: Nuts and Bolts View
 
 The Internet is a global system of billions of interconnected computing devices that communicate using a shared set of rules called protocols.
 

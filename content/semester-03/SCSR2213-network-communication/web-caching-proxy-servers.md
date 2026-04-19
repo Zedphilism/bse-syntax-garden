@@ -1,10 +1,10 @@
 ---
-title: "Web Caches Reduce Response Time and Access Link Load by Serving Locally Stored Copies"
+title: "Web Caching and Proxy Servers"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Web Caches Reduce Response Time and Access Link Load by Serving Locally Stored Copies
+# Web Caching and Proxy Servers
 
 A web cache (proxy server) stores copies of recently requested objects close to clients, satisfying future requests for those objects locally without contacting the origin server, thereby reducing response time and traffic on the institutional access link.
 

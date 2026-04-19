@@ -1,10 +1,10 @@
 ---
-title: "DNS Translates Hostnames to IP Addresses via a Distributed Hierarchy of Name Servers"
+title: "DNS: Hierarchy and Resolution"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# DNS Translates Hostnames to IP Addresses via a Distributed Hierarchy of Name Servers
+# DNS: Hierarchy and Resolution
 
 DNS (Domain Name System) is a distributed database implemented across a hierarchy of name servers that translates human-readable hostnames (like www.utm.my) to machine-usable 32-bit IP addresses.
 

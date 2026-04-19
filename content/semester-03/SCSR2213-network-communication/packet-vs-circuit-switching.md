@@ -1,10 +1,10 @@
 ---
-title: "Packet Switching Supports More Users Than Circuit Switching on Bursty Traffic"
+title: "Packet Switching vs Circuit Switching"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Packet Switching Supports More Users Than Circuit Switching on Bursty Traffic
+# Packet Switching vs Circuit Switching
 
 Packet switching allows more users to share a link than circuit switching because it only uses bandwidth when there is actual data to send, exploiting the bursty nature of most network traffic.
 

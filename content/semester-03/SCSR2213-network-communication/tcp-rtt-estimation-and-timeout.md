@@ -1,10 +1,10 @@
 ---
-title: "TCP Estimates RTT with EWMA to Set a Dynamic Retransmission Timeout"
+title: "TCP RTT Estimation and Timeout"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# TCP Estimates RTT with EWMA to Set a Dynamic Retransmission Timeout
+# TCP RTT Estimation and Timeout
 
 TCP continuously estimates the round-trip time (RTT) using an exponentially weighted moving average (EWMA) and adds a safety margin based on RTT variance to compute a retransmission timeout (RTO) that is neither too short (causing spurious retransmits) nor too long (causing slow recovery).
 

@@ -1,10 +1,10 @@
 ---
-title: "Multiplexing Uses Port Numbers to Direct Segments to the Right Process"
+title: "Multiplexing and Demultiplexing"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Multiplexing Uses Port Numbers to Direct Segments to the Right Process
+# Multiplexing and Demultiplexing
 
 Multiplexing gathers data from multiple application sockets and passes it to the network layer; demultiplexing delivers incoming segments to the correct socket using port numbers embedded in the transport-layer header.
 

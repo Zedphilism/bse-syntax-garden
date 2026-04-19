@@ -1,10 +1,10 @@
 ---
-title: "Packets Experience Four Types of Delay at Every Router Along Their Path"
+title: "Four Sources of Packet Delay"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Packets Experience Four Types of Delay at Every Router Along Their Path
+# Four Sources of Packet Delay
 
 Total nodal delay at a router is the sum of four components: processing delay, queuing delay, transmission delay, and propagation delay — each arising from a different physical cause.
 

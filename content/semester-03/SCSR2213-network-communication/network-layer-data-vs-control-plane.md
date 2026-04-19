@@ -1,10 +1,10 @@
 ---
-title: "The Network Layer Has Two Planes — Data Plane Forwards, Control Plane Routes"
+title: "Data Plane vs Control Plane"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The Network Layer Has Two Planes — Data Plane Forwards, Control Plane Routes
+# Data Plane vs Control Plane
 
 The network layer is divided into a data plane, which performs per-router forwarding of individual datagrams in nanoseconds, and a control plane, which computes the network-wide routing tables that determine forwarding decisions.
 

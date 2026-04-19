@@ -1,10 +1,10 @@
 ---
-title: "DHCP Automatically Assigns IP Addresses to Hosts on a Network"
+title: "DHCP: Dynamic Host Configuration"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# DHCP Automatically Assigns IP Addresses to Hosts on a Network
+# DHCP: Dynamic Host Configuration
 
 DHCP (Dynamic Host Configuration Protocol) is a client-server application-layer protocol that automatically provides a host with an IP address, subnet mask, default gateway, and DNS server address when it joins a network, using a four-step broadcast exchange over UDP.
 

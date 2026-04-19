@@ -1,10 +1,10 @@
 ---
-title: "Reliable Data Transfer Builds Correctness on Top of an Unreliable Channel"
+title: "Principles of Reliable Data Transfer"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Reliable Data Transfer Builds Correctness on Top of an Unreliable Channel
+# Principles of Reliable Data Transfer
 
 Reliable data transfer (rdt) protocols use acknowledgements, negative acknowledgements, sequence numbers, and timeouts to guarantee that data is delivered correctly and in order, even when the underlying channel can corrupt or lose packets.
 

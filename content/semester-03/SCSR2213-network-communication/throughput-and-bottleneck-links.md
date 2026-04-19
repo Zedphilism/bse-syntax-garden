@@ -1,10 +1,10 @@
 ---
-title: "Throughput Is Constrained by the Slowest Link — the Bottleneck — on the End-to-End Path"
+title: "Throughput and Bottleneck Links"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Throughput Is Constrained by the Slowest Link — the Bottleneck — on the End-to-End Path
+# Throughput and Bottleneck Links
 
 End-to-end throughput is the rate at which bits are successfully transferred from sender to receiver, and it equals the minimum transmission rate among all links on the path — this minimum-rate link is called the bottleneck.
 

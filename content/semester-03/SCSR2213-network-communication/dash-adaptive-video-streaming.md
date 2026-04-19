@@ -1,10 +1,10 @@
 ---
-title: "DASH Adapts Video Quality Dynamically Based on Client Bandwidth and Buffer State"
+title: "DASH: Adaptive Video Streaming"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# DASH Adapts Video Quality Dynamically Based on Client Bandwidth and Buffer State
+# DASH: Adaptive Video Streaming
 
 DASH (Dynamic Adaptive Streaming over HTTP) is a video streaming technique where the server stores a video encoded at multiple quality levels, and the client intelligently selects which quality chunk to request next based on measured available bandwidth.
 

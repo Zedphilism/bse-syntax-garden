@@ -1,10 +1,10 @@
 ---
-title: "SDN Separates the Control Plane from Data Plane Hardware into a Remote Controller"
+title: "SDN: Software-Defined Networking"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# SDN Separates the Control Plane from Data Plane Hardware into a Remote Controller
+# SDN: Software-Defined Networking
 
 Software-Defined Networking (SDN) physically separates the routing control plane from forwarding hardware by moving routing logic to a logically centralised remote controller, which computes flow tables and installs them in switches via a standardised protocol such as OpenFlow.
 

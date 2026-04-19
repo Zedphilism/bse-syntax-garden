@@ -1,10 +1,10 @@
 ---
-title: "Link-State Routing Uses Dijkstra's Algorithm on a Global Topology Map"
+title: "Link-State Routing: Dijkstra's Algorithm"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Link-State Routing Uses Dijkstra's Algorithm on a Global Topology Map
+# Link-State Routing: Dijkstra's Algorithm
 
 In link-state routing, every router floods the entire network with its local link-state advertisements (LSAs), so each router builds a complete topology map and independently runs Dijkstra's shortest-path algorithm to compute the minimum-cost path to every destination.
 

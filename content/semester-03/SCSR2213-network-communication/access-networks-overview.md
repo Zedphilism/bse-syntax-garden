@@ -1,10 +1,10 @@
 ---
-title: "Access Networks Physically Connect End Systems to the First Router on the Internet Path"
+title: "Access Networks"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# Access Networks Physically Connect End Systems to the First Router on the Internet Path
+# Access Networks
 
 An access network is the network that physically connects an end system (host) to the first router on the path toward any other distant end system — also called the "edge router."
 

@@ -1,10 +1,10 @@
 ---
-title: "The Internet's Major Security Threats Are Malware, DoS, Packet Sniffing, and IP Spoofing"
+title: "Network Security Threats"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The Internet's Major Security Threats Are Malware, DoS, Packet Sniffing, and IP Spoofing
+# Network Security Threats
 
 The Internet was not originally designed with security in mind, making it vulnerable to four primary attack categories: malware infections, denial-of-service attacks, packet sniffing, and IP address spoofing.
 

@@ -1,10 +1,10 @@
 ---
-title: "IPv4 Addresses Identify Interfaces and Are Grouped into Subnets"
+title: "IPv4 Addressing and Subnets"
 date: 2026-04-19
 tags: [semester-3, scsr2213, networking]
 ---
 
-# IPv4 Addresses Identify Interfaces and Are Grouped into Subnets
+# IPv4 Addressing and Subnets
 
 An IPv4 address is a 32-bit number written in dotted-decimal notation that identifies a network interface; addresses are allocated in blocks called subnets, defined by a prefix (network portion) and a host portion.
 

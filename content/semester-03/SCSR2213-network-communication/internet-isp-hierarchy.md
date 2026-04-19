@@ -1,10 +1,10 @@
 ---
-title: "The Internet Has a Hierarchical ISP Structure with Tier-1 ISPs at the Core"
+title: "Internet ISP Hierarchy"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The Internet Has a Hierarchical ISP Structure with Tier-1 ISPs at the Core
+# Internet ISP Hierarchy
 
 The Internet evolved into a multi-tier hierarchy of ISPs — access ISPs connect customers to regional ISPs, which connect to tier-1 ISPs at the core — all interconnected through commercial peering agreements and Internet Exchange Points (IXPs).
 

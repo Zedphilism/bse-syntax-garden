@@ -1,10 +1,10 @@
 ---
-title: "The Internet Provides a Programmable Infrastructure for Distributed Applications"
+title: "The Internet: Service View"
 date: 2026-04-18
 tags: [semester-3, scsr2213, networking]
 ---
 
-# The Internet Provides a Programmable Infrastructure for Distributed Applications
+# The Internet: Service View
 
 From a services perspective, the Internet is an infrastructure that provides communication services to distributed applications, exposing a programming interface (API) through which those applications send and receive data.
 
