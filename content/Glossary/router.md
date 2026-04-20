@@ -1,10 +1,10 @@
 ---
-title: "A Router Is a Network-Layer Device That Forwards Packets Between Networks"
+title: "Router"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Router Is a Network-Layer Device That Forwards Packets Between Networks
+# Router
 
 A router is a network device that operates at the IP (network) layer, receives IP datagrams on one interface, looks up the destination address in its forwarding table, and transmits the datagram out the appropriate interface toward the destination — connecting different networks (subnets or ASes) together.
 

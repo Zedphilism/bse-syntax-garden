@@ -1,10 +1,10 @@
 ---
-title: "ADC Converts a Continuous Analog Signal to a Sequence of Digital Values"
+title: "ADC"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# ADC Converts a Continuous Analog Signal to a Sequence of Digital Values
+# ADC
 
 An Analog-to-Digital Converter (ADC) samples an analog voltage at regular intervals and converts each sample to a binary number, enabling analog real-world signals to be stored, processed, and transmitted by digital systems.
 

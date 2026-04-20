@@ -1,10 +1,10 @@
 ---
-title: "Congestion Control Prevents Senders from Overloading the Network"
+title: "Congestion Control"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# Congestion Control Prevents Senders from Overloading the Network
+# Congestion Control
 
 Congestion control is a transport-layer mechanism that limits the rate at which a sender injects data into the network, in response to detected or inferred congestion, to prevent router buffers from overflowing and to share bandwidth fairly among competing flows.
 

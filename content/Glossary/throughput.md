@@ -1,10 +1,10 @@
 ---
-title: "Throughput Is the Actual Rate at Which Data Is Successfully Delivered"
+title: "Throughput"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# Throughput Is the Actual Rate at Which Data Is Successfully Delivered
+# Throughput
 
 Throughput is the rate at which bits are successfully transferred from sender to receiver over some time period, measured in bps — it is always ≤ bandwidth and is constrained by the slowest (bottleneck) link on the end-to-end path.
 

@@ -1,10 +1,10 @@
 ---
-title: "Gray Code Is a Binary Encoding Where Consecutive Values Differ by Exactly One Bit"
+title: "Gray Code"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Gray Code Is a Binary Encoding Where Consecutive Values Differ by Exactly One Bit
+# Gray Code
 
 Gray code (reflected binary code) is a sequence of binary numbers arranged so that adjacent values differ in exactly one bit position, eliminating the transient errors that occur in standard binary when multiple bits change simultaneously during counting.
 

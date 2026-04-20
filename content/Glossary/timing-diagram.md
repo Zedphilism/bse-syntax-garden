@@ -1,10 +1,10 @@
 ---
-title: "A Timing Diagram Shows How Multiple Digital Signals Change State Over Time"
+title: "Timing Diagram"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# A Timing Diagram Shows How Multiple Digital Signals Change State Over Time
+# Timing Diagram
 
 A timing diagram is a graphical representation that plots the HIGH/LOW state of one or more digital signals on a shared time axis, making it possible to see the exact relationships between signal transitions.
 

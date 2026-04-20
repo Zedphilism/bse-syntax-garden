@@ -1,10 +1,10 @@
 ---
-title: "CIDR Uses Variable-Length Prefixes to Allocate IP Addresses Efficiently"
+title: "CIDR"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# CIDR Uses Variable-Length Prefixes to Allocate IP Addresses Efficiently
+# CIDR
 
 CIDR (Classless Inter-Domain Routing) is the IP address allocation scheme that replaces fixed classful boundaries with variable-length prefixes, written as `address/prefix-length`, enabling precise address allocation and route aggregation in the global routing table.
 

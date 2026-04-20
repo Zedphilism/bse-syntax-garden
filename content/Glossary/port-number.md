@@ -1,10 +1,10 @@
 ---
-title: "A Port Number Identifies a Specific Process or Service on a Host"
+title: "Port Number"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Port Number Identifies a Specific Process or Service on a Host
+# Port Number
 
 A port number is a 16-bit integer (0–65535) in the TCP or UDP header that identifies the application process on a host — the destination port routes an incoming segment to the correct process, while the source port allows the receiver to reply.
 

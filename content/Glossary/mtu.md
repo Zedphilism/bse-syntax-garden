@@ -1,10 +1,10 @@
 ---
-title: "MTU Is the Maximum Size of a Datagram That a Link Can Carry"
+title: "MTU"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# MTU Is the Maximum Size of a Datagram That a Link Can Carry
+# MTU
 
 MTU (Maximum Transmission Unit) is the largest IP datagram (header + payload) that a particular network link can carry in a single frame — Ethernet's MTU is 1500 bytes; if a datagram exceeds the MTU of a link, it must be fragmented (IPv4) or the source must reduce its size (IPv6).
 

@@ -1,10 +1,10 @@
 ---
-title: "Active-High Means a Signal Performs Its Function When at Logic 1 (HIGH)"
+title: "Active-High"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Active-High Means a Signal Performs Its Function When at Logic 1 (HIGH)
+# Active-High
 
 Active-high is a signal polarity convention in which the signal is considered "asserted" or "enabled" when its voltage is at logic HIGH (1); the device or function it controls is inactive when the signal is LOW.
 

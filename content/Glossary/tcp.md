@@ -1,10 +1,10 @@
 ---
-title: "TCP Is the Internet's Reliable, Connection-Oriented Transport Protocol"
+title: "TCP"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# TCP Is the Internet's Reliable, Connection-Oriented Transport Protocol
+# TCP
 
 TCP (Transmission Control Protocol) is a transport-layer protocol that provides reliable, ordered, byte-stream delivery between two processes, using a three-way handshake for connection setup, sequence numbers and acknowledgements for reliability, and flow and congestion control to manage sending rate.
 

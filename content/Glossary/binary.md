@@ -1,10 +1,10 @@
 ---
-title: "Binary Is the Base-2 Number System Used Natively by All Digital Hardware"
+title: "Binary"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Binary Is the Base-2 Number System Used Natively by All Digital Hardware
+# Binary
 
 Binary is a positional number system with radix 2, using only the digits 0 and 1, which map directly to the two voltage levels (LOW and HIGH) that digital transistors implement in hardware.
 

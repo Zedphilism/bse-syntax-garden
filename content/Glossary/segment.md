@@ -1,10 +1,10 @@
 ---
-title: "A Segment Is the Transport-Layer Unit Exchanged Between TCP Endpoints"
+title: "Segment"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Segment Is the Transport-Layer Unit Exchanged Between TCP Endpoints
+# Segment
 
 A TCP segment is the transport-layer packet: it consists of a TCP header (containing source/destination ports, sequence number, ACK number, flags, and receive window) and a data payload carved from the application's byte stream.
 

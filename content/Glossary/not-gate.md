@@ -1,10 +1,10 @@
 ---
-title: "NOT Gate Inverts Its Single Binary Input to the Opposite Logic Level"
+title: "NOT Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# NOT Gate Inverts Its Single Binary Input to the Opposite Logic Level
+# NOT Gate
 
 The NOT gate (inverter) is the simplest logic gate — a single-input, single-output device that outputs the logical complement of its input: LOW becomes HIGH and HIGH becomes LOW.
 

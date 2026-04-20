@@ -1,10 +1,10 @@
 ---
-title: "Overflow Occurs When an Arithmetic Result Exceeds the Range of the Fixed Bit Width"
+title: "Overflow"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Overflow Occurs When an Arithmetic Result Exceeds the Range of the Fixed Bit Width
+# Overflow
 
 Arithmetic overflow is the error condition in which the true result of an addition or subtraction cannot be represented in the available number of bits, producing a silently wrong value rather than an error signal in most hardware.
 

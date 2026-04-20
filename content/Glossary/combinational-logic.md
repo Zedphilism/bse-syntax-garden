@@ -1,10 +1,10 @@
 ---
-title: "Combinational Logic Produces Outputs That Depend Only on the Current Input Values"
+title: "Combinational Logic"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Combinational Logic Produces Outputs That Depend Only on the Current Input Values
+# Combinational Logic
 
 Combinational logic is a class of digital circuit in which the output at any moment is a direct function of the inputs at that same moment — there is no memory, no clock, and no feedback path that would make the output depend on past states.
 

@@ -1,10 +1,10 @@
 ---
-title: "Propagation Delay Is the Time a Signal Takes to Pass Through a Logic Gate"
+title: "Propagation Delay"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Propagation Delay Is the Time a Signal Takes to Pass Through a Logic Gate
+# Propagation Delay
 
 Propagation delay (tpd) is the elapsed time between a change at a logic gate's input and the corresponding stable change appearing at its output, and it limits the maximum operating frequency of any digital circuit.
 

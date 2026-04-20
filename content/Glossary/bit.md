@@ -1,10 +1,10 @@
 ---
-title: "A Bit Is the Smallest Unit of Digital Information Representing One Binary Choice"
+title: "Bit"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# A Bit Is the Smallest Unit of Digital Information Representing One Binary Choice
+# Bit
 
 A bit (binary digit) is the atomic unit of information in digital systems, holding exactly one of two possible values — 0 or 1 — which map to physical voltage levels LOW and HIGH in hardware.
 

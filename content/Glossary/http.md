@@ -1,10 +1,10 @@
 ---
-title: "HTTP Is the Stateless Application-Layer Protocol of the Web"
+title: "HTTP"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# HTTP Is the Stateless Application-Layer Protocol of the Web
+# HTTP
 
 HTTP (HyperText Transfer Protocol) is the application-layer protocol used by web browsers and servers to request and transfer web objects (HTML pages, images, scripts), operating over TCP on port 80 (HTTP) or port 443 (HTTPS).
 

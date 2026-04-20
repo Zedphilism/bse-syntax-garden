@@ -1,10 +1,10 @@
 ---
-title: "DAC Converts a Sequence of Digital Values Back into a Continuous Analog Signal"
+title: "DAC"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# DAC Converts a Sequence of Digital Values Back into a Continuous Analog Signal
+# DAC
 
 A Digital-to-Analog Converter (DAC) takes a stream of binary numbers and produces a corresponding continuous voltage output, reconstructing the analog signal that was originally sampled and encoded by an ADC.
 

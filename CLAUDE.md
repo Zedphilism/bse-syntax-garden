@@ -102,6 +102,27 @@ This section is mandatory — every note must have at least one example.
 
 ---
 
+## Writing Rules for Memory and Understanding
+
+These rules are grounded in cognitive science (testing effect, elaborative encoding, dual coding, cognitive load theory). Follow them in every note.
+
+**Rule 1 — Explain the mechanism, not just the definition.**
+Every Explanation section must answer three questions: *What is it? How does it work (mechanism)? Why does it matter (consequence)?* Move from cause → effect. Do not describe — explain. Bad: "The AND gate outputs 1 when both inputs are 1." Good: "The AND gate acts as a series switch: current only flows (output HIGH) when both switches are closed simultaneously — this is why AND is used wherever two conditions must both be true at the same time."
+
+**Rule 2 — Include an analogy for every abstract concept.**
+If the concept cannot be physically touched or immediately visualised, the first paragraph of Explanation must map it to something familiar using the form: "Think of [concept] as [familiar thing] — [how the mapping works]." Good analogies map structure, not surface appearance. This creates a second retrieval pathway (dual coding).
+
+**Rule 3 — The `[!recall]` prompt must demand application, not recognition.**
+The recall question must be exam-grade: it asks the reader to apply the concept, predict an output, solve a mini-problem, or explain it to a hypothetical peer. If it can be answered by skimming the Key Points, it is too shallow. Bad: "What does XOR output when inputs differ?" Good: "Design a 1-bit comparator using only XOR and NOT. Explain your reasoning." The reader should attempt an answer before reading the note.
+
+**Rule 4 — Write so the note can be closed and re-explained from memory.**
+After one read-through (no re-reading), the reader should be able to explain the concept to a classmate. If the explanation requires the source slides to fill a gap, the note is incomplete. Fill the gap in the note, not in the reader's imagination.
+
+**Rule 5 — Each paragraph answers exactly one question.**
+Structure Explanation as: paragraph 1 = what/overview + analogy, paragraph 2 = how the mechanism works, paragraph 3 = why it matters / edge cases / failure modes. Do not blend questions in one paragraph. One paragraph, one purpose.
+
+---
+
 ## Knowledge Workflow ("BSE" Method)
 1. **Capture** — Raw notes, screenshots, lecture slides into subject folder
 2. **Atomic** — One concept per note. Break up "Lecture 1" files immediately

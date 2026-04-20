@@ -1,10 +1,10 @@
 ---
-title: "An IP Address Is a 32-Bit (IPv4) or 128-Bit (IPv6) Number Identifying a Network Interface"
+title: "IP Address"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# An IP Address Is a 32-Bit (IPv4) or 128-Bit (IPv6) Number Identifying a Network Interface
+# IP Address
 
 An IP address is a numerical label assigned to each network interface on a device, used by the IP protocol to identify the source and destination of datagrams and to route them across interconnected networks.
 

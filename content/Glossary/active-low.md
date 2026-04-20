@@ -1,10 +1,10 @@
 ---
-title: "Active-Low Means a Signal Performs Its Function When at Logic 0 (LOW)"
+title: "Active-Low"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Active-Low Means a Signal Performs Its Function When at Logic 0 (LOW)
+# Active-Low
 
 Active-low is a signal polarity convention in which the signal is "asserted" when its voltage is at logic LOW (0); the device or function it controls is inactive when the signal is HIGH.
 

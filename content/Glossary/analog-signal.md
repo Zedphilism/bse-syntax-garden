@@ -1,10 +1,10 @@
 ---
-title: "Analog Signal Is a Continuously Varying Physical Quantity with Infinite Possible Values"
+title: "Analog Signal"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Analog Signal Is a Continuously Varying Physical Quantity with Infinite Possible Values
+# Analog Signal
 
 An analog signal is a physical quantity — voltage, current, sound pressure, temperature — that changes smoothly and continuously over time, taking any value within a range rather than snapping between fixed levels.
 

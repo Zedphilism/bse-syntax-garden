@@ -1,10 +1,10 @@
 ---
-title: "Nyquist Theorem States That Sampling Rate Must Be at Least Twice the Signal Bandwidth"
+title: "Nyquist Theorem"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Nyquist Theorem States That Sampling Rate Must Be at Least Twice the Signal Bandwidth
+# Nyquist Theorem
 
 The Nyquist-Shannon sampling theorem proves that a band-limited analog signal can be perfectly reconstructed from its digital samples if and only if the sampling rate is greater than twice the highest frequency component in the signal.
 

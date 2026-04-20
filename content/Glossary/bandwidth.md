@@ -1,10 +1,10 @@
 ---
-title: "Bandwidth Is the Maximum Rate at Which Data Can Be Transmitted on a Link"
+title: "Bandwidth"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# Bandwidth Is the Maximum Rate at Which Data Can Be Transmitted on a Link
+# Bandwidth
 
 Bandwidth is the capacity of a communication link measured in bits per second (bps), representing the maximum volume of data that can pass through the link per unit of time.
 

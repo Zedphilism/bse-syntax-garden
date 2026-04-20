@@ -1,10 +1,10 @@
 ---
-title: "A Socket Is the Interface Between an Application and the Transport Layer"
+title: "Socket"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Socket Is the Interface Between an Application and the Transport Layer
+# Socket
 
 A socket is a software abstraction (an OS API) that provides an application with a handle for sending and receiving data through the network — it is the door through which application data passes into and out of the transport layer.
 

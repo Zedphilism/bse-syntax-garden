@@ -1,10 +1,10 @@
 ---
-title: "XNOR Gate Outputs HIGH Only When All Its Inputs Are Equal"
+title: "XNOR Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# XNOR Gate Outputs HIGH Only When All Its Inputs Are Equal
+# XNOR Gate
 
 The XNOR (exclusive NOR) gate is the complement of XOR — it outputs 1 when its inputs are equal (both 0 or both 1) — making it the hardware implementation of a single-bit equality comparator.
 

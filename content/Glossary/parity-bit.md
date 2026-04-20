@@ -1,10 +1,10 @@
 ---
-title: "A Parity Bit Is an Extra Bit Added to a Data Word to Enable Single-Bit Error Detection"
+title: "Parity Bit"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# A Parity Bit Is an Extra Bit Added to a Data Word to Enable Single-Bit Error Detection
+# Parity Bit
 
 A parity bit is an additional bit appended to a group of data bits to make the total count of 1s either even (even parity) or odd (odd parity), allowing a receiver to detect when a single bit has been flipped during transmission or storage.
 

@@ -1,10 +1,10 @@
 ---
-title: "An ACK Is a Transport-Layer Message Confirming Successful Data Receipt"
+title: "ACK"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# An ACK Is a Transport-Layer Message Confirming Successful Data Receipt
+# ACK
 
 An ACK (Acknowledgement) is a control message sent by the receiver back to the sender confirming that data has been received correctly — TCP uses cumulative ACKs that specify the next expected byte, enabling the sender to detect loss and control retransmission.
 

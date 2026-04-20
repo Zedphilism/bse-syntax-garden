@@ -1,10 +1,10 @@
 ---
-title: "Octal Is a Base-8 Number System Where Each Digit Represents Three Binary Bits"
+title: "Octal"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Octal Is a Base-8 Number System Where Each Digit Represents Three Binary Bits
+# Octal
 
 Octal is a positional number system with radix 8, using digits 0–7, where each digit maps exactly to a 3-bit binary group, making it a compact shorthand that was widely used in early computing and remains standard in Unix file permissions.
 

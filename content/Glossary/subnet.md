@@ -1,10 +1,10 @@
 ---
-title: "A Subnet Is a Block of IP Addresses Sharing the Same Network Prefix"
+title: "Subnet"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Subnet Is a Block of IP Addresses Sharing the Same Network Prefix
+# Subnet
 
 A subnet (subnetwork) is a logical subdivision of an IP network in which all interfaces share the same high-order network prefix bits — devices on the same subnet can communicate directly, without needing a router.
 

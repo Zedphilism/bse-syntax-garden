@@ -1,10 +1,10 @@
 ---
-title: "A Forwarding Table Maps Destination Prefixes to Output Ports in a Router"
+title: "Forwarding Table"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Forwarding Table Maps Destination Prefixes to Output Ports in a Router
+# Forwarding Table
 
 A forwarding table (also called the FIB — Forwarding Information Base) is the data structure stored in a router's hardware that maps destination IP prefixes to output ports, enabling the router to make per-packet forwarding decisions at line rate using longest prefix matching.
 

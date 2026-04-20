@@ -1,10 +1,10 @@
 ---
-title: "NAND Gate Is a Universal Gate That Outputs LOW Only When All Inputs Are HIGH"
+title: "NAND Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# NAND Gate Is a Universal Gate That Outputs LOW Only When All Inputs Are HIGH
+# NAND Gate
 
 The NAND gate computes the complement of AND — its output is 1 for every input combination except all-1s — and is functionally complete, meaning any Boolean function can be implemented using only NAND gates.
 

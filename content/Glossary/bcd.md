@@ -1,10 +1,10 @@
 ---
-title: "BCD Encodes Each Decimal Digit as a Separate 4-Bit Binary Group"
+title: "BCD"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# BCD Encodes Each Decimal Digit as a Separate 4-Bit Binary Group
+# BCD
 
 Binary Coded Decimal (BCD) is a numeric encoding that represents each decimal digit (0–9) individually as a 4-bit binary code, allowing decimal numbers to be stored and processed without conversion to pure binary.
 

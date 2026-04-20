@@ -1,10 +1,10 @@
 ---
-title: "DHCP Automatically Configures a Host's IP Address When It Joins a Network"
+title: "DHCP"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# DHCP Automatically Configures a Host's IP Address When It Joins a Network
+# DHCP
 
 DHCP (Dynamic Host Configuration Protocol) is an application-layer protocol that automatically assigns an IP address, subnet mask, default gateway, and DNS server address to a host when it connects to a network, using a four-step broadcast exchange over UDP ports 67/68.
 

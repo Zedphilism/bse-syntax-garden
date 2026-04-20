@@ -1,10 +1,10 @@
 ---
-title: "TTL Is the Hop Count Field That Prevents Packets from Looping Forever"
+title: "TTL"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# TTL Is the Hop Count Field That Prevents Packets from Looping Forever
+# TTL
 
 TTL (Time to Live) is an 8-bit field in the IPv4 header that is decremented by 1 at every router; when it reaches 0, the router discards the datagram and sends an ICMP "Time Exceeded" message back to the source.
 

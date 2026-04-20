@@ -1,10 +1,10 @@
 ---
-title: "AND Gate Outputs HIGH Only When Every One of Its Inputs Is HIGH"
+title: "AND Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# AND Gate Outputs HIGH Only When Every One of Its Inputs Is HIGH
+# AND Gate
 
 The AND gate is a logic gate that implements Boolean multiplication: its output is 1 if and only if all inputs are simultaneously 1, making it the hardware equivalent of logical conjunction ("all must be true").
 

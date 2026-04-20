@@ -1,10 +1,10 @@
 ---
-title: "OR Gate Outputs HIGH When at Least One of Its Inputs Is HIGH"
+title: "OR Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# OR Gate Outputs HIGH When at Least One of Its Inputs Is HIGH
+# OR Gate
 
 The OR gate is a logic gate that implements Boolean addition: its output is 1 if any one or more of its inputs is 1, making it the hardware equivalent of logical disjunction ("at least one must be true").
 

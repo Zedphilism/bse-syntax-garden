@@ -1,10 +1,10 @@
 ---
-title: "Two's Complement Is the Standard Binary Encoding for Signed Integers in All Modern Hardware"
+title: "Two's Complement"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Two's Complement Is the Standard Binary Encoding for Signed Integers in All Modern Hardware
+# Two's Complement
 
 Two's complement represents negative integers by inverting all bits of the positive value and adding 1, enabling the same addition hardware to handle both positive and negative numbers without special-casing the sign.
 

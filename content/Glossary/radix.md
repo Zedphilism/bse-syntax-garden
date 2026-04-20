@@ -1,10 +1,10 @@
 ---
-title: "Radix Is the Number of Unique Digits in a Positional Number System"
+title: "Radix"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Radix Is the Number of Unique Digits in a Positional Number System
+# Radix
 
 The radix (base) of a number system is the count of distinct digit symbols it uses; each digit position represents the radix raised to a power, and the position's value is that digit multiplied by its positional weight.
 

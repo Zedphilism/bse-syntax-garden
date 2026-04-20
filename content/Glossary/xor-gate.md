@@ -1,10 +1,10 @@
 ---
-title: "XOR Gate Outputs HIGH Only When Its Inputs Are Different from Each Other"
+title: "XOR Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# XOR Gate Outputs HIGH Only When Its Inputs Are Different from Each Other
+# XOR Gate
 
 The XOR (exclusive OR) gate outputs 1 when an odd number of its inputs are 1 — for a 2-input gate, this means the inputs must differ — making it the fundamental building block of binary adders and parity checkers.
 

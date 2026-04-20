@@ -1,10 +1,10 @@
 ---
-title: "A Packet Is a Fixed-Size Chunk of Data Routed Independently Through the Network"
+title: "Packet"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Packet Is a Fixed-Size Chunk of Data Routed Independently Through the Network
+# Packet
 
 A packet is a unit of data transmission in packet-switched networks, consisting of a header (addressing and control information) and a payload (the actual data), where each packet is forwarded independently from source to destination.
 

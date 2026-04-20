@@ -1,10 +1,10 @@
 ---
-title: "SMTP Is the Protocol That Transfers Email Between Mail Servers"
+title: "SMTP"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# SMTP Is the Protocol That Transfers Email Between Mail Servers
+# SMTP
 
 SMTP (Simple Mail Transfer Protocol) is the application-layer protocol used to push email messages from a sender's mail client to their mail server, and between mail servers, over TCP port 25 (or 587 for client submission).
 

@@ -1,10 +1,10 @@
 ---
-title: "RTT Is the Round-Trip Time Between a Sender and Receiver"
+title: "RTT"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# RTT Is the Round-Trip Time Between a Sender and Receiver
+# RTT
 
 RTT (Round-Trip Time) is the time elapsed from when a sender transmits the first bit of a packet to when it receives an acknowledgement (ACK) from the receiver — it is approximately twice the one-way propagation delay plus transmission and queuing delays.
 

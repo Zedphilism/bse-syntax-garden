@@ -1,10 +1,10 @@
 ---
-title: "Flow Control Prevents the Sender from Overwhelming the Receiver's Buffer"
+title: "Flow Control"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# Flow Control Prevents the Sender from Overwhelming the Receiver's Buffer
+# Flow Control
 
 Flow control is a transport-layer speed-matching mechanism in which the receiver advertises the free space remaining in its receive buffer (rwnd), and the sender limits the amount of unacknowledged data in flight to that value, preventing buffer overflow at the receiver.
 

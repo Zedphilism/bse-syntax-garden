@@ -1,10 +1,10 @@
 ---
-title: "A Protocol Defines the Format and Rules for Messages Between Network Entities"
+title: "Protocol"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Protocol Defines the Format and Rules for Messages Between Network Entities
+# Protocol
 
 A network protocol is a set of rules governing the format, order, and meaning of messages exchanged between two or more communicating entities, and the actions taken when those messages are sent or received.
 

@@ -1,10 +1,10 @@
 ---
-title: "NAT Allows Multiple Private Hosts to Share a Single Public IP Address"
+title: "NAT"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# NAT Allows Multiple Private Hosts to Share a Single Public IP Address
+# NAT
 
 NAT (Network Address Translation) is a technique in which a router rewrites the source IP and port of outgoing packets (and the destination IP and port of incoming replies) so that an entire private network can communicate with the Internet using a single public IP address.
 

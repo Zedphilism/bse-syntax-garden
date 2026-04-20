@@ -1,10 +1,10 @@
 ---
-title: "A Logic Gate Is a Circuit That Implements a Single Boolean Operation on Binary Inputs"
+title: "Logic Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# A Logic Gate Is a Circuit That Implements a Single Boolean Operation on Binary Inputs
+# Logic Gate
 
 A logic gate is the fundamental hardware building block of digital circuits — a physical device, typically built from CMOS transistors, that takes one or more binary inputs and produces a single binary output according to a fixed Boolean function.
 

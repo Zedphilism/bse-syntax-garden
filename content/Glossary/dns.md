@@ -1,10 +1,10 @@
 ---
-title: "DNS Translates Human-Readable Hostnames to IP Addresses"
+title: "DNS"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# DNS Translates Human-Readable Hostnames to IP Addresses
+# DNS
 
 DNS (Domain Name System) is a distributed, hierarchical application-layer service that maps human-readable hostnames (e.g., `www.google.com`) to their numeric IP addresses, making the Internet usable without memorising addresses.
 

@@ -1,10 +1,10 @@
 ---
-title: "A Truth Table Lists Every Possible Input Combination and the Output Each Produces"
+title: "Truth Table"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# A Truth Table Lists Every Possible Input Combination and the Output Each Produces
+# Truth Table
 
 A truth table is the exhaustive, canonical specification of a Boolean function — a structured table with one row for each of the 2ⁿ possible combinations of n binary inputs, showing the output value for each.
 

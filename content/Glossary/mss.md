@@ -1,10 +1,10 @@
 ---
-title: "MSS Is the Maximum Bytes of Data TCP Puts in a Single Segment"
+title: "MSS"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# MSS Is the Maximum Bytes of Data TCP Puts in a Single Segment
+# MSS
 
 MSS (Maximum Segment Size) is the largest number of bytes of application data that TCP will place in a single segment, negotiated during the three-way handshake and typically set to MTU − 40 bytes to avoid IP fragmentation.
 

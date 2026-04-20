@@ -1,10 +1,10 @@
 ---
-title: "Digital Signal Represents Information Using Only Two Discrete Voltage Levels"
+title: "Digital Signal"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Digital Signal Represents Information Using Only Two Discrete Voltage Levels
+# Digital Signal
 
 A digital signal is an electrical signal constrained to two valid states — HIGH and LOW — corresponding to logic 1 and logic 0, making it immune to moderate noise because any voltage within the valid range is snapped to the nearest defined level.
 

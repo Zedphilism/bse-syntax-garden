@@ -1,10 +1,10 @@
 ---
-title: "ASCII Is a 7-Bit Standard That Assigns a Unique Binary Code to Each Printable Character"
+title: "ASCII"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# ASCII Is a 7-Bit Standard That Assigns a Unique Binary Code to Each Printable Character
+# ASCII
 
 ASCII (American Standard Code for Information Interchange) is a character encoding that maps each of 128 symbols — digits, letters, punctuation, and control codes — to a unique 7-bit binary value, forming the foundation of all modern text encoding.
 

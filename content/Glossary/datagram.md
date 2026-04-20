@@ -1,10 +1,10 @@
 ---
-title: "A Datagram Is the Network-Layer Packet Forwarded by IP Routers"
+title: "Datagram"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# A Datagram Is the Network-Layer Packet Forwarded by IP Routers
+# Datagram
 
 A datagram is the network-layer unit of data: a self-contained, independently routed packet consisting of an IP header (with source and destination addresses) and a payload carrying a transport-layer segment.
 

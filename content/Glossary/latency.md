@@ -1,10 +1,10 @@
 ---
-title: "Latency Is the Total Time a Packet Takes to Travel from Source to Destination"
+title: "Latency"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# Latency Is the Total Time a Packet Takes to Travel from Source to Destination
+# Latency
 
 Latency (also called end-to-end delay) is the total time for a packet to travel from the sending host to the receiving host, comprising four components: processing delay, queuing delay, transmission delay, and propagation delay.
 

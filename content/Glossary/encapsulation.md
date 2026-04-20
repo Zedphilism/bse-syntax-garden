@@ -1,10 +1,10 @@
 ---
-title: "Encapsulation Wraps Data with Layer Headers as It Descends the Protocol Stack"
+title: "Encapsulation"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# Encapsulation Wraps Data with Layer Headers as It Descends the Protocol Stack
+# Encapsulation
 
 Encapsulation is the process by which each layer of the network stack wraps the data handed down from the layer above with its own header (and sometimes trailer), forming a new protocol data unit (PDU) that hides the details of higher-layer data from lower layers.
 

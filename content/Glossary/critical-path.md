@@ -1,10 +1,10 @@
 ---
-title: "Critical Path Is the Longest Propagation Delay Path Through a Logic Circuit"
+title: "Critical Path"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Critical Path Is the Longest Propagation Delay Path Through a Logic Circuit
+# Critical Path
 
 The critical path is the signal path from input to output that has the greatest total propagation delay in a combinational circuit; it determines the minimum clock period and therefore sets the maximum operating frequency of the system.
 

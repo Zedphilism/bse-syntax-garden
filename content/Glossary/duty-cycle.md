@@ -1,10 +1,10 @@
 ---
-title: "Duty Cycle Is the Fraction of a Period During Which a Signal Is in Its Active State"
+title: "Duty Cycle"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Duty Cycle Is the Fraction of a Period During Which a Signal Is in Its Active State
+# Duty Cycle
 
 Duty cycle is the ratio of the time a periodic digital signal is HIGH to its total period, expressed as a percentage; it describes how "on" a signal is relative to its repetition rate.
 

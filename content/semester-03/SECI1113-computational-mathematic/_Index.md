@@ -12,8 +12,8 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ## Chapter 1 — Linear Equations & Matrices
 
-- [[linear-equation-definition|Linear Equation Definition]] — what constitutes a linear equation and its solutions
-- [[system-of-linear-equations-solution-types|System of Linear Equations — Solution Types]] — unique, infinite, or no solutions
+- [[linear-equation-definition|Linear Equation]] — what constitutes a linear equation and its solutions
+- [[system-of-linear-equations-solution-types|System of Linear Equations: Solution Types]] — unique, infinite, or no solutions
 - [[matrix-types-and-notation|Matrix Types and Notation]] — dimensions, special matrices, entry indexing
 - [[matrix-operations|Matrix Operations]] — addition, subtraction, scalar multiplication, multiplication, transpose
 - [[matrix-determinant|Matrix Determinant]] — cofactor expansion, invertibility test
@@ -28,12 +28,12 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ## Chapter 2 — Euclidean Vector Spaces
 
-- [[vector-definition-rn-space|Vector Definition and Rn Space]] — ordered n-tuples, magnitude, direction
+- [[vector-definition-rn-space|Vectors and Rn Space]] — ordered n-tuples, magnitude, direction
 - [[vector-arithmetic|Vector Arithmetic]] — addition, subtraction, scalar multiplication; eight properties
 - [[euclidean-norm|Euclidean Norm]] — length of a vector; root-sum-of-squares formula
 - [[euclidean-distance|Euclidean Distance]] — straight-line separation between two vectors
-- [[dot-product|Dot Product in Rn]] — scalar result; alignment, orthogonality, and angle
-- [[cross-product|Cross Product in R3]] — vector result perpendicular to both inputs
+- [[dot-product|Dot Product]] — scalar result; alignment, orthogonality, and angle
+- [[cross-product|Cross Product]] — vector result perpendicular to both inputs
 - [[linear-combination-of-vectors|Linear Combination of Vectors]] — weighted sum of vectors
 - [[linear-independence-and-dependence|Linear Independence and Dependence]] — trivial-solution test
 
@@ -50,7 +50,7 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 - [[numerical-error-types|Numerical Error Types]] — data, truncation, and rounding errors
 - [[absolute-and-relative-error|Absolute and Relative Error]] — measuring and contextualising error
-- [[rounding-error-propagation|Rounding Error Propagation in Arithmetic]] — how errors accumulate in operations
+- [[rounding-error-propagation|Rounding Error Propagation]] — how errors accumulate in operations
 
 ---
 
@@ -66,7 +66,7 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ## Chapter 7 — Eigenvalues & Eigenvectors
 
-- [[eigenvalue-eigenvector-definition|Eigenvalue and Eigenvector Definition]] — Av = λv, eigenspaces
+- [[eigenvalue-eigenvector-definition|Eigenvalues and Eigenvectors]] — Av = λv, eigenspaces
 - [[characteristic-polynomial|Characteristic Polynomial]] — det(A−λI) = 0; Gerschgorin bounds
 - [[power-method|Power Method]] — iterative dominant eigenvalue approximation
 
@@ -74,7 +74,7 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ## Chapter 8 — Interpolation & Approximation
 
-- [[interpolation-definition|Interpolation Definition]] — polynomial through known data points; method selection
+- [[interpolation-definition|Interpolation]] — polynomial through known data points; method selection
 - [[newton-forward-difference-interpolation|Newton Forward-Difference Interpolation]] — equally-spaced data near table start
 - [[newton-backward-difference-interpolation|Newton Backward-Difference Interpolation]] — equally-spaced data near table end
 
@@ -82,7 +82,7 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ## Chapter 9 — Numerical Differentiation
 
-- [[numerical-differentiation-finite-differences|Finite Difference Formulas for Derivatives]] — 2-point, 3-point, central formulas
+- [[numerical-differentiation-finite-differences|Numerical Differentiation: Finite Differences]] — 2-point, 3-point, central formulas
 
 ---
 
@@ -95,7 +95,7 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ## Python Module
 
-- [[python-numerical-methods-numpy-scipy|Python Numerical Methods with NumPy and SciPy]] — code implementations of all methods
+- [[python-numerical-methods-numpy-scipy|Python Numerical Methods: NumPy and SciPy]] — code implementations of all methods
 
 ---
 

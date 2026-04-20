@@ -1,10 +1,10 @@
 ---
-title: "ICMP Is the Network Layer's Error and Diagnostic Messaging Protocol"
+title: "ICMP"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# ICMP Is the Network Layer's Error and Diagnostic Messaging Protocol
+# ICMP
 
 ICMP (Internet Control Message Protocol) is a companion protocol to IP (protocol number 1) that carries error messages and operational information between routers and hosts — it is the basis of the `ping` and `traceroute` diagnostic tools.
 

@@ -1,10 +1,10 @@
 ---
-title: "An Autonomous System Is a Network Under Single Administrative Control"
+title: "Autonomous System (AS)"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# An Autonomous System Is a Network Under Single Administrative Control
+# Autonomous System (AS)
 
 An Autonomous System (AS) is a collection of IP prefixes and routers under the control of a single administrative entity (e.g., an ISP, university, or enterprise), identified by a globally unique AS Number (ASN), and routing internally with one protocol (intra-AS) and externally with BGP (inter-AS).
 

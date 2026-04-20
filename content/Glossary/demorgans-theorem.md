@@ -1,10 +1,10 @@
 ---
-title: "DeMorgan's Theorem Converts the Complement of AND or OR to an Equivalent Gate Form"
+title: "DeMorgan's Theorem"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# DeMorgan's Theorem Converts the Complement of AND or OR to an Equivalent Gate Form
+# DeMorgan's Theorem
 
 DeMorgan's theorems are two Boolean identities that allow the complement of an AND or OR expression to be rewritten using the opposite operation with complemented inputs, enabling circuit transformations between NAND/NOR forms and AND/OR/NOT forms.
 

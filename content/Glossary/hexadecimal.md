@@ -1,10 +1,10 @@
 ---
-title: "Hexadecimal Is a Base-16 Number System Used as Compact Shorthand for Binary"
+title: "Hexadecimal"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Hexadecimal Is a Base-16 Number System Used as Compact Shorthand for Binary
+# Hexadecimal
 
 Hexadecimal (hex) is a positional number system with radix 16, using digits 0–9 and letters A–F, where each hex digit represents exactly four binary bits, making it the standard compact notation for binary data in computing.
 

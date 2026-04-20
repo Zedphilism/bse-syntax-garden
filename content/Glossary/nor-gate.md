@@ -1,10 +1,10 @@
 ---
-title: "NOR Gate Is a Universal Gate That Outputs HIGH Only When All Inputs Are LOW"
+title: "NOR Gate"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# NOR Gate Is a Universal Gate That Outputs HIGH Only When All Inputs Are LOW
+# NOR Gate
 
 The NOR gate computes the complement of OR — its output is 1 only when every input is 0 — and is functionally complete, meaning any Boolean function can be built entirely from NOR gates.
 

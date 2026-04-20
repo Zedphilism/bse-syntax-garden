@@ -1,10 +1,10 @@
 ---
-title: "UDP Is a Connectionless Transport Protocol That Trades Reliability for Speed"
+title: "UDP"
 date: 2026-04-19
 tags: [glossary, networking, scsr2213]
 ---
 
-# UDP Is a Connectionless Transport Protocol That Trades Reliability for Speed
+# UDP
 
 UDP (User Datagram Protocol) is a transport-layer protocol that provides minimal service on top of IP — it adds only port-based multiplexing and an optional checksum, with no connection setup, reliability, ordering, or congestion control.
 

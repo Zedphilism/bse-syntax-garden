@@ -1,10 +1,10 @@
 ---
-title: "Boolean Algebra Is the Mathematical Framework for Analyzing and Simplifying Logic Circuits"
+title: "Boolean Algebra"
 date: 2026-04-18
 tags: [glossary, digital-logic]
 ---
 
-# Boolean Algebra Is the Mathematical Framework for Analyzing and Simplifying Logic Circuits
+# Boolean Algebra
 
 Boolean algebra is a branch of algebra in which variables take only the values 0 or 1 and operations include AND (·), OR (+), and NOT ('), providing the rules needed to simplify logic expressions and reduce the number of gates required to implement a circuit.
 
