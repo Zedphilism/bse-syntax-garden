@@ -69,6 +69,24 @@ Topics: Number systems, data codes, arithmetic, logic gates, Boolean algebra, co
 - [[active-low-signals-provide-fail-safe-behavior|Active-Low Signals and Fail-Safe Behavior]]
 - [[propagation-delay-limits-digital-circuit-speed|Propagation Delay]]
 
+### Latches and Flip-Flops (Module 7)
+- [[sequential-logic-circuits|Sequential Logic Circuits]]
+- [[sr-latch|SR Latch]]
+- [[gated-sr-latch|Gated SR Latch]]
+- [[gated-d-latch|Gated D Latch]]
+- [[flip-flop-vs-latch|Flip-Flops vs Latches]]
+- [[sr-flip-flop|SR Flip-Flop]]
+- [[jk-flip-flop|JK Flip-Flop]]
+- [[d-flip-flop|D Flip-Flop]]
+- [[t-flip-flop|T Flip-Flop]]
+- [[asynchronous-inputs-preset-clear|Asynchronous Inputs: PRE and CLR]]
+
+### Counters (Module 8a)
+- [[counter-types-and-modulus|Counter Types and Modulus]]
+- [[asynchronous-ripple-counter|Asynchronous Ripple Counter]]
+- [[synchronous-counter|Synchronous Counter]]
+- [[truncated-modulus-counter|Truncated-Modulus Counter]]
+
 ## See Also
 
 - [[Glossary/_Index|Glossary]]

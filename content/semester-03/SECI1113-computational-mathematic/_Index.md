@@ -46,6 +46,14 @@ Topics: Linear algebra (systems, matrices, vectors, eigenvalues), numerical meth
 
 ---
 
+## Chapter 4 — Linear Transformations
+
+- [[linear-transformation|Linear Transformation]] — preserves vector addition and scalar multiplication between spaces
+- [[kernel-of-linear-transformation|Kernel (Null Space)]] — vectors mapped to zero; dimension = nullity
+- [[range-of-linear-transformation|Range (Image)]] — all reachable output vectors; dimension = rank
+
+---
+
 ## Chapter 5 — Accuracy & Error
 
 - [[numerical-error-types|Numerical Error Types]] — data, truncation, and rounding errors
