@@ -248,12 +248,41 @@ body::after {
 }
 .t1-link:hover { color:var(--green); border-color:var(--green); }
 
-@media(max-width:600px){
-  .hud{grid-template-columns:1fr 1fr;}
-  .hud-center{display:none;}
-  .conf-grid{grid-template-columns:repeat(2,1fr);}
-  .end-grid{grid-template-columns:repeat(2,1fr);}
-  .question{font-size:17px;}
+@media(max-width:640px){
+  .wrap { padding:12px 10px; }
+  .hud {
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .hud-center { grid-column:1/-1; text-align:left; display:flex; align-items:center; gap:14px; padding-top:4px; border-top:1px solid var(--border); }
+  .level-badge { font-size:6px; padding:5px 10px; }
+  .xp-val { font-size:7px; }
+  .hud-title { font-size:6px; }
+  .hud-subtitle { font-size:9px; }
+  .stat { font-size:10px; }
+  .card { padding:16px 14px; }
+  .anchor { font-size:26px; }
+  .topic { font-size:9px; }
+  .question { font-size:16px; padding-left:10px; }
+  .reveal-btn { width:100%; padding:14px; font-size:6px; }
+  .ans-text { font-size:14px; padding-left:10px; }
+  .analogy { font-size:13px; padding:8px 10px; }
+  .trap { font-size:11px; padding:8px 10px; }
+  .conf-label { font-size:9px; }
+  .conf-grid { grid-template-columns:repeat(2,1fr); gap:6px; }
+  .cb { padding:16px 6px; font-size:7px; min-height:52px; }
+  .nav { gap:8px; }
+  .nav-btn { padding:12px 10px; font-size:6px; min-height:44px; flex:1; }
+  .card-ctr { font-size:11px; }
+  .prog-header { font-size:9px; }
+  .end-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
+  .end-title { font-size:13px; }
+  .end-stat { padding:14px 8px; }
+  .end-stat-v { font-size:14px; }
+  .end-stat-l { font-size:8px; }
+  .end-msg { font-size:6px; }
+  .restart-btn { font-size:7px; padding:14px 20px; display:block; margin:0 auto 12px; }
+  .t1-link { font-size:12px; }
 }
 </style>
 </head>
@@ -334,7 +363,7 @@ body::after {
     <div class="end-msg" id="end-msg"></div>
     <button class="restart-btn" onclick="restart()">↺ PLAY AGAIN</button>
     <br>
-    <a class="t1-link" href="test1-quiz.html">← BACK TO TEST 1 ARENA</a>
+    <a class="t1-link" href="/static/test1-quiz.html">← BACK TO TEST 1 ARENA</a>
   </div>
 
 </div>
