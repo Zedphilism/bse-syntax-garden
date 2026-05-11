@@ -6,15 +6,13 @@ tags: [hub, bse]
 
 # BSE Syntax Garden
 
-Hi, I'm Zaidi — a Bachelor of Software Engineering student learning in public.
+Hi, I'm Zaidi — studying software engineering and learning in public.
 
 Welcome to my digital garden.
 
-This space is dedicated to my study notes, organized by semester and continuously updated as I learn.
+This is where I keep my study notes — organized by semester, continuously updated, and written to actually stick. Each note is an attempt to genuinely understand something, not just record it.
 
-Each note represents an active attempt to understand — not just memorize. Topics are broken down, revisited, and refined over time as my knowledge improves.
-
-Think of this as a living academic system: structured, iterative, and always evolving.
+Topics get broken down, revisited, and refined as my understanding grows. If something is here, it means I've thought about it enough to write it down properly.
 
 Navigate by semester, and follow the progression.
 
