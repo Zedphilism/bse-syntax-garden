@@ -132,6 +132,36 @@ Structure Explanation as: paragraph 1 = what/overview + analogy, paragraph 2 = h
 
 ---
 
+## Quiz / Revision Arena Pages
+
+Standalone HTML files at the vault root for gamified active recall. Open directly in any browser — no build step needed.
+
+| File | Coverage |
+|------|----------|
+| `test1-quiz.html` | SCSR2213 Ch1 (full) + Ch2 up to HTTP |
+| `test2-quiz.html` | SCSR2213 Ch2 (email → end) + Ch3 (full) |
+
+**When asked to create a quiz page** for a test or exam, generate a standalone HTML file at the vault root following this pattern:
+
+- **Dark arcade aesthetic** — scanlines overlay, grid background, neon accent colours per topic section
+- **Question data** lives in a `const Q = [...]` array of objects: `{ topic, anchor, color, q, a, analogy, trap }`
+  - `a` field: HTML string (bold key terms, `<code>` for formulas)
+  - `analogy`: weird/memorable mapping — always concrete and surprising
+  - `trap`: exact exam mistake prefixed with "EXAM:" — one line, punchy
+- **Game mechanics** (copy JS from existing files — do not re-invent):
+  - XP: BLANK=0, FUZZY=25, SOLID=75, LOCKED=100 × combo multiplier
+  - Combo: activates at 3-streak, caps at 3.0×
+  - Levels: NEWBIE(0) → PACKET(200) → ROUTER(500) → PROTOCOL(1000) → WIZARD(1800) → NET GOD(3000)
+  - Floaters: XP popup, combo burst, level-up flash
+  - Progress bars: questions done + XP-to-next-level
+  - Review banner: counts BLANK-rated cards
+  - End screen: XP, rank, best streak, locked count, review count, best combo, grade message
+- **Link** quiz files to each other via `<a>` at end screen
+- **Naming**: `<subject-code>-<test-number>-quiz.html`, e.g. `scsr2213-test1-quiz.html` for new subjects. Existing SCSR2213 files use short names for backwards compatibility.
+- **Scalability**: adding a new test = create a new file, copy the JS engine, replace the `Q` array. No shared dependency — each file is fully self-contained.
+
+---
+
 ## Development Commands
 ```bash
 npx quartz build --serve   # local preview (hot reload)
