@@ -22,7 +22,7 @@ Navigate by semester, and follow the progression.
 
 ## Upcoming Tests — SCSR2213 Network Communication
 
-> [!danger] Test 1 — 16 May 2026 | Chapter 1 + Chapter 2 (up to Email)
+> [!danger] Test 1 — 16 May 2026 | Chapter 1 + Chapter 2 (up to Email) | [▶ Open Revision Arena](../test1-quiz.html)
 >
 > ### Chapter 1 — Introduction
 >
@@ -82,7 +82,7 @@ Navigate by semester, and follow the progression.
 >
 > > Trivia: HTTP is **stateless** — the server remembers nothing between requests. Non-persistent HTTP needs **2 RTTs per object** (1 for TCP handshake + 1 for the request). Persistent HTTP amortises the handshake. Cookies inject state back in at the application layer. A proxy cache uses a conditional GET with `If-Modified-Since` — if the server returns 304 Not Modified, the cached copy is served without re-downloading.
 
-> [!warning] Test 2 — 13 June 2026 | Chapter 2 (Email → End) + All of Chapter 3
+> [!warning] Test 2 — 13 June 2026 | Chapter 2 (Email → End) + All of Chapter 3 | [▶ Open Revision Arena](../test2-quiz.html)
 >
 > ### Chapter 2 — Application Layer (Email to End)
 >
