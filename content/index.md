@@ -6,7 +6,7 @@ tags: [hub, bse]
 
 # BSE Syntax Garden
 
-Hi, I'm Zaidi — studying software engineering and learning in public.
+Hi, I'm Zaidi — a student learning in public.
 
 Welcome to my digital garden.
 
