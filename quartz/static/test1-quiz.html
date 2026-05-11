@@ -75,11 +75,32 @@ body::after {
   color:var(--yellow); text-shadow:0 0 8px var(--yellow);
 }
 .hud-right { display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
-.stat {
-  font-family:'Share Tech Mono',monospace; font-size:11px;
-}
+.stat { font-family:'Share Tech Mono',monospace; font-size:11px; }
 .stat-streak { color:var(--orange); }
 .stat-combo  { color:var(--pink); }
+
+/* ── MODE TOGGLE ── */
+.mode-bar {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:16px; padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.mode-btn {
+  background:transparent; border:1px solid var(--border);
+  color:var(--dim); font-family:'Press Start 2P',monospace;
+  font-size:6px; padding:8px 14px; cursor:pointer;
+  letter-spacing:1px; transition:all .2s;
+}
+.mode-btn.active {
+  border-color:var(--neon); color:var(--neon);
+  box-shadow:0 0 10px rgba(0,255,157,.2);
+  background:rgba(0,255,157,.06);
+}
+.mode-btn:hover:not(.active) { border-color:var(--dim); color:var(--text); }
+.mode-tag {
+  font-family:'Share Tech Mono',monospace; font-size:9px;
+  color:var(--dim); margin-left:auto;
+}
 
 /* ── PROGRESS ── */
 .prog-section { margin-bottom:20px; }
@@ -163,6 +184,50 @@ body::after {
 }
 .reveal-btn:hover { color:var(--bg); box-shadow:0 0 20px var(--accent,var(--neon)); }
 .reveal-btn:hover::before { left:0; }
+
+/* ── MCQ OPTIONS ── */
+.mcq-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:0; }
+.mcq-opt {
+  background:rgba(255,255,255,.03); border:1px solid var(--border);
+  color:var(--text); padding:14px 12px; cursor:pointer;
+  font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:600;
+  text-align:left; line-height:1.5; position:relative;
+  transition:all .2s; display:flex; align-items:flex-start; gap:10px;
+}
+.mcq-opt:hover:not(:disabled) {
+  border-color:var(--accent,var(--neon));
+  background:rgba(0,255,157,.05);
+  box-shadow:0 0 12px rgba(0,255,157,.1);
+}
+.mcq-opt:disabled { cursor:not-allowed; }
+.opt-letter {
+  font-family:'Press Start 2P',monospace; font-size:8px;
+  color:var(--accent,var(--neon)); min-width:22px;
+  padding-top:2px; flex-shrink:0;
+}
+.mcq-opt.correct-ans {
+  border-color:#00ff9d !important; background:rgba(0,255,157,.12) !important;
+  color:#fff; box-shadow:0 0 18px rgba(0,255,157,.3) !important;
+  animation:correct-pulse .4s ease;
+}
+.mcq-opt.wrong-ans {
+  border-color:#ff2d78 !important; background:rgba(255,45,120,.12) !important;
+  color:#ff2d78; animation:wrong-shake .4s ease;
+}
+@keyframes correct-pulse {
+  0%{transform:scale(1)} 50%{transform:scale(1.02)} 100%{transform:scale(1)}
+}
+@keyframes wrong-shake {
+  0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
+}
+.mcq-result {
+  display:none; margin-top:14px; padding:12px 16px;
+  font-family:'Share Tech Mono',monospace; font-size:13px;
+  animation:ans-in .3s ease; border-left:3px solid var(--neon);
+}
+.mcq-result.on { display:block; }
+.mcq-result.ok { border-color:#00ff9d; background:rgba(0,255,157,.07); color:#00ff9d; }
+.mcq-result.fail { border-color:#ff2d78; background:rgba(255,45,120,.07); color:#ff8ab0; }
 
 /* ── ANSWER ── */
 .answer-block { display:none; margin-top:18px; animation:ans-in .3s ease; }
@@ -287,21 +352,24 @@ body::after {
 
 @media(max-width:640px){
   .wrap { padding:12px 10px; }
-  .hud {
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
+  .hud { grid-template-columns:1fr 1fr; gap:10px; }
   .hud-center { grid-column:1/-1; text-align:left; display:flex; align-items:center; gap:14px; padding-top:4px; border-top:1px solid var(--border); }
   .level-badge { font-size:6px; padding:5px 10px; }
   .xp-val { font-size:7px; }
   .hud-title { font-size:6px; }
   .hud-subtitle { font-size:9px; }
   .stat { font-size:10px; }
+  .mode-btn { font-size:5px; padding:7px 10px; }
+  .mode-tag { display:none; }
   .card { padding:16px 14px; }
   .anchor { font-size:26px; }
   .topic { font-size:9px; }
   .question { font-size:16px; padding-left:10px; }
   .reveal-btn { width:100%; padding:14px; font-size:6px; }
+  .mcq-grid { grid-template-columns:1fr; gap:8px; }
+  .mcq-opt { font-size:14px; padding:12px 10px; }
+  .opt-letter { font-size:7px; min-width:18px; }
+  .mcq-result { font-size:12px; padding:10px 12px; }
   .ans-text { font-size:14px; padding-left:10px; }
   .analogy { font-size:13px; padding:8px 10px; }
   .trap { font-size:11px; padding:8px 10px; }
@@ -342,6 +410,13 @@ body::after {
     </div>
   </div>
 
+  <!-- MODE TOGGLE -->
+  <div class="mode-bar">
+    <button class="mode-btn active" id="mode-flash" onclick="setMode('flash')">⊞ FLASHCARD</button>
+    <button class="mode-btn" id="mode-mcq" onclick="setMode('mcq')">⊠ MCQ BATTLE</button>
+    <span class="mode-tag">// SELECT MODE</span>
+  </div>
+
   <!-- PROGRESS -->
   <div class="prog-section">
     <div class="prog-header">
@@ -367,13 +442,20 @@ body::after {
         </div>
         <div class="question" id="c-q">Loading...</div>
         <button class="reveal-btn" id="reveal-btn" onclick="reveal()">▶ REVEAL ANSWER</button>
+
+        <!-- MCQ AREA -->
+        <div id="mcq-area" style="display:none">
+          <div class="mcq-grid" id="mcq-grid"></div>
+          <div class="mcq-result" id="mcq-result"></div>
+        </div>
+
         <div class="answer-block" id="ans-block">
           <div class="ans-divider"></div>
           <div class="ans-text" id="c-a"></div>
           <div class="analogy" id="c-analogy"></div>
           <div class="trap" id="c-trap"></div>
-          <div class="conf-label">// HOW WELL DID YOU KNOW THIS?</div>
-          <div class="conf-grid">
+          <div class="conf-label" id="conf-label">// HOW WELL DID YOU KNOW THIS?</div>
+          <div class="conf-grid" id="conf-grid">
             <button class="cb c0" data-xp="+0 XP" onclick="rate(0)">BLANK<br>No idea</button>
             <button class="cb c1" data-xp="+25 XP" onclick="rate(1)">FUZZY<br>Kinda...</button>
             <button class="cb c2" data-xp="+75 XP" onclick="rate(2)">SOLID<br>Got it!</button>
@@ -397,8 +479,8 @@ body::after {
       <div class="end-stat"><span class="end-stat-v" id="e-xp">0</span><span class="end-stat-l">TOTAL XP</span></div>
       <div class="end-stat"><span class="end-stat-v" id="e-level">NEWBIE</span><span class="end-stat-l">RANK ACHIEVED</span></div>
       <div class="end-stat"><span class="end-stat-v" id="e-streak">0</span><span class="end-stat-l">BEST STREAK</span></div>
-      <div class="end-stat"><span class="end-stat-v" id="e-locked">0/16</span><span class="end-stat-l">LOCKED IN</span></div>
-      <div class="end-stat"><span class="end-stat-v" id="e-review" style="color:var(--pink)">0</span><span class="end-stat-l">NEED REVIEW</span></div>
+      <div class="end-stat"><span class="end-stat-v" id="e-locked">0/16</span><span class="end-stat-l" id="e-locked-l">LOCKED IN</span></div>
+      <div class="end-stat"><span class="end-stat-v" id="e-review" style="color:var(--pink)">0</span><span class="end-stat-l" id="e-review-l">NEED REVIEW</span></div>
       <div class="end-stat"><span class="end-stat-v" id="e-combo" style="color:var(--orange)">1.0x</span><span class="end-stat-l">BEST COMBO</span></div>
     </div>
     <div class="end-msg" id="end-msg"></div>
@@ -421,136 +503,154 @@ const LEVELS = [
 
 const Q = [
   {
-    topic:'CH1 // THE INTERNET',
-    anchor:'🌐', color:'#00ff9d',
+    topic:'CH1 // THE INTERNET', anchor:'🌐', color:'#00ff9d',
     q:'Name the 3 fundamental building blocks of the Internet (nuts & bolts view).',
     a:'1. <b>End systems (hosts)</b> — devices at the edges running apps: PCs, phones, servers, IoT.<br>2. <b>Communication links</b> — fibre, copper, radio, satellite; each rated in bits per second (bandwidth).<br>3. <b>Packet switches</b> — routers and link-layer switches that forward packets toward their destinations.<br><br>Standards are published as <b>RFCs</b> by the <b>IETF</b>. The most critical protocols: <b>TCP and IP</b>.',
     analogy:'Think of the Internet as a postal system: hosts = houses, communication links = roads, routers = sorting offices that read the address and decide the next hop.',
-    trap:'Routers are NOT hosts — they are packet switches. Hosts run applications; routers forward packets.'
+    trap:'Routers are NOT hosts — they are packet switches. Hosts run applications; routers forward packets.',
+    opts:['Routers, switches, and firewall servers','End systems, communication links, and packet switches','Hosts, backbone servers, and ISP networks','IP, TCP, and DNS protocols'],
+    correct:1
   },
   {
-    topic:'CH1 // PROTOCOLS',
-    anchor:'📜', color:'#ff2d78',
+    topic:'CH1 // PROTOCOLS', anchor:'📜', color:'#ff2d78',
     q:'A protocol defines THREE things. What are they — and which part do most students forget?',
     a:'1. <b>Format/Syntax</b> — structure and fields of the messages.<br>2. <b>Order</b> — the sequence in which messages are exchanged.<br>3. <b>Actions</b> — what a process DOES when it sends or receives a message.<br><br>The forgotten part: <b>ACTIONS</b>. Without specifying what to do, you have a document format, not a protocol.',
     analogy:'A protocol is like a formal court greeting: the bow (format), speaking first (order), and then shaking hands (action). All three are the ritual.',
-    trap:'EXAM: "A protocol defines format and order." ❌ Always add ACTIONS — that is the defining part that separates a protocol from a data schema.'
+    trap:'EXAM: "A protocol defines format and order." ❌ Always add ACTIONS — that is the defining part that separates a protocol from a data schema.',
+    opts:['Message format, exchange sequence, and acknowledgment rules','Format/syntax, order, and actions taken on send/receive','Header structure, payload content, and checksum fields','Message encoding, bandwidth requirements, and error detection'],
+    correct:1
   },
   {
-    topic:'CH1 // PACKET SWITCHING',
-    anchor:'📦', color:'#ffe600',
+    topic:'CH1 // PACKET SWITCHING', anchor:'📦', color:'#ffe600',
     q:'What is store-and-forward? Write the transmission delay formula. L=7.5 Mbits, R=1.5 Mbps, 2 hops — end-to-end delay?',
     a:'<b>Store-and-forward:</b> The router must receive the ENTIRE packet before it forwards any bit onward. No partial forwarding — the whole packet must arrive first.<br><br><b>d<sub>trans</sub> = L / R</b> (packet size ÷ link rate)<br><br>Example: 7.5 Mbits ÷ 1.5 Mbps = 5s per hop. 2 hops = <b>10 seconds total</b>.<br><br>If queuing buffer fills up → <b>packets are dropped (packet loss)</b>.',
     analogy:'Like a relay runner who must catch the complete baton before they start running — there is no partial handoff mid-stride.',
-    trap:'EXAM: "The router begins forwarding as bits arrive." ❌ — ALL bits must arrive first. Also: end-to-end = N hops × (L/R), so 2 hops doubles the cost.'
+    trap:'EXAM: "The router begins forwarding as bits arrive." ❌ — ALL bits must arrive first. Also: end-to-end = N hops × (L/R), so 2 hops doubles the cost.',
+    opts:['5 seconds — one hop only','7.5 seconds — packet size in seconds','10 seconds — 2 hops × (7.5÷1.5) = 2 × 5s','15 seconds — queuing adds additional delay'],
+    correct:2
   },
   {
-    topic:'CH1 // DELAY',
-    anchor:'⏱️', color:'#ff8c00',
+    topic:'CH1 // DELAY', anchor:'⏱️', color:'#ff8c00',
     q:'Name the 4 nodal delay sources IN ORDER. Give the formula for each calculable one.',
     a:'<b>d<sub>nodal</sub> = d<sub>proc</sub> + d<sub>queue</sub> + d<sub>trans</sub> + d<sub>prop</sub></b><br><br><b>Processing</b> → <b>Queuing</b> → <b>Transmission</b> → <b>Propagation</b><br><br>• d<sub>trans</sub> = <b>L / R</b> — time to push all bits onto the link<br>• d<sub>prop</sub> = <b>d / s</b> — time for signal to travel the link (s ≈ 2×10⁸ m/s)<br>• d<sub>proc</sub>: typically &lt; 1 ms<br>• d<sub>queue</sub>: variable — depends on congestion',
     analogy:'Airport: processing = passport check, queuing = gate queue, transmission = time to board everyone (depends on passenger count), propagation = actual flight time.',
-    trap:'CRITICAL: d<sub>trans</sub> depends on PACKET SIZE and LINK RATE. d<sub>prop</sub> depends only on DISTANCE — completely independent of packet size. Exam loves mixing these up.'
+    trap:'CRITICAL: d<sub>trans</sub> depends on PACKET SIZE and LINK RATE. d<sub>prop</sub> depends only on DISTANCE — completely independent of packet size. Exam loves mixing these up.',
+    opts:['Queuing → Transmission → Processing → Propagation','Processing → Queuing → Transmission → Propagation','Transmission → Propagation → Processing → Queuing','Propagation → Processing → Transmission → Queuing'],
+    correct:1
   },
   {
-    topic:'CH1 // DELAY',
-    anchor:'🚦', color:'#00d4ff',
+    topic:'CH1 // DELAY', anchor:'🚦', color:'#00d4ff',
     q:'What is traffic intensity La/R? What happens as it → 1? What if it exceeds 1?',
     a:'<b>Traffic intensity = La/R</b><br>(L = avg packet size, a = avg arrival rate, R = link rate)<br><br>• La/R &lt; 1: queue is manageable, finite delay<br>• La/R → 1: queuing delay grows <b>very large</b> (approaches infinity)<br>• La/R &gt; 1: packets arrive faster than served → queue grows <b>without bound</b> → infinite delay, heavy packet loss',
     analogy:'A checkout lane: if customers (La) arrive faster than the cashier (R) serves them, the queue never clears — it grows forever.',
-    trap:'La/R = 1 is NOT chaos yet — it is the tipping point. ABOVE 1 is where the queue explodes unboundedly. This is a common MCQ trick.'
+    trap:'La/R = 1 is NOT chaos yet — it is the tipping point. ABOVE 1 is where the queue explodes unboundedly. This is a common MCQ trick.',
+    opts:['As La/R → 1, queuing delay drops to near zero','La/R > 1 means the link is at peak efficiency','As La/R → 1, queuing delay → ∞; above 1 the queue grows without bound','La/R only affects routing table size, not delay'],
+    correct:2
   },
   {
-    topic:'CH1 // CIRCUIT SWITCHING',
-    anchor:'📞', color:'#bf5fff',
+    topic:'CH1 // CIRCUIT SWITCHING', anchor:'📞', color:'#bf5fff',
     q:'What are FDM and TDM? A 1 Mbps link uses TDM with 4 circuits — how much bandwidth does each circuit get?',
     a:'<b>FDM (Frequency Division Multiplexing):</b> Link bandwidth divided into frequency bands. Each circuit gets its own band — shared at the same time, different frequencies.<br><br><b>TDM (Time Division Multiplexing):</b> Time divided into frames → frames into slots → each circuit gets a dedicated slot per frame.<br><br>Example: 1 Mbps ÷ 4 = <b>250 kbps per circuit</b> — reserved whether the circuit is idle or not.',
     analogy:'FDM = separate radio stations (different frequencies, same airtime). TDM = one DJ, each station gets 1 second every 4-second cycle.',
-    trap:'EXAM: In TDM, bandwidth is WASTED when a circuit is idle — the slot is reserved even during silence. This inefficiency is why packet switching wins for bursty data.'
+    trap:'EXAM: In TDM, bandwidth is WASTED when a circuit is idle — the slot is reserved even during silence. This inefficiency is why packet switching wins for bursty data.',
+    opts:['500 kbps — split between active circuits only','1 Mbps — each circuit gets the full link','100 kbps — overhead reduces capacity','250 kbps — 1 Mbps ÷ 4 circuits'],
+    correct:3
   },
   {
-    topic:'CH1 // SWITCHING COMPARE',
-    anchor:'⚔️', color:'#ff2d78',
+    topic:'CH1 // SWITCHING COMPARE', anchor:'⚔️', color:'#ff2d78',
     q:'Why does packet switching support more users than circuit switching on bursty traffic? Give a numeric example.',
     a:'<b>Circuit switching</b> reserves bandwidth end-to-end for the call duration — idle circuits waste capacity.<br><br><b>Packet switching</b> uses links dynamically. Idle users consume nothing.<br><br>Classic example: 1 Mbps link, users need 100 kbps active, 10% active at a time.<br>• Circuit: max <b>10 users</b> (1 Mbps / 100 kbps)<br>• Packet: <b>35 users</b> with &lt;0.0004% chance that &gt;10 are active simultaneously',
     analogy:'Circuit = reserved parking spot (yours even when you are away). Packet = shared parking lot — more cars fit because not everyone parks at once.',
-    trap:'Packet switching is NOT always better. Real-time voice/video benefits from circuit switching\'s guaranteed constant rate (QoS). Packet switching gives no delivery guarantees.'
+    trap:'Packet switching is NOT always better. Real-time voice/video benefits from circuit switching\'s guaranteed constant rate (QoS). Packet switching gives no delivery guarantees.',
+    opts:['Packet switching reserves dedicated bandwidth per user','Circuit switching shares bandwidth dynamically based on demand','Packet switching uses statistical multiplexing — idle users consume zero capacity','Packet switching always guarantees lower latency than circuit switching'],
+    correct:2
   },
   {
-    topic:'CH1 // PROTOCOL LAYERS',
-    anchor:'🧅', color:'#00ff9d',
+    topic:'CH1 // PROTOCOL LAYERS', anchor:'🧅', color:'#00ff9d',
     q:'Name all 7 OSI layers bottom to top. Which two does TCP/IP drop? Name a mnemonic.',
     a:'Bottom → Top:<br>1. <b>Physical</b> — raw bits on wire<br>2. <b>Data Link</b> — frame, point-to-point (Ethernet)<br>3. <b>Network</b> — datagram, routing (IP)<br>4. <b>Transport</b> — segment, end-to-end (TCP/UDP)<br>5. <b>Session</b> ← <span style="color:#ff4444">TCP/IP drops</span><br>6. <b>Presentation</b> ← <span style="color:#ff4444">TCP/IP drops</span><br>7. <b>Application</b> — message (HTTP, DNS)<br><br>Mnemonic: <b>Please Do Not Throw Sausage Pizza Away</b><br>TCP/IP has <b>5 layers</b> — merges Session + Presentation into Application.',
     analogy:'OSI is the full architect blueprint. TCP/IP is the simplified builder version that works in practice — they removed the layers nobody actually needed.',
-    trap:'TCP/IP has FIVE layers, not four. Physical is still separate from Data Link. And Application in TCP/IP handles what Session + Presentation + Application do in OSI.'
+    trap:'TCP/IP has FIVE layers, not four. Physical is still separate from Data Link. And Application in TCP/IP handles what Session + Presentation + Application do in OSI.',
+    opts:['TCP/IP drops Network and Transport, merging them into one layer','TCP/IP drops Session and Presentation — collapses them into Application','TCP/IP drops Physical and Data Link, using a unified link layer','TCP/IP drops Application and Session, using Transport as the top layer'],
+    correct:1
   },
   {
-    topic:'CH1 // ENCAPSULATION',
-    anchor:'🪆', color:'#ffe600',
+    topic:'CH1 // ENCAPSULATION', anchor:'🪆', color:'#ffe600',
     q:'What does each layer ADD to data as it travels down the stack? What is unique about the link layer?',
     a:'Each layer adds a <b>header</b> (encapsulation):<br><br>App → message<br>Transport → adds TCP/UDP <b>header</b> → segment<br>Network → adds IP <b>header</b> → datagram<br>Data Link → adds link <b>header + TRAILER</b> → frame<br>Physical → bits on wire<br><br>The <b>Data Link layer</b> is unique: it adds both a header AND a <b>trailer</b> (for framing and error detection via CRC).',
     analogy:'Like gift-wrapping: each layer is another box wrapped around the gift. The outermost box (link layer) also has a security seal on the bottom — the trailer.',
-    trap:'Only the LINK layer adds a TRAILER. All other layers add headers only. Exam frequently asks "which layer adds both header and trailer?"'
+    trap:'Only the LINK layer adds a TRAILER. All other layers add headers only. Exam frequently asks "which layer adds both header and trailer?"',
+    opts:['Each layer adds a trailer; the link layer adds only a header','Only application and transport layers add headers','All layers add both header and trailer for error checking','Each layer adds a header; the link layer uniquely adds both a header AND a trailer'],
+    correct:3
   },
   {
-    topic:'CH1 // SECURITY',
-    anchor:'🕵️', color:'#ff8c00',
+    topic:'CH1 // SECURITY', anchor:'🕵️', color:'#ff8c00',
     q:'Define: packet sniffing, IP spoofing, DoS, DDoS. Which is passive vs active?',
     a:'<b>Packet sniffing:</b> PASSIVE interception of packets on a shared medium (WiFi). Attacker reads packets but does not inject them. Nearly impossible to detect.<br><br><b>IP spoofing:</b> ACTIVE — injecting packets with a forged source IP. Used to impersonate another host.<br><br><b>DoS:</b> Flooding a target with traffic to exhaust resources, making it unavailable.<br><br><b>DDoS:</b> Distributed DoS — coordinated flood from thousands of compromised hosts (botnet). Extremely hard to block because traffic comes from many IPs.',
     analogy:'Sniffing = eavesdropping through a wall (passive, no interaction). Spoofing = caller ID fraud (active, fake identity). DoS = 1000 people calling your phone. DDoS = they are calling from 1000 different numbers.',
-    trap:'EXAM: Sniffing is PASSIVE — the attacker CANNOT inject or modify data. Spoofing is ACTIVE. Common mix-up in MCQs.'
+    trap:'EXAM: Sniffing is PASSIVE — the attacker CANNOT inject or modify data. Spoofing is ACTIVE. Common mix-up in MCQs.',
+    opts:['IP spoofing is passive (read-only); packet sniffing is active','DDoS floods the target from a single high-power host','Packet sniffing is passive (read-only, undetectable); IP spoofing is active (forges source IP)','DoS and DDoS are passive monitoring attacks on network traffic'],
+    correct:2
   },
   {
-    topic:'CH2 // APP ARCHITECTURE',
-    anchor:'🏗️', color:'#bf5fff',
+    topic:'CH2 // APP ARCHITECTURE', anchor:'🏗️', color:'#bf5fff',
     q:'Describe client-server vs P2P. What does "self-scaling" mean in P2P? Give examples of each.',
     a:'<b>Client-Server:</b> Always-on server with a permanent, well-known IP. Clients request services; server responds. Clients never talk to each other directly. Bottleneck: server capacity.<br>Examples: HTTP (web), IMAP (email), FTP.<br><br><b>P2P:</b> No dedicated always-on server. Peers communicate directly — each peer is both client and server. No permanent IP required.<br><br><b>Self-scaling:</b> Every new peer brings MORE demand but ALSO more capacity to serve. 1000 peers = 1000 requesters AND 1000 servers simultaneously.<br>Examples: BitTorrent, Skype (legacy).',
     analogy:'Client-server = one teacher answering 30 students (teacher is the bottleneck). P2P = every student teaches the others — as the class grows, so does teaching capacity.',
-    trap:'P2P peers do NOT have permanent IPs — they are intermittently connected. This is why P2P is harder to manage and why some apps use a hybrid: server for discovery, P2P for data transfer.'
+    trap:'P2P peers do NOT have permanent IPs — they are intermittently connected. This is why P2P is harder to manage and why some apps use a hybrid: server for discovery, P2P for data transfer.',
+    opts:['P2P needs an always-on server for all data transfers','Self-scaling means the server auto-provisions more resources on demand','Client-server scales better because it centralises data transfer','P2P self-scales: every new peer adds both demand AND serving capacity'],
+    correct:3
   },
   {
-    topic:'CH2 // HTTP BASICS',
-    anchor:'🌍', color:'#00d4ff',
+    topic:'CH2 // HTTP BASICS', anchor:'🌍', color:'#00d4ff',
     q:'What does "HTTP is stateless" mean exactly? What TCP port? What is a web page composed of?',
     a:'<b>Stateless:</b> The server retains NO memory of previous requests from a client. Each HTTP request is handled completely independently. The server does not know you visited 1 second ago.<br><br><b>TCP port 80</b> (HTTP) | <b>port 443</b> (HTTPS)<br><br><b>Web page composition:</b> One base HTML file + multiple referenced objects (images, CSS, JS scripts). Each object is independently addressable by its own URL.',
     analogy:'HTTP server = goldfish waiter with a 0-second memory. Every time you approach the counter, it has no idea who you are — you must state your full order from scratch every time.',
-    trap:'HTTP is stateless but runs ON TOP of TCP, which IS connection-oriented and stateful. Stateless refers to APPLICATION layer memory, not the transport layer connection.'
+    trap:'HTTP is stateless but runs ON TOP of TCP, which IS connection-oriented and stateful. Stateless refers to APPLICATION layer memory, not the transport layer connection.',
+    opts:['HTTP is stateless because it uses UDP (connectionless at transport layer)','HTTP remembers sessions via TCP sequence numbers between requests','HTTP is stateless — server has no memory between requests; port 80; base HTML + referenced objects','HTTP is application-layer stateless but stateful at the transport layer'],
+    correct:2
   },
   {
-    topic:'CH2 // HTTP STATUS CODES',
-    anchor:'🔢', color:'#ff2d78',
+    topic:'CH2 // HTTP STATUS CODES', anchor:'🔢', color:'#ff2d78',
     q:'What do these HTTP response codes mean: 200, 301, 304, 400, 404, 505?',
     a:'• <b>200 OK</b> — Request succeeded; object in response body<br>• <b>301 Moved Permanently</b> — Object relocated; new URL in <code>Location:</code> header<br>• <b>304 Not Modified</b> — Conditional GET: cached copy is still valid, no body sent<br>• <b>400 Bad Request</b> — Server could not parse the request<br>• <b>404 Not Found</b> — Requested object does not exist on server<br>• <b>505 HTTP Version Not Supported</b> — Server does not support client\'s HTTP version',
     analogy:'200 = "Here you go!" | 301 = "We moved, try here instead" | 304 = "Nothing changed, use your cache" | 404 = "Never heard of it" | 505 = "Speak a language I understand"',
-    trap:'304 is NOT an error — it is a SUCCESS response to a conditional GET. The cached copy is confirmed fresh. Exam may try to make you think it is a failure code.'
+    trap:'304 is NOT an error — it is a SUCCESS response to a conditional GET. The cached copy is confirmed fresh. Exam may try to make you think it is a failure code.',
+    opts:['304 means Bad Request — the server could not parse the message','301 means success — the object is in the response body','404 means the server does not support this HTTP version','304 means Not Modified — your cached copy is still valid, no re-download needed'],
+    correct:3
   },
   {
-    topic:'CH2 // HTTP CONNECTIONS',
-    anchor:'🔗', color:'#ffe600',
+    topic:'CH2 // HTTP CONNECTIONS', anchor:'🔗', color:'#ffe600',
     q:'RTT cost for non-persistent HTTP? For persistent? What is pipelining? What is HOL blocking?',
     a:'<b>Non-persistent (HTTP/1.0):</b> New TCP connection per object.<br>Cost = <b>2 RTTs + transmission time</b> per object<br>(RTT 1: TCP SYN/SYN-ACK | RTT 2: HTTP GET/response)<br><br><b>Persistent (HTTP/1.1):</b> Server keeps connection open. Subsequent objects cost <b>1 RTT each</b>.<br><br><b>Pipelining:</b> Client sends multiple GETs without waiting for responses — batching over one open connection.<br><br><b>HOL blocking:</b> A large object at the front of the queue blocks smaller objects behind it. HTTP/2 fixes this by splitting objects into frames and interleaving them.',
     analogy:'Non-persistent = queue at post office (close counter after each customer). Persistent = express lane stays open. Pipelining = submit all your parcels at once. HOL blocking = a lorry blocks a bicycle behind it.',
-    trap:'EXAM: Even in persistent HTTP, the FIRST object still costs 2 RTTs (TCP setup + HTTP GET). Only subsequent objects benefit from the reduced 1 RTT cost.'
+    trap:'EXAM: Even in persistent HTTP, the FIRST object still costs 2 RTTs (TCP setup + HTTP GET). Only subsequent objects benefit from the reduced 1 RTT cost.',
+    opts:['Non-persistent costs 1 RTT per object; persistent costs 2 RTTs for the first','Non-persistent HTTP costs 2 RTTs + transmission time per object','HOL blocking only affects HTTP/2; HTTP/1.1 with pipelining is immune','Pipelining requires a fresh TCP connection for each pipelined batch'],
+    correct:1
   },
   {
-    topic:'CH2 // HTTP COOKIES',
-    anchor:'🍪', color:'#00ff9d',
+    topic:'CH2 // HTTP COOKIES', anchor:'🍪', color:'#00ff9d',
     q:'HTTP is stateless — yet Amazon remembers your cart. Name the exact 4 components of the cookie mechanism.',
     a:'1. <b><code>Set-Cookie:</code> header in HTTP response</b> — Server sends a unique ID (e.g., <code>Set-Cookie: 1678</code>)<br>2. <b><code>Cookie:</code> header in HTTP request</b> — Browser includes the ID in every future request to that domain<br>3. <b>Cookie file on client</b> — Browser stores domain → cookie ID mappings locally<br>4. <b>Backend database at server</b> — Server maps the cookie ID to user state (cart, name, preferences)<br><br>First visit → server creates ID and DB entry → browser saves ID → every return visit sends that ID → server looks up your state.',
     analogy:'Cookie = numbered wristband at a nightclub. Security (server) cannot remember 10,000 faces, but your wristband number (cookie) links to your locker contents (database entry).',
-    trap:'The cookie does NOT store your data — it stores only a KEY (the ID). The actual data lives in the SERVER\'s database. Cookie = pointer, database = storage.'
+    trap:'The cookie does NOT store your data — it stores only a KEY (the ID). The actual data lives in the SERVER\'s database. Cookie = pointer, database = storage.',
+    opts:['Set-Cookie in response, Cookie in request, client cookie file, server-side database','JWT in Authorization header, session tokens, localStorage, server RAM','Cookies embed user data directly inside the HTTP request body','Set-Cookie creates a new TCP connection; cookies travel on a separate channel'],
+    correct:0
   },
   {
-    topic:'CH2 // WEB CACHING',
-    anchor:'⚡', color:'#ff8c00',
+    topic:'CH2 // WEB CACHING', anchor:'⚡', color:'#ff8c00',
     q:'What is a web cache (proxy)? What is a conditional GET? What header does it use? What response comes back if fresh?',
     a:'<b>Web cache / proxy server:</b> An intermediate server closer to the client that stores copies of recently requested objects. Requests go to the cache first — if the object is present and fresh, it is served immediately without contacting the origin server.<br><br><b>Benefits:</b> Reduces client response time + reduces traffic on the institutional access link.<br><br><b>Conditional GET:</b> The cache sends: <code>GET /object HTTP/1.1</code> with header <code>If-Modified-Since: [cached date]</code><br>→ Server returns <b>304 Not Modified</b> (no body, no re-download) if unchanged<br>→ Server returns <b>200 OK</b> with updated object if changed',
     analogy:'Web cache = university library stocking the most-borrowed books. Conditional GET = librarian calling the publisher: "Has this book been updated?" If not, they keep their copy — no shipping needed.',
-    trap:'A conditional GET STILL contacts the origin server — it just skips re-downloading the body if content is unchanged. The cache does not assume freshness forever; it always checks.'
+    trap:'A conditional GET STILL contacts the origin server — it just skips re-downloading the body if content is unchanged. The cache does not assume freshness forever; it always checks.',
+    opts:['A proxy cache always re-contacts the origin server for every request regardless','Conditional GET uses Cache-Control; server returns 200 to confirm freshness','Conditional GET re-downloads the full object every time to verify it is unchanged','Conditional GET uses If-Modified-Since; 304 Not Modified means cached copy is still fresh'],
+    correct:3
   }
 ];
 
 /* ── GAME STATE ── */
+let mode = localStorage.getItem('arenaMode') || 'flash';
+
 let S = {
   cur:0, xp:0, streak:0, maxStreak:0,
   combo:1.0, maxCombo:1.0,
@@ -563,10 +663,21 @@ function lvlIndex() {
   return 0;
 }
 
+function setMode(m) {
+  mode = m;
+  localStorage.setItem('arenaMode', m);
+  document.getElementById('mode-flash').classList.toggle('active', m === 'flash');
+  document.getElementById('mode-mcq').classList.toggle('active', m === 'mcq');
+  S = { cur:0, xp:0, streak:0, maxStreak:0, combo:1.0, maxCombo:1.0, results:new Array(Q.length).fill(null), revealed:false };
+  document.getElementById('card-area').style.display = 'block';
+  document.getElementById('end-screen').classList.remove('on');
+  renderCard();
+}
+
 function renderCard() {
   const q = Q[S.cur];
   const card = document.getElementById('main-card');
-  card.style.cssText += `--accent:${q.color}`;
+  card.style.setProperty('--accent', q.color);
   document.getElementById('c-anchor').textContent = q.anchor;
   const topicEl = document.getElementById('c-topic');
   topicEl.textContent = q.topic;
@@ -578,13 +689,25 @@ function renderCard() {
   document.getElementById('c-analogy').textContent = q.analogy;
   document.getElementById('c-trap').textContent = q.trap;
 
-  const ansBlock = document.getElementById('ans-block');
-  ansBlock.classList.remove('on');
-  document.getElementById('reveal-btn').style.display = 'block';
+  document.getElementById('ans-block').classList.remove('on');
   S.revealed = false;
 
+  if(mode === 'mcq') {
+    document.getElementById('reveal-btn').style.display = 'none';
+    document.getElementById('mcq-area').style.display = 'block';
+    document.getElementById('conf-label').style.display = 'none';
+    document.getElementById('conf-grid').style.display = 'none';
+    renderMCQ();
+    document.getElementById('next-btn').disabled = true;
+  } else {
+    document.getElementById('reveal-btn').style.display = 'block';
+    document.getElementById('mcq-area').style.display = 'none';
+    document.getElementById('conf-label').style.display = '';
+    document.getElementById('conf-grid').style.display = '';
+    document.getElementById('next-btn').disabled = S.cur === Q.length-1;
+  }
+
   document.getElementById('prev-btn').disabled = S.cur === 0;
-  document.getElementById('next-btn').disabled = S.cur === Q.length-1;
   document.getElementById('card-ctr').textContent = `${S.cur+1} / ${Q.length}`;
 
   card.style.animation = 'none';
@@ -593,6 +716,74 @@ function renderCard() {
 
   updateHUD();
   updateBanner();
+}
+
+function renderMCQ() {
+  const q = Q[S.cur];
+  const letters = ['A','B','C','D'];
+  document.getElementById('mcq-grid').innerHTML = q.opts.map((opt, i) =>
+    `<button class="mcq-opt" onclick="pickOption(${i})" id="mcq-opt-${i}">
+      <span class="opt-letter">${letters[i]}</span>
+      <span>${opt}</span>
+    </button>`
+  ).join('');
+  const r = document.getElementById('mcq-result');
+  r.className = 'mcq-result';
+  r.textContent = '';
+}
+
+function pickOption(idx) {
+  const q = Q[S.cur];
+  document.querySelectorAll('.mcq-opt').forEach(b => b.disabled = true);
+
+  const isCorrect = idx === q.correct;
+  const letters = ['A','B','C','D'];
+
+  document.getElementById(`mcq-opt-${idx}`).classList.add(isCorrect ? 'correct-ans' : 'wrong-ans');
+  if(!isCorrect) {
+    document.getElementById(`mcq-opt-${q.correct}`).classList.add('correct-ans');
+  }
+
+  const resultEl = document.getElementById('mcq-result');
+  resultEl.classList.add('on', isCorrect ? 'ok' : 'fail');
+  resultEl.textContent = isCorrect
+    ? '✓ CORRECT! Full XP awarded — knowledge locked.'
+    : `✗ WRONG — Correct answer: ${letters[q.correct]}. Study the explanation below.`;
+
+  document.getElementById('ans-block').classList.add('on');
+
+  const prevLi = lvlIndex();
+  if(isCorrect) {
+    S.streak++;
+    S.maxStreak = Math.max(S.maxStreak, S.streak);
+    if(S.streak >= 3) {
+      S.combo = Math.min(1 + (S.streak-2)*0.5, 3.0);
+      S.maxCombo = Math.max(S.maxCombo, S.combo);
+    }
+    let earned = Math.round(100 * S.combo);
+    S.results[S.cur] = 3;
+    S.xp += earned;
+    if(earned > 0) xpPop(earned, S.combo > 1);
+    if(S.streak===3) burst('🔥 COMBO!','var(--orange)');
+    else if(S.streak===5) burst('⚡ HOT STREAK!','var(--yellow)');
+    else if(S.streak===7) burst('💀 GODLIKE!','var(--pink)');
+    else if(S.streak>7 && S.streak%3===0) burst('👾 UNSTOPPABLE!','var(--neon)');
+  } else {
+    S.streak = 0;
+    S.combo = 1.0;
+    S.results[S.cur] = 0;
+  }
+
+  const newLi = lvlIndex();
+  if(newLi > prevLi) { levelFlash(); burst('LEVEL UP!\n'+LEVELS[newLi].name,'var(--neon)'); }
+
+  document.getElementById('next-btn').disabled = false;
+  updateHUD();
+  updateBanner();
+
+  const delay = isCorrect ? 2500 : 4500;
+  if(S.cur < Q.length-1) setTimeout(nextCard, delay);
+  else setTimeout(endScreen, delay);
 }
 
 function updateHUD() {
@@ -658,10 +849,7 @@ function rate(level) {
   if(earned>0) xpPop(earned, S.combo>1);
 
   const newLi = lvlIndex();
-  if(newLi > prevLi) {
-    levelFlash();
-    burst('LEVEL UP!\n'+LEVELS[newLi].name, 'var(--neon)');
-  }
+  if(newLi > prevLi) { levelFlash(); burst('LEVEL UP!\n'+LEVELS[newLi].name,'var(--neon)'); }
 
   updateHUD();
   updateBanner();
@@ -706,8 +894,7 @@ function prevCard() {
 
 function endScreen() {
   document.getElementById('card-area').style.display = 'none';
-  const end = document.getElementById('end-screen');
-  end.classList.add('on');
+  document.getElementById('end-screen').classList.add('on');
   const locked = S.results.filter(r=>r===3).length;
   const review = S.results.filter(r=>r===0).length;
   const pct = Math.round(locked/Q.length*100);
@@ -717,6 +904,15 @@ function endScreen() {
   document.getElementById('e-locked').textContent = locked+'/'+Q.length;
   document.getElementById('e-review').textContent = review;
   document.getElementById('e-combo').textContent = S.maxCombo.toFixed(1)+'x';
+  if(mode === 'mcq') {
+    document.getElementById('e-locked-l').textContent = 'CORRECT';
+    document.getElementById('e-review-l').textContent = 'WRONG';
+    document.getElementById('end-sub').textContent = `// MCQ ACCURACY: ${pct}%`;
+  } else {
+    document.getElementById('e-locked-l').textContent = 'LOCKED IN';
+    document.getElementById('e-review-l').textContent = 'NEED REVIEW';
+    document.getElementById('end-sub').textContent = '// RESULTS UPLOADED TO BRAIN';
+  }
   const msgs = [
     [90,'🎖️ EXAM READY. GO OBLITERATE THAT TEST.'],
     [70,'💪 SOLID PREP. DRILL THE RED CARDS ONCE MORE.'],
@@ -727,12 +923,15 @@ function endScreen() {
 }
 
 function restart() {
-  S = { cur:0,xp:0,streak:0,maxStreak:0,combo:1.0,maxCombo:1.0,results:new Array(Q.length).fill(null),revealed:false };
-  document.getElementById('card-area').style.display='block';
+  S = { cur:0, xp:0, streak:0, maxStreak:0, combo:1.0, maxCombo:1.0, results:new Array(Q.length).fill(null), revealed:false };
+  document.getElementById('card-area').style.display = 'block';
   document.getElementById('end-screen').classList.remove('on');
   renderCard();
 }
 
+// Init
+document.getElementById('mode-flash').classList.toggle('active', mode === 'flash');
+document.getElementById('mode-mcq').classList.toggle('active', mode === 'mcq');
 renderCard();
 </script>
 </body>
