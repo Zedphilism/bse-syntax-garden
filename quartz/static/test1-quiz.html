@@ -781,9 +781,10 @@ function pickOption(idx) {
   updateHUD();
   updateBanner();
 
-  const delay = isCorrect ? 2500 : 4500;
-  if(S.cur < Q.length-1) setTimeout(nextCard, delay);
-  else setTimeout(endScreen, delay);
+  if(isCorrect) {
+    if(S.cur < Q.length-1) setTimeout(nextCard, 2500);
+    else setTimeout(endScreen, 2500);
+  }
 }
 
 function updateHUD() {
