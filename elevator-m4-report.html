@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4 Report &amp; Demo Lead — Elevator Controller</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;color:#e0e0e0;font-family:'Courier New',monospace;padding:20px;max-width:900px;margin:0 auto}
+h1{color:#cc66ff;font-size:1.4rem;margin-bottom:4px}
+.back{color:#888;font-size:.8rem;margin-bottom:24px;display:block}
+.back a{color:#cc66ff;text-decoration:none}
+h2{color:#cc66ff;font-size:.9rem;margin:24px 0 10px;border-bottom:1px solid #1a002a;padding-bottom:6px;text-transform:uppercase;letter-spacing:2px}
+p{font-size:.85rem;line-height:1.7;color:#bbb;margin-bottom:10px}
+
+.checklist{list-style:none;margin-bottom:20px}
+.checklist li{padding:7px 0;font-size:.85rem;border-bottom:1px solid #111;display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.checklist li::before{content:"☐";color:#cc66ff;flex-shrink:0;font-size:1rem;margin-top:1px;transition:.1s}
+.checklist li.done::before{content:"☑";color:#00ff88}
+
+.block{background:#0d0015;border:1px solid #2a0044;border-radius:6px;padding:14px 16px;margin-bottom:14px}
+.block h3{color:#cc66ff;font-size:.8rem;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
+.block ol,.block ul{padding-left:18px;font-size:.82rem;line-height:2;color:#ccc}
+.block p{font-size:.82rem;color:#aaa;margin-top:6px}
+
+.note{background:#0a0a1a;border-left:3px solid #cc66ff;padding:10px 14px;font-size:.8rem;color:#ccc;margin-bottom:14px;border-radius:0 4px 4px 0}
+
+table{border-collapse:collapse;font-size:.8rem;margin-bottom:14px;width:100%}
+th{background:#1a0025;color:#cc66ff;padding:6px 10px;text-align:left;border:1px solid #2a0044}
+td{padding:5px 10px;border:1px solid #111;font-size:.82rem;vertical-align:top}
+td.time{color:#ffcc00;white-space:nowrap;font-size:.75rem}
+td.content{color:#ccc}
+
+.submission-box{background:#0d0015;border:2px solid #cc66ff;border-radius:8px;padding:16px 20px;margin-bottom:20px}
+.submission-box h3{color:#cc66ff;font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.submission-box .file{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1a002a;font-size:.85rem}
+.submission-box .file::before{content:"📄";font-size:1rem}
+.submission-box .file:last-child{border-bottom:none}
+.submission-box .file .name{color:#fff;font-weight:bold}
+.submission-box .file .fmt{color:#cc66ff;font-size:.75rem;margin-left:auto}
+
+.deadline-banner{background:#1a0000;border:2px solid #ff4444;border-radius:8px;padding:14px 20px;margin-bottom:20px;text-align:center}
+.deadline-banner .date{color:#ff4444;font-size:1.2rem;font-weight:bold;letter-spacing:2px}
+.deadline-banner .sub{color:#888;font-size:.8rem;margin-top:4px}
+</style>
+</head>
+<body>
+
+<h1>M4 — Report &amp; Demo Lead</h1>
+<span class="back"><a href="elevator-project-guide.html">← Back to project hub</a></span>
+
+<div class="deadline-banner">
+  <div class="date">DEADLINE: 28 JUNE 2026, 23:59 MYT</div>
+  <div class="sub">elearnppsm.utmspace.edu.my</div>
+</div>
+
+<!-- ── REPORT FORMAT ─────────────────── -->
+<h2>Report Format</h2>
+
+<div class="block">
+  <h3>Formatting</h3>
+  <ul>
+    <li>Font: Times New Roman, 12pt</li>
+    <li>Line spacing: 1.5</li>
+    <li>Margins: standard (2.5 cm or 1 inch)</li>
+    <li>Language: English</li>
+    <li>Output format: PDF or .docx</li>
+  </ul>
+</div>
+
+<!-- ── REPORT STRUCTURE ─────────────────── -->
+<h2>Report Structure (10 Sections)</h2>
+
+<table>
+  <tr><th>#</th><th>Section</th><th>Content</th><th>Source</th></tr>
+  <tr><td>1</td><td>Title Page</td><td class="content">Project title, course code, group members, date, UTM SPACE JB</td><td>M4</td></tr>
+  <tr><td>2</td><td>Dedication &amp; Acknowledgement</td><td class="content">Dedicate to lecturers/family, acknowledge contributions</td><td>M4</td></tr>
+  <tr><td>3</td><td>Table of Contents</td><td class="content">Auto-generated or manual listing of sections + page numbers</td><td>M4</td></tr>
+  <tr><td>4</td><td>Background / Overview</td><td class="content">Hotel elevator system context, 8-floor building, why digital logic is used</td><td>M4</td></tr>
+  <tr><td>5</td><td>Problem Statement</td><td class="content">What problem is being solved (safe, controlled elevator movement)</td><td>M4</td></tr>
+  <tr><td>6</td><td>Suggested Solution</td><td class="content"><strong>Include ALL of:</strong><br>• M1's state diagram<br>• Full 16-row transition table<br>• All 6 K-maps with groupings<br>• All 6 Boolean expressions with explanation</td><td>M1 → M4</td></tr>
+  <tr><td>7</td><td>System Implementation</td><td class="content">M2 + M3 DEEDS screenshots, explain each block, include CLK_EN equation: <code>CLK_EN = CLK_PUSH AND POWER AND START AND CARD AND DOOR_CLOSED AND PASS_OK AND NOT_EQUAL</code></td><td>M2, M3 → M4</td></tr>
+  <tr><td>8</td><td>Conclusion &amp; Reflection</td><td class="content">Achievements, weaknesses, proposed future work, individual reflection from each member</td><td>All → M4</td></tr>
+  <tr><td>9</td><td>References</td><td class="content">Lecture slides, textbooks, DEEDS documentation</td><td>M4</td></tr>
+  <tr><td>10</td><td>Appendices</td><td class="content">Task distribution table, group photo, full DEEDS circuit screenshot</td><td>All → M4</td></tr>
+</table>
+
+<ul class="checklist" id="report-checklist">
+  <li onclick="toggle(this)">Title page complete</li>
+  <li onclick="toggle(this)">All K-maps from M1 included (not just expressions)</li>
+  <li onclick="toggle(this)">Full 16-row transition table from M1 included</li>
+  <li onclick="toggle(this)">DEEDS screenshots from M2 collected</li>
+  <li onclick="toggle(this)">DEEDS screenshots from M3 collected</li>
+  <li onclick="toggle(this)">CLK_EN equation explained in Section 7</li>
+  <li onclick="toggle(this)">Individual reflections from all 4 members collected</li>
+  <li onclick="toggle(this)">Task distribution table in Appendix</li>
+  <li onclick="toggle(this)">Group photo in Appendix</li>
+  <li onclick="toggle(this)">Report spell-checked and formatted</li>
+</ul>
+
+<!-- ── DEMO VIDEO ─────────────────── -->
+<h2>Demo Video Script (max 15 minutes, .mp4)</h2>
+
+<table>
+  <tr><th>#</th><th>Segment</th><th class="time">Duration</th><th>Content</th></tr>
+  <tr>
+    <td>1</td><td>Introduction</td><td class="time">~1 min</td>
+    <td class="content">Show full circuit, name each block: counter, comparator, card detector, door logic, passcode, CLK_EN gate</td>
+  </tr>
+  <tr>
+    <td>2</td><td>Count Up Demo</td><td class="time">~2 min</td>
+    <td class="content">Set X=0. Start at 000. Press clock button 7 times. Narrate each state change 0→1→2→3→4→5→6→7. Show HEX display updating.</td>
+  </tr>
+  <tr>
+    <td>3</td><td>Count Down Demo</td><td class="time">~2 min</td>
+    <td class="content">Set X=1. Start at 111. Press clock button 7 times. Narrate each state change 7→6→5→4→3→2→1→0.</td>
+  </tr>
+  <tr>
+    <td>4</td><td>Mid-Floor Stop</td><td class="time">~1 min</td>
+    <td class="content">Set target floor = 4 (A2A1A0 = 100). Start at floor 0, X=0. Press clock — elevator stops automatically at floor 4. DOOR_OPEN_LED lights.</td>
+  </tr>
+  <tr>
+    <td>5</td><td>Security Demo</td><td class="time">~2 min</td>
+    <td class="content">
+      (a) Enter wrong passcode → PASS_OK=0 → clock has no effect.<br>
+      (b) Remove card (CARD=0) → clock has no effect.<br>
+      (c) Open door (DOOR_CLOSED=0) → clock has no effect.<br>
+      (d) Restore all → elevator moves normally.
+    </td>
+  </tr>
+  <tr>
+    <td>6</td><td>Saturation Demo</td><td class="time">~1 min</td>
+    <td class="content">At floor 7 (111) with X=0: press clock multiple times — counter stays at 7. At floor 0 (000) with X=1: press clock — stays at 0.</td>
+  </tr>
+  <tr>
+    <td>7</td><td>Summary</td><td class="time">~1 min</td>
+    <td class="content">Brief summary: what was built, what was demonstrated, team sign-off.</td>
+  </tr>
+</table>
+
+<ul class="checklist">
+  <li onclick="toggle(this)">Recording software ready (OBS / screen capture)</li>
+  <li onclick="toggle(this)">All 7 segments recorded</li>
+  <li onclick="toggle(this)">Video edited to under 15 minutes</li>
+  <li onclick="toggle(this)">Exported as .mp4</li>
+  <li onclick="toggle(this)">Audio narration clear and audible</li>
+</ul>
+
+<!-- ── SUBMISSION ─────────────────── -->
+<h2>Final Submission Checklist</h2>
+
+<div class="submission-box">
+  <h3>Upload to elearnppsm.utmspace.edu.my before 28 June 2026, 23:59</h3>
+  <div class="file"><span class="name">Project Report</span><span class="fmt">PDF or .docx</span></div>
+  <div class="file"><span class="name">DEEDS Source File</span><span class="fmt">.pbs</span></div>
+  <div class="file"><span class="name">Demo Video</span><span class="fmt">.mp4, max 15 min</span></div>
+</div>
+
+<ul class="checklist">
+  <li onclick="toggle(this)">Report uploaded (PDF/.docx)</li>
+  <li onclick="toggle(this)">DEEDS .pbs file uploaded</li>
+  <li onclick="toggle(this)">Demo video .mp4 uploaded</li>
+  <li onclick="toggle(this)">Submission confirmed (check portal for receipt)</li>
+</ul>
+
+<div class="note">
+  Upload at least 2 hours before deadline to avoid last-minute portal issues.
+  After uploading, screenshot the confirmation page.
+</div>
+
+<p style="margin-top:24px;font-size:.8rem">
+  <a href="elevator-project-guide.html" style="color:#cc66ff">← Hub</a> &nbsp;|&nbsp;
+  <a href="elevator-m3-input.html" style="color:#ff8800">M3 Input</a>
+</p>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('done');
+}
+</script>
+</body>
+</html>

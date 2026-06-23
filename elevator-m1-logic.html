@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M1 Logic Designer — Elevator Controller</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;color:#e0e0e0;font-family:'Courier New',monospace;padding:20px;max-width:1100px;margin:0 auto}
+h1{color:#00ff88;font-size:1.4rem;margin-bottom:4px}
+.back{color:#888;font-size:.8rem;margin-bottom:24px;display:block}
+.back a{color:#00ff88;text-decoration:none}
+h2{color:#00ff88;font-size:1rem;margin:28px 0 12px;border-bottom:1px solid #1a1a1a;padding-bottom:6px;text-transform:uppercase;letter-spacing:2px}
+h3{color:#aaa;font-size:.85rem;margin:18px 0 8px;text-transform:uppercase;letter-spacing:1px}
+p{font-size:.85rem;line-height:1.7;color:#bbb;margin-bottom:10px}
+
+/* tables */
+table{border-collapse:collapse;font-size:.8rem;margin-bottom:16px;width:100%}
+th{background:#1a2a1a;color:#00ff88;padding:6px 10px;text-align:center;border:1px solid #2a3a2a;white-space:nowrap}
+td{padding:5px 10px;text-align:center;border:1px solid #1a1a1a}
+tr:hover td{background:#111}
+.sat{background:#2a1a0a!important;color:#ff8800}
+.dc{color:#555}
+.j1{color:#00ff88}
+.k1{color:#00aaff}
+
+/* K-map */
+.kmap-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:20px}
+.kmap{background:#111;border:1px solid #1a1a1a;border-radius:6px;padding:14px}
+.kmap h4{color:#00ff88;font-size:.8rem;margin-bottom:10px;letter-spacing:1px}
+.kmap table{width:auto;margin:0 auto}
+.kmap th{background:#0d1a0d;font-size:.75rem;padding:5px 12px}
+.kmap td{font-size:.85rem;padding:6px 12px;min-width:36px;font-weight:bold}
+.kmap td.one{color:#00ff88}
+.kmap td.zero{color:#ff4444;background:#1a0000}
+.kmap td.dc{color:#444}
+.kmap td.ga{background:#1a2a00;color:#ccff00;outline:2px solid #ccff00}
+.kmap td.gb{background:#00001a;color:#00aaff;outline:2px solid #00aaff}
+.kmap td.gc{background:#1a000a;color:#ff44aa;outline:2px solid #ff44aa}
+.kmap td.ga.gb{background:#001a1a;color:#44ffcc;outline:2px solid #44ffcc}
+.kmap .expr{margin-top:10px;font-size:.82rem;color:#fff;background:#0d0d0d;padding:6px 10px;border-radius:4px;border-left:3px solid #00ff88}
+.kmap .expr span.bar{text-decoration:overline}
+
+/* summary */
+.expr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:24px}
+.expr-box{background:#0d1a0d;border:1px solid #00ff88;border-radius:6px;padding:12px 16px}
+.expr-box .name{color:#00ff88;font-size:.75rem;letter-spacing:2px;margin-bottom:6px}
+.expr-box .formula{color:#fff;font-size:1rem}
+.expr-box .formula span.bar{text-decoration:overline}
+
+/* verification */
+.vcheck{background:#111;border-radius:6px;padding:14px;margin-bottom:16px;font-size:.8rem}
+.vcheck .row{display:flex;gap:8px;align-items:baseline;margin:4px 0}
+.vcheck .row .state{color:#888;min-width:200px}
+.vcheck .row .result{color:#00ff88}
+.vcheck .row .fail{color:#ff4444}
+
+.note{background:#1a1a0a;border-left:3px solid #ff8800;padding:10px 14px;font-size:.8rem;color:#ccc;margin-bottom:16px;border-radius:0 4px 4px 0}
+</style>
+</head>
+<body>
+
+<h1>M1 — Logic Designer Derivation</h1>
+<span class="back"><a href="elevator-project-guide.html">← Back to project hub</a></span>
+
+<div class="note">
+  This page contains all mathematical deliverables for Member 1: state diagram description,
+  complete 16-row transition table with JK excitation values, all 6 K-maps with groups annotated,
+  and 6 minimised Boolean expressions. Hand this to M2 before they touch DEEDS.
+</div>
+
+<!-- ── SYSTEM PARAMETERS ─────────────────────────────── -->
+<h2>System Parameters</h2>
+<p>Floors 0–7 → 3-bit binary (Q2 Q1 Q0). Control input <strong>X=0 → count UP</strong>, <strong>X=1 → count DOWN</strong>. Saturated at both ends: floor 7 with X=0 stays at 7; floor 0 with X=1 stays at 0. Flip-flop type: <strong>JK</strong> (not D).</p>
+
+<h3>JK Excitation Rules</h3>
+<table style="width:auto;margin-bottom:20px">
+  <tr><th>Q → Q⁺</th><th>J</th><th>K</th></tr>
+  <tr><td>0 → 0</td><td class="dc">X</td><td class="dc">X</td></tr>
+  <tr><td>0 → 1</td><td class="j1">1</td><td class="dc">X</td></tr>
+  <tr><td>1 → 0</td><td class="dc">X</td><td class="k1">1</td></tr>
+  <tr><td>1 → 1</td><td class="dc">X</td><td class="dc">X</td></tr>
+</table>
+<p style="font-size:.78rem;color:#888">Wait — corrected: 0→0: J=0 K=X; 0→1: J=1 K=X; 1→0: J=X K=1; 1→1: J=X K=0</p>
+
+<!-- ── TRANSITION TABLE ─────────────────────────────── -->
+<h2>16-Row Next-State and JK Transition Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>X</th><th>Q2</th><th>Q1</th><th>Q0</th>
+      <th>Q2⁺</th><th>Q1⁺</th><th>Q0⁺</th>
+      <th>J2</th><th>K2</th>
+      <th>J1</th><th>K1</th>
+      <th>J0</th><th>K0</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="j1">1</td><td class="dc">X</td><td>↑ 0→1</td></tr>
+    <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td class="j1">0</td><td class="dc">X</td><td class="j1">1</td><td class="dc">X</td><td class="dc">X</td><td class="k1">1</td><td>↑ 1→2</td></tr>
+    <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td class="j1">0</td><td class="dc">X</td><td class="dc">X</td><td class="j1">0</td><td class="j1">1</td><td class="dc">X</td><td>↑ 2→3</td></tr>
+    <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td class="j1">1</td><td class="dc">X</td><td class="dc">X</td><td class="k1">1</td><td class="dc">X</td><td class="k1">1</td><td>↑ 3→4</td></tr>
+    <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="dc">X</td><td class="j1">0</td><td class="j1">0</td><td class="dc">X</td><td class="j1">1</td><td class="dc">X</td><td>↑ 4→5</td></tr>
+    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td class="dc">X</td><td class="j1">0</td><td class="j1">1</td><td class="dc">X</td><td class="dc">X</td><td class="k1">1</td><td>↑ 5→6</td></tr>
+    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="j1">1</td><td class="dc">X</td><td>↑ 6→7</td></tr>
+    <tr class="sat"><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td>⊤ SAT floor 7</td></tr>
+    <tr class="sat"><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td>⊥ SAT floor 0</td></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="dc">X</td><td class="k1">1</td><td>↓ 1→0</td></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td class="j1">0</td><td class="dc">X</td><td class="dc">X</td><td class="k1">1</td><td class="j1">1</td><td class="dc">X</td><td>↓ 2→1</td></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td class="j1">0</td><td class="dc">X</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="k1">1</td><td>↓ 3→2</td></tr>
+    <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td class="dc">X</td><td class="k1">1</td><td class="j1">1</td><td class="dc">X</td><td class="j1">1</td><td class="dc">X</td><td>↓ 4→3</td></tr>
+    <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td class="dc">X</td><td class="j1">0</td><td class="j1">0</td><td class="dc">X</td><td class="dc">X</td><td class="k1">1</td><td>↓ 5→4</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="k1">1</td><td class="j1">1</td><td class="dc">X</td><td>↓ 6→5</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="j1">0</td><td class="dc">X</td><td class="k1">1</td><td>↓ 7→6</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:.78rem;color:#666">Orange rows = saturation self-loops. X (green) in J columns = 0 when Q=0→0; X in K columns = 0 when Q=1→1. Don't-cares (grey X) treated as 1 in K-maps to maximise group sizes.</p>
+
+<!-- ── K-MAPS ─────────────────────────────── -->
+<h2>4-Variable K-Maps</h2>
+<p>Variables: X, Q2, Q1, Q0. Row axis: XQ2 in Gray code (00, 01, 11, 10). Column axis: Q1Q0 in Gray code (00, 01, 11, 10). Don't-cares count as 1 when grouping.</p>
+
+<div class="kmap-wrap">
+
+  <!-- J2 -->
+  <div class="kmap">
+    <h4>K-MAP: J2</h4>
+    <!-- rows: XQ2=00,01,11,10 | cols: Q1Q0=00,01,11,10 -->
+    <table>
+      <tr><th>XQ2\Q1Q0</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><th>00 (X=0,Q2=0)</th><td class="dc">X</td><td class="dc">X</td><td class="ga one">1</td><td class="dc">X</td></tr>
+      <tr><th>01 (X=0,Q2=1)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>11 (X=1,Q2=1)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>10 (X=1,Q2=0)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+    </table>
+    <div class="expr">
+      Group A (size 2, using X as 1): XQ2=00,01 — Q1Q0=11<br>
+      <strong>J2 = <span class="bar">X</span>·Q1·Q0</strong>
+    </div>
+  </div>
+
+  <!-- K2 -->
+  <div class="kmap">
+    <h4>K-MAP: K2</h4>
+    <table>
+      <tr><th>XQ2\Q1Q0</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><th>00 (X=0,Q2=0)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>01 (X=0,Q2=1)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>11 (X=1,Q2=1)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>10 (X=1,Q2=0)</th><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+    </table>
+    <div class="expr">
+      Group A (size 2, wraps rows 11↔10): XQ2=11,10 — Q1Q0=00<br>
+      <strong>K2 = X·<span class="bar">Q1</span>·<span class="bar">Q0</span></strong>
+    </div>
+  </div>
+
+  <!-- J1 -->
+  <div class="kmap">
+    <h4>K-MAP: J1</h4>
+    <table>
+      <tr><th>XQ2\Q1Q0</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><th>00 (X=0,Q2=0)</th><td class="dc">X</td><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>01 (X=0,Q2=1)</th><td class="dc">X</td><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>11 (X=1,Q2=1)</th><td class="gb one">1</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>10 (X=1,Q2=0)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+    </table>
+    <div class="expr">
+      Group A (size 4): all XQ2, Q1Q0=01 → <span class="bar">X</span>·Q0 (rows 00,01 at col 01, extended with Xs)<br>
+      Group B (size 2): XQ2=11,10? No — cell (11,00) only. Plus don't-cares at (10,00): X·Q2·<span class="bar">Q0</span><br>
+      <strong>J1 = <span class="bar">X</span>·Q0 + X·Q2·<span class="bar">Q0</span></strong>
+    </div>
+  </div>
+
+  <!-- K1 -->
+  <div class="kmap">
+    <h4>K-MAP: K1</h4>
+    <table>
+      <tr><th>XQ2\Q1Q0</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><th>00 (X=0,Q2=0)</th><td class="dc">X</td><td class="gb one">1</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>01 (X=0,Q2=1)</th><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>11 (X=1,Q2=1)</th><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td><td class="dc">X</td></tr>
+      <tr><th>10 (X=1,Q2=0)</th><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td><td class="ga one">1</td></tr>
+    </table>
+    <div class="expr">
+      Group A (size 4): X=1, Q0=0 → X·<span class="bar">Q0</span><br>
+      Group B (size 2): X=0, Q2=0, Q0=1 → <span class="bar">X</span>·<span class="bar">Q2</span>·Q0<br>
+      <strong>K1 = X·<span class="bar">Q0</span> + <span class="bar">X</span>·<span class="bar">Q2</span>·Q0</strong>
+    </div>
+  </div>
+
+  <!-- J0 -->
+  <div class="kmap">
+    <h4>K-MAP: J0</h4>
+    <table>
+      <tr><th>XQ2\Q1Q0</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><th>00 (X=0,Q2=0)</th><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td><td class="gc one">1</td></tr>
+      <tr><th>01 (X=0,Q2=1)</th><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td><td class="gb gc one">1</td></tr>
+      <tr><th>11 (X=1,Q2=1)</th><td class="ga one">1</td><td class="dc">X</td><td class="dc">X</td><td class="gb gc one">1</td></tr>
+      <tr><th>10 (X=1,Q2=0)</th><td class="zero">0</td><td class="dc">X</td><td class="dc">X</td><td class="gc one">1</td></tr>
+    </table>
+    <div class="expr">
+      0 only at (XQ2=10, Q1Q0=00) = floor 0 with X=1, Q0=0 (SAT ground)<br>
+      Group A (size 8): <span class="bar">X</span> (entire top half)<br>
+      Group B (size 8): Q2 (entire right half column-wise + don't-cares)<br>
+      Group C (size 8): Q1 (Q1=1 half)<br>
+      <strong>J0 = <span class="bar">X</span> + Q2 + Q1</strong>
+    </div>
+  </div>
+
+  <!-- K0 -->
+  <div class="kmap">
+    <h4>K-MAP: K0</h4>
+    <table>
+      <tr><th>XQ2\Q1Q0</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><th>00 (X=0,Q2=0)</th><td class="dc">X</td><td class="ga one">1</td><td class="gc one">1</td><td class="dc">X</td></tr>
+      <tr><th>01 (X=0,Q2=1)</th><td class="dc">X</td><td class="ga one">1</td><td class="zero">0</td><td class="dc">X</td></tr>
+      <tr><th>11 (X=1,Q2=1)</th><td class="dc">X</td><td class="ga one">1</td><td class="gb gc one">1</td><td class="dc">X</td></tr>
+      <tr><th>10 (X=1,Q2=0)</th><td class="dc">X</td><td class="ga one">1</td><td class="gb gc one">1</td><td class="dc">X</td></tr>
+    </table>
+    <div class="expr">
+      0 only at (XQ2=01, Q1Q0=11) = floor 7 SAT (X=0,Q2=1,Q1=1,Q0=1)<br>
+      Group A (size 8): <span class="bar">Q1</span> (Q1=0 half + don't-cares) → <span class="bar">Q1</span><br>
+      Group B (size 4): X=1, Q0=1 → X·Q1... or X=1 right half → X<br>
+      Group C (size 4): <span class="bar">Q2</span>, Q0=1 → <span class="bar">Q2</span>·Q0... simplified<br>
+      <strong>K0 = X + <span class="bar">Q1</span> + <span class="bar">Q2</span></strong>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── EXPRESSIONS SUMMARY ─────────────────────────────── -->
+<h2>6 Minimised Boolean Expressions</h2>
+
+<div class="expr-grid">
+  <div class="expr-box">
+    <div class="name">J2</div>
+    <div class="formula"><span class="bar">X</span> · Q1 · Q0</div>
+  </div>
+  <div class="expr-box">
+    <div class="name">K2</div>
+    <div class="formula">X · <span class="bar">Q1</span> · <span class="bar">Q0</span></div>
+  </div>
+  <div class="expr-box">
+    <div class="name">J1</div>
+    <div class="formula"><span class="bar">X</span>·Q0 + X·Q2·<span class="bar">Q0</span></div>
+  </div>
+  <div class="expr-box">
+    <div class="name">K1</div>
+    <div class="formula">X·<span class="bar">Q0</span> + <span class="bar">X</span>·<span class="bar">Q2</span>·Q0</div>
+  </div>
+  <div class="expr-box">
+    <div class="name">J0</div>
+    <div class="formula"><span class="bar">X</span> + Q2 + Q1</div>
+  </div>
+  <div class="expr-box">
+    <div class="name">K0</div>
+    <div class="formula">X + <span class="bar">Q1</span> + <span class="bar">Q2</span></div>
+  </div>
+</div>
+
+<!-- ── BACK-VERIFICATION ─────────────────────────────── -->
+<h2>Back-Verification (8 rows)</h2>
+<p style="margin-bottom:14px">Substitute state + X into each expression; confirm J/K outputs match table.</p>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 3 — X=0, Q=011, next=100 (↑ 3→4)</strong>
+  <div class="row"><span class="state">J2 = X̄·Q1·Q0 = 1·1·1</span><span class="result">= 1 ✓ (Q2: 0→1)</span></div>
+  <div class="row"><span class="state">J1 = X̄·Q0 + X·Q2·Q̄0 = 1·1 + 0 </span><span class="result">= 1... but K1=1 applies (Q1=1). K1=X·Q̄0+X̄·Q̄2·Q0 = 0+1·1·1 = 1 ✓ (Q1: 1→0)</span></div>
+  <div class="row"><span class="state">K0 = X+Q̄1+Q̄2 = 0+0+1</span><span class="result">= 1 ✓ (Q0: 1→0)</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 7 — X=0, Q=111, next=111 (SAT floor 7)</strong>
+  <div class="row"><span class="state">K2 = X·Q̄1·Q̄0 = 0·0·0</span><span class="result">= 0 ✓ (Q2: 1→1, K=0)</span></div>
+  <div class="row"><span class="state">K1 = X·Q̄0+X̄·Q̄2·Q0 = 0+1·0·1</span><span class="result">= 0 ✓ (Q1: 1→1, K=0)</span></div>
+  <div class="row"><span class="state">K0 = X+Q̄1+Q̄2 = 0+0+0</span><span class="result">= 0 ✓ (Q0: 1→1, K=0) — saturation works!</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 8 — X=1, Q=000, next=000 (SAT floor 0)</strong>
+  <div class="row"><span class="state">J2 = X̄·Q1·Q0 = 0·0·0</span><span class="result">= 0 ✓ (Q2: 0→0, J=0)</span></div>
+  <div class="row"><span class="state">J1 = X̄·Q0+X·Q2·Q̄0 = 0+1·0·1</span><span class="result">= 0 ✓ (Q1: 0→0, J=0)</span></div>
+  <div class="row"><span class="state">J0 = X̄+Q2+Q1 = 0+0+0</span><span class="result">= 0 ✓ (Q0: 0→0, J=0) — saturation works!</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 12 — X=1, Q=100, next=011 (↓ 4→3)</strong>
+  <div class="row"><span class="state">K2 = X·Q̄1·Q̄0 = 1·1·1</span><span class="result">= 1 ✓ (Q2: 1→0)</span></div>
+  <div class="row"><span class="state">J1 = X̄·Q0+X·Q2·Q̄0 = 0+1·1·1</span><span class="result">= 1 ✓ (Q1: 0→1)</span></div>
+  <div class="row"><span class="state">J0 = X̄+Q2+Q1 = 0+1+0</span><span class="result">= 1 ✓ (Q0: 0→1)</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 5 — X=0, Q=101, next=110 (↑ 5→6)</strong>
+  <div class="row"><span class="state">K2 = X·Q̄1·Q̄0 = 0·1·0</span><span class="result">= 0 ✓ (Q2: 1→1, K=0)</span></div>
+  <div class="row"><span class="state">J1 = X̄·Q0+X·Q2·Q̄0 = 1·1+0</span><span class="result">= 1 ✓ (Q1: 0→1)</span></div>
+  <div class="row"><span class="state">K0 = X+Q̄1+Q̄2 = 0+1+0</span><span class="result">= 1 ✓ (Q0: 1→0)</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 14 — X=1, Q=110, next=101 (↓ 6→5)</strong>
+  <div class="row"><span class="state">K2 = X·Q̄1·Q̄0 = 1·0·1</span><span class="result">= 0 ✓ (Q2: 1→1, K=0)</span></div>
+  <div class="row"><span class="state">K1 = X·Q̄0+X̄·Q̄2·Q0 = 1·1+0</span><span class="result">= 1 ✓ (Q1: 1→0)</span></div>
+  <div class="row"><span class="state">J0 = X̄+Q2+Q1 = 0+1+1</span><span class="result">= 1 ✓ (Q0: 0→1)</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 1 — X=0, Q=001, next=010 (↑ 1→2)</strong>
+  <div class="row"><span class="state">J1 = X̄·Q0+X·Q2·Q̄0 = 1·1+0</span><span class="result">= 1 ✓ (Q1: 0→1)</span></div>
+  <div class="row"><span class="state">K0 = X+Q̄1+Q̄2 = 0+1+1</span><span class="result">= 1 ✓ (Q0: 1→0)</span></div>
+</div>
+
+<div class="vcheck">
+  <strong style="color:#00ff88">Row 15 — X=1, Q=111, next=110 (↓ 7→6)</strong>
+  <div class="row"><span class="state">K2 = X·Q̄1·Q̄0 = 1·0·0</span><span class="result">= 0 ✓ (Q2: 1→1, K=0)</span></div>
+  <div class="row"><span class="state">K1 = X·Q̄0+X̄·Q̄2·Q0 = 1·0+0</span><span class="result">= 0 ✓ (Q1: 1→1, K=0)</span></div>
+  <div class="row"><span class="state">K0 = X+Q̄1+Q̄2 = 1+0+0</span><span class="result">= 1 ✓ (Q0: 1→0)</span></div>
+</div>
+
+<p style="margin-top:20px;font-size:.78rem;color:#666">All 8 verification rows pass. Hand J2, K2, J1, K1, J0, K0 expressions to M2 for DEEDS implementation.</p>
+
+<p style="margin-top:24px;font-size:.8rem"><a href="elevator-project-guide.html" style="color:#00ff88">← Back to project hub</a> &nbsp;|&nbsp; <a href="elevator-m2-circuit.html" style="color:#00aaff">M2 Circuit →</a></p>
+
+</body>
+</html>

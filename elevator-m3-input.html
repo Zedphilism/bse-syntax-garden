@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M3 Input Controller — Elevator Controller</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;color:#e0e0e0;font-family:'Courier New',monospace;padding:20px;max-width:900px;margin:0 auto}
+h1{color:#ff8800;font-size:1.4rem;margin-bottom:4px}
+.back{color:#888;font-size:.8rem;margin-bottom:24px;display:block}
+.back a{color:#ff8800;text-decoration:none}
+h2{color:#ff8800;font-size:.9rem;margin:24px 0 10px;border-bottom:1px solid #2a1000;padding-bottom:6px;text-transform:uppercase;letter-spacing:2px}
+p{font-size:.85rem;line-height:1.7;color:#bbb;margin-bottom:10px}
+
+.checklist{list-style:none;margin-bottom:20px}
+.checklist li{padding:7px 0;font-size:.85rem;border-bottom:1px solid #111;display:flex;align-items:flex-start;gap:10px}
+.checklist li::before{content:"☐";color:#ff8800;flex-shrink:0;font-size:1rem;margin-top:1px}
+
+.block{background:#1a0d00;border:1px solid #3a1a00;border-radius:6px;padding:14px 16px;margin-bottom:14px}
+.block h3{color:#ff8800;font-size:.8rem;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
+.block code{color:#ffcc00;font-size:.85rem;display:block;margin:4px 0;padding:2px 6px;background:#0d0600}
+.block p{font-size:.82rem;margin-top:8px}
+
+.note{background:#001a1a;border-left:3px solid #00aaff;padding:10px 14px;font-size:.8rem;color:#ccc;margin-bottom:14px;border-radius:0 4px 4px 0}
+.warn{background:#1a0a00;border-left:3px solid #ff4444;padding:10px 14px;font-size:.8rem;color:#ccc;margin-bottom:14px;border-radius:0 4px 4px 0}
+
+.passcode-demo{background:#0d0d0d;border:1px solid #3a1a00;border-radius:6px;padding:16px;margin-bottom:14px}
+.passcode-demo h3{color:#ff8800;font-size:.8rem;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.passcode-demo table{border-collapse:collapse;width:100%}
+.passcode-demo th{background:#1a0d00;color:#ff8800;padding:6px 10px;text-align:center;border:1px solid #3a1a00;font-size:.78rem}
+.passcode-demo td{padding:5px 10px;border:1px solid #1a0a00;text-align:center;font-size:.82rem}
+.passcode-demo .ok{color:#00ff88}
+.passcode-demo .fail{color:#ff4444}
+
+.clk-final{background:#0d0600;border:2px solid #ff8800;border-radius:8px;padding:16px 20px;margin-bottom:20px}
+.clk-final h3{color:#ff8800;font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.clk-final code{color:#ffcc00;font-size:1rem;font-weight:bold;display:block;margin-bottom:12px;word-break:break-all}
+.clk-final .signals{display:flex;flex-wrap:wrap;gap:8px}
+.clk-final .sig{background:#1a0d00;border:1px solid #3a1a00;padding:4px 10px;border-radius:4px;font-size:.75rem}
+.clk-final .sig.ext{border-color:#00aaff;color:#00aaff}
+</style>
+</head>
+<body>
+
+<h1>M3 — Input Controller Designer</h1>
+<span class="back"><a href="elevator-project-guide.html">← Back to project hub</a></span>
+
+<div class="note">
+  M3 can work in parallel with M2. The three sub-circuits (card, door, passcode) are independent.
+  You only need M2's NOT_EQUAL output when wiring the final CLK_EN AND gate.
+</div>
+
+<!-- ── SUB-CIRCUIT 1: CARD ─────────────────── -->
+<h2>Sub-circuit 1 — Hotel Card Detector</h2>
+
+<div class="block">
+  <h3>Design</h3>
+  <code>CARD — 1-bit toggle input in DEEDS</code>
+  <p>CARD = 1 means a valid hotel card is tapped. CARD = 0 means no card / invalid card.</p>
+  <p>Wire CARD directly into the final CLK_EN AND gate. Optional: connect an LED labelled "Card OK" for visual feedback.</p>
+</div>
+
+<ul class="checklist">
+  <li>Toggle input labelled CARD added</li>
+  <li>LED "Card OK" connected (optional but recommended)</li>
+  <li>Test: CARD=0 → elevator does not move regardless of other inputs</li>
+  <li>Test: CARD=1 → CARD signal no longer blocks movement</li>
+</ul>
+
+<!-- ── SUB-CIRCUIT 2: DOOR ─────────────────── -->
+<h2>Sub-circuit 2 — Door Logic</h2>
+
+<div class="block">
+  <h3>Design</h3>
+  <code>DOOR_CLOSED — toggle input (1 = door is closed, safe to move)</code>
+  <code>DOOR_OPEN_LED — LED connected to EQUAL signal from M2</code>
+  <p style="margin-top:8px">DOOR_CLOSED feeds into CLK_EN AND gate. When M2's EQUAL goes HIGH (floor reached), DOOR_OPEN_LED lights up — this signals the door should open. The elevator cannot move again until DOOR_CLOSED returns to 1 (user closes door).</p>
+</div>
+
+<ul class="checklist">
+  <li>Toggle input labelled DOOR_CLOSED added</li>
+  <li>LED labelled DOOR_OPEN_LED connected to EQUAL from M2</li>
+  <li>Test: DOOR_CLOSED=0 → elevator does not move</li>
+  <li>Test: arrive at floor (EQUAL=HIGH) → DOOR_OPEN_LED lights</li>
+</ul>
+
+<!-- ── SUB-CIRCUIT 3: PASSCODE ─────────────────── -->
+<h2>Sub-circuit 3 — Passcode Circuit</h2>
+
+<div class="block">
+  <h3>Chosen passcode: 1 0 1 (P2=1, P1=0, P0=1)</h3>
+  <code>P2 → AND input directly (must be 1)</code>
+  <code>P1 → NOT gate → AND input (must be 0, so invert)</code>
+  <code>P0 → AND input directly (must be 1)</code>
+  <code>3-input AND output = PASS_OK</code>
+  <p style="margin-top:8px">Change the passcode by choosing different NOT connections. Document your chosen passcode in the report.</p>
+</div>
+
+<div class="passcode-demo">
+  <h3>Passcode 101 — Truth Table Verification</h3>
+  <table>
+    <tr><th>P2</th><th>P1</th><th>P0</th><th>AND inputs (after NOT on P1)</th><th>PASS_OK</th></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td>1 · NOT(0)=1 · 1</td><td class="ok">1 ✓ correct code</td></tr>
+    <tr><td>0</td><td>0</td><td>1</td><td>0 · 1 · 1</td><td class="fail">0</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1 · NOT(1)=0 · 1</td><td class="fail">0</td></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td>1 · 1 · 0</td><td class="fail">0</td></tr>
+    <tr><td>0</td><td>1</td><td>0</td><td>0 · 0 · 1</td><td class="fail">0</td></tr>
+  </table>
+</div>
+
+<ul class="checklist">
+  <li>Toggle inputs P2, P1, P0 added</li>
+  <li>NOT gate on P1 (bit that should be 0 in passcode)</li>
+  <li>3-input AND gate producing PASS_OK</li>
+  <li>Optional: LED "Wrong code" connected to NOT(PASS_OK)</li>
+  <li>Test: correct code 101 → PASS_OK = 1</li>
+  <li>Test: wrong codes → PASS_OK = 0 (elevator blocked)</li>
+</ul>
+
+<!-- ── FINAL CLK_EN ─────────────────── -->
+<h2>Part 4 — Final Clock Enable Integration</h2>
+
+<div class="clk-final">
+  <h3>CLK_EN equation</h3>
+  <code>CLK_EN = CLK_PUSH AND POWER AND START AND CARD AND DOOR_CLOSED AND PASS_OK AND NOT_EQUAL</code>
+  <div class="signals">
+    <span class="sig">CLK_PUSH — push button</span>
+    <span class="sig">POWER — toggle</span>
+    <span class="sig">START — toggle</span>
+    <span class="sig">CARD — from sub-circuit 1</span>
+    <span class="sig">DOOR_CLOSED — from sub-circuit 2</span>
+    <span class="sig">PASS_OK — from sub-circuit 3</span>
+    <span class="sig ext">NOT_EQUAL — from M2's comparator</span>
+  </div>
+</div>
+
+<div class="warn">
+  DEEDS may not have a 7-input AND gate. Use chained ANDs: e.g., group the first 4 signals into a 4-input AND, then AND that output with the remaining 3. The result is identical.
+</div>
+
+<ul class="checklist">
+  <li>Push button CLK_PUSH added (replaces free-running clock)</li>
+  <li>Toggle inputs POWER and START added</li>
+  <li>All 7 signals wired into chained AND gates → CLK_EN output</li>
+  <li>CLK_EN output connected to M2's CLK_EN wire</li>
+  <li>Test: block POWER → elevator stops</li>
+  <li>Test: block CARD → elevator stops</li>
+  <li>Test: block DOOR_CLOSED → elevator stops</li>
+  <li>Test: wrong passcode → PASS_OK=0 → elevator stops</li>
+  <li>Test: EQUAL (floor reached) → NOT_EQUAL=0 → elevator stops</li>
+</ul>
+
+<!-- ── DELIVERABLES ─────────────────── -->
+<h2>Deliverables (hand to M4)</h2>
+
+<ul class="checklist">
+  <li>Sub-circuit diagram: card detector</li>
+  <li>Sub-circuit diagram: door logic</li>
+  <li>Sub-circuit diagram: passcode circuit</li>
+  <li>Final integrated CLK_EN block diagram</li>
+  <li>Written note: chosen passcode value (for report)</li>
+  <li>Screenshots of PASS_OK and DOOR signals in operation</li>
+</ul>
+
+<p style="margin-top:24px;font-size:.8rem">
+  <a href="elevator-project-guide.html" style="color:#ff8800">← Hub</a> &nbsp;|&nbsp;
+  <a href="elevator-m2-circuit.html" style="color:#00aaff">M2 Circuit</a> &nbsp;|&nbsp;
+  <a href="elevator-m4-report.html" style="color:#cc66ff">M4 Report →</a>
+</p>
+
+</body>
+</html>
