@@ -34,6 +34,10 @@ jobs:
 
       - name: Copy static HTML files
         run: cp elevator-project-guide.html public/
+      - name: Copy static HTML files
+        run: cp elevator-project-guide.html public/
+
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
